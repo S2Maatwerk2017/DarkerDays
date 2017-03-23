@@ -46,7 +46,6 @@ public class AIMovement : MonoBehaviour {
         if (DEBUGMODE == true)
         {
             Debug.DrawRay(transform.position, targetdirection, Color.red);
-
             if (hit.transform.gameObject.tag == "Player" && DistanceToPlayer < AggroRange)
             {
                 Debug.Log("PLAYER SPOTTED! ATTACK!");
