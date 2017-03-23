@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AIMovement : MonoBehaviour {
-    GameObject Player;
+
+    [Header("Debugger")]
+    [Tooltip("ENABLE TO SHOW RAYCAST AND SPAM THE CONSOLE WITH DATA")]
+    public bool DEBUGMODE;
+    [Header("Variables")]
+    public float AggroRange;
     public bool MoveOrFlee;
-    private bool PlayerSpotted;
-
     public float MoveSpeed;
-    private Rigidbody rigidbody;
+    public float TimeBetweenMove;
+    public float TimeToMove;
 
-    /**/
+
+    private GameObject Player;
+    private bool PlayerSpotted;
+    private Rigidbody MyRigidbody;
     private bool moving;
     private Vector3 moveDirection;
-    public float TimeBetweenMove;
     private float TimeBetweenMoveCounter;
-    public float TimeToMove;
     private float TimeToMoveCounter;
-    /**/
+    
 
     void Start()
     {
         Player = GameObject.Find("Player");
-        rigidbody = GetComponent<Rigidbody>();
+        MyRigidbody = GetComponent<Rigidbody>();
         PlayerSpotted = false;
     }
 
@@ -34,49 +39,67 @@ public class AIMovement : MonoBehaviour {
 
     private void DoRayCast()
     {
-        Vector3 targetLocation = Player.transform.position - this.transform.position;
+        Vector3 targetdirection = Player.transform.position - this.transform.position;
         RaycastHit hit;
-        Debug.Log(Physics.Raycast(this.transform.position, targetLocation, out hit));
-        Debug.DrawRay(transform.position, targetLocation, Color.red);
+        Physics.Raycast(this.transform.position, targetdirection, out hit);
+        float DistanceToPlayer = Vector3.Distance(this.transform.position, Player.transform.position);
+        if (DEBUGMODE == true)
+        {
+            Debug.DrawRay(transform.position, targetdirection, Color.red);
+
+            if (hit.transform.gameObject.tag == "Player" && DistanceToPlayer < AggroRange)
+            {
+                Debug.Log("PLAYER SPOTTED! ATTACK!");
+                PlayerSpotted = true;
+            }
+            else
+            {
+                
+                PlayerSpotted = false;
+            }
+        }
 
     }
 
 
     private void Move()
     {
+        //If Player has been spotted, call the virtual Behavior method. (standard run away/ go to player)
         if (PlayerSpotted)
         {
-            if (MoveOrFlee)
-            {
-                MoveToPlayer();
-            }
-            else if (!MoveOrFlee)
-            {
-                RunFromPlayer();
-            }
-            if (Vector3.Distance(Player.transform.position, this.transform.position) > 8)
+            DoBehavior();
+
+            //Check if the enemy is x distance away from the player, if so, stop using the playerspotted behavior.
+            if (Vector3.Distance(Player.transform.position, this.transform.position) > AggroRange)
             {
                 PlayerSpotted = false;
             }
         }
+
+        //If player has not been spotted, move in a random direction.
         else
         {
+            //If the enemy is moving, allow the enemy walk for x amount of time (TimeToMoveCounter) before resetting.
             if (moving)
             {
                 TimeToMoveCounter -= Time.deltaTime;
-                rigidbody.velocity = moveDirection;
+                MyRigidbody.velocity = moveDirection;
 
+                //If the counter reaches zero, reset moving and calculate a wait timer.
                 if (TimeToMoveCounter < 0)
                 {
                     moving = false;
                     TimeBetweenMoveCounter = Random.Range(TimeBetweenMove * 0.75f, TimeBetweenMove * 1.25f);
                 }
             }
+
+            //If the enemy is not moving, wait x amount of time (TimeBetweenMoveCounter) before assigning a new location and timer.
             else
             {
                 TimeBetweenMoveCounter -= Time.deltaTime;
-                rigidbody.velocity = Vector3.zero;
+                MyRigidbody.velocity = Vector3.zero;
 
+                //If timer is lower than 0, assign a new location and timer.
                 if (TimeBetweenMoveCounter < 0)
                 {
                     moving = true;
@@ -90,15 +113,18 @@ public class AIMovement : MonoBehaviour {
         }
     }
 
-    private void MoveToPlayer()
+    public virtual void DoBehavior()
     {
-        Vector3 Location = GetNextLocation(3);
-        transform.position = Location;
-    }
-
-    private void RunFromPlayer()
-    {
-        Vector3 Location = GetNextLocation(-3);
+        int speed = 0;
+        if (MoveOrFlee)
+        {
+            speed = (int)MoveSpeed;
+        }
+        else if (!MoveOrFlee)
+        {
+            speed = (int)-MoveSpeed;
+        }
+        Vector3 Location = GetNextLocation(speed);
         transform.position = Location;
     }
 
