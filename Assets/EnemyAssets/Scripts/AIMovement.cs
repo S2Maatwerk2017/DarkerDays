@@ -18,6 +18,8 @@ public class AIMovement : MonoBehaviour {
     public float TimeToMove;
     private float TimeToMoveCounter;
     /**/
+    public AudioClip Movement1;
+    public AudioClip Movement2;
 
     void Start()
     {
@@ -44,7 +46,7 @@ public class AIMovement : MonoBehaviour {
 
     private void Move()
     {
-
+        SFXManager.instance.RandomizeSfx(Movement1,Movement2);
 
         if (PlayerSpotted)
         {
