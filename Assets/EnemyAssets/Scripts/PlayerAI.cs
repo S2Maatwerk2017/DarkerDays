@@ -20,7 +20,7 @@ public class PlayerAI : MonoBehaviour {
     {
         var HorSpeed = Input.GetAxis("Horizontal") * Time.deltaTime * 5.0f;
         var VerSpeed = Input.GetAxis("Vertical") * Time.deltaTime * 5.0f;
-        transform.Translate(HorSpeed, -VerSpeed, 0);
+        transform.Translate(HorSpeed, VerSpeed, 0);
     }
 
 
