@@ -86,5 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520d8890946b9484db5106a50fa0d24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTarget: {fileID: 0}
+  followTarget: {fileID: 1864422034689450, guid: 9638a97ec8cd79e4fb0b8895510969cd,
+    type: 2}
   moveSpeed: 2
