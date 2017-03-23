@@ -8,8 +8,12 @@ public class AIMovement : MonoBehaviour {
     [Tooltip("ENABLE TO SHOW RAYCAST AND SPAM THE CONSOLE WITH DATA")]
     public bool DEBUGMODE;
     [Header("Variables")]
-    public float AggroRange;
     public bool MoveOrFlee;
+    [Tooltip("The range at which the enemy must be compared to the player to do an action")]
+    [Range(0,20)]
+    public float AggroRange;
+    [Tooltip("The speed at which the enemy moves")]
+    [Range(0,4)]
     public float MoveSpeed;
     public float TimeBetweenMove;
     public float TimeToMove;
@@ -46,17 +50,18 @@ public class AIMovement : MonoBehaviour {
         if (DEBUGMODE == true)
         {
             Debug.DrawRay(transform.position, targetdirection, Color.red);
-            if (hit.transform.gameObject.tag == "Player" && DistanceToPlayer < AggroRange)
+        }
+            if (hit.transform.gameObject.name == "Player" && DistanceToPlayer < AggroRange)
             {
                 Debug.Log("PLAYER SPOTTED! ATTACK!");
                 PlayerSpotted = true;
             }
             else
             {
-                
+                Debug.Log("What?");
                 PlayerSpotted = false;
             }
-        }
+        
 
     }
 
@@ -66,13 +71,17 @@ public class AIMovement : MonoBehaviour {
         //If Player has been spotted, call the virtual Behavior method. (standard run away/ go to player)
         if (PlayerSpotted)
         {
-            DoBehavior();
+            float DistanceToPlayer = Vector3.Distance(Player.transform.position, this.transform.position);
+            if (DistanceToPlayer > 1)
+            {
+                DoBehavior();
+            }
 
             //Check if the enemy is x distance away from the player, if so, stop using the playerspotted behavior.
-            if (Vector3.Distance(Player.transform.position, this.transform.position) > AggroRange)
+            /*if (DistanceToPlayer > AggroRange)
             {
                 PlayerSpotted = false;
-            }
+            }*/
         }
 
         //If player has not been spotted, move in a random direction.
@@ -81,6 +90,7 @@ public class AIMovement : MonoBehaviour {
             //If the enemy is moving, allow the enemy walk for x amount of time (TimeToMoveCounter) before resetting.
             if (moving)
             {
+                Debug.Log("Moving on");
                 TimeToMoveCounter -= Time.deltaTime;
                 MyRigidbody.velocity = moveDirection;
 
