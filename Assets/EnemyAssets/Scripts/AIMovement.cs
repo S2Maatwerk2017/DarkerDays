@@ -44,6 +44,8 @@ public class AIMovement : MonoBehaviour {
 
     private void Move()
     {
+
+
         if (PlayerSpotted)
         {
             if (MoveOrFlee)
