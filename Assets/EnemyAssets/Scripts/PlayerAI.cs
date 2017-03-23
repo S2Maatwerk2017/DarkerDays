@@ -23,14 +23,7 @@ public class PlayerAI : MonoBehaviour {
         transform.Translate(HorSpeed, VerSpeed, 0);
     }
 
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            other.gameObject.GetComponent<AIMovement>().PlayerIsSpotted();
-        }
-    }
+    
 
 }
 
