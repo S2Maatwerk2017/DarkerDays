@@ -22,13 +22,9 @@ public class AIMovement : MonoBehaviour {
     private Vector3 moveDirection;
     private float TimeBetweenMoveCounter;
     private float TimeToMoveCounter;
-<<<<<<< HEAD
     /**/
     public AudioClip Movement1;
     public AudioClip Movement2;
-=======
-    
->>>>>>> Niels
 
     void Start()
     {
@@ -70,12 +66,9 @@ public class AIMovement : MonoBehaviour {
 
     private void Move()
     {
-<<<<<<< HEAD
-        SFXManager.instance.RandomizeSfx(Movement1,Movement2);
-
-=======
+        SFXManager.instance.PlaySingle(Movement1);
         //If Player has been spotted, call the virtual Behavior method. (standard run away/ go to player)
->>>>>>> Niels
+
         if (PlayerSpotted)
         {
             DoBehavior();

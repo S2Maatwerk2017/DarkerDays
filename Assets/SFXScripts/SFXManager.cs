@@ -8,11 +8,13 @@ public class SFXManager : MonoBehaviour
 
     public AudioSource SfxSource;
     public AudioSource MusicSource;
-    public static SFXManager instance = null;
+    public static SFXManager instance;
+    public bool soundPlayed = false;
 
     public float lowPitchRange = .95f;
     public float highPitchRange = 1.05f;
 
+    public bool SoundPlayed { get; set; }           
 
 
 	// Use this for initialization
@@ -30,10 +32,14 @@ public class SFXManager : MonoBehaviour
 
 	}
 
+
     public void PlaySingle(AudioClip clip)
     {
-        SfxSource.clip = clip;
-        SfxSource.Play();
+        if (!SfxSource.isPlaying)
+        {
+            SfxSource.clip = clip;
+            SfxSource.Play();
+        }
     }
 
     public void RandomizeSfx(params AudioClip[] clips)
