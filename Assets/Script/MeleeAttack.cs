@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttack : MonoBehaviour {
+public class MeleeAttack : MonoBehaviour
+{
+    public int DamageToGive;
+    public GameObject DamageBurst;
 
 	// Use this for initialization
 	void Start()
@@ -20,7 +23,8 @@ public class MeleeAttack : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Destroy(other.gameObject);
+            //other.gameObject.GetComponent<EnemyHealth>().TakeDamage(DamageToGive);
+            Instantiate(DamageBurst, transform.position, transform.rotation);
         }
     }
 }
