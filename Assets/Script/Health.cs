@@ -11,7 +11,7 @@ public class Health : MonoBehaviour
     private int tempHealth;
 
     private bool tempHealthOn;
-    private bool dead;
+    public bool dead { get; private set; }
 	// Use this for initialization
 	void Start ()
 	{
@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
 	}
 
     #region BasicMechanics
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth = currentHealth - damage;
         CheckDead(); 
@@ -88,7 +88,7 @@ public class Health : MonoBehaviour
 
     void CheckDead()
     {
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0;
             dead = true;
