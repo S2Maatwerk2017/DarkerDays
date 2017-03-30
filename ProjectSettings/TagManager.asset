@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -46,7 +47,7 @@ TagManager:
     uniqueID: 3303778977
     locked: 0
   - name: WorldObjects
-    uniqueID: 3697743797
+    uniqueID: 2930177561
     locked: 0
   - name: Ground
     uniqueID: 1216313239
