@@ -33,3 +33,5 @@ sysinfo.txt
 
 #Project save files
 *.GAMESAVE
+ProjectSettings/TagManager.asset
+Assets/Tiled2Unity/Prefabs/TilesTestMap.prefab
