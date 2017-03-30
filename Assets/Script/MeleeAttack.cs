@@ -19,12 +19,18 @@ public class MeleeAttack : MonoBehaviour
 
 	}
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider col)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy")
         {
-            //other.gameObject.GetComponent<EnemyHealth>().TakeDamage(DamageToGive);
-            Instantiate(DamageBurst, transform.position, transform.rotation);
+            Debug.Log("YAYmelee");
+
+            col.gameObject.GetComponent<Health>().TakeDamage(5);
+            if (col.gameObject.GetComponent<Health>().dead == true)
+            {
+                Destroy(col.gameObject);
+            }
+
         }
     }
 }
