@@ -16,12 +16,16 @@ public class Enemy : MonoBehaviour {
     [Tooltip("The speed at which the enemy moves")]
     [Range(0,7)]
     public float MoveSpeed;
+    [Tooltip("The damage the enemy deals per hit")]
+    [Range(0,20)]
+    public int Damage;
+
     public float TimeBetweenMove;
     public float TimeToMove;
 
     private float DistanceToPlayer { get { return Vector3.Distance(this.transform.position, Player.transform.position); } }
 
-    private GameObject Player;
+    public GameObject Player;
     public bool PlayerSpotted;
     private Rigidbody MyRigidbody;
     private bool moving;
@@ -120,7 +124,7 @@ public class Enemy : MonoBehaviour {
 
     public void RunToPlayer()
     {
-        if (DistanceToPlayer <= 2)
+        if (DistanceToPlayer <= 1)
         {
             Attack();
         }
@@ -128,7 +132,7 @@ public class Enemy : MonoBehaviour {
         {
             agent.SetDestination(Player.transform.position);
         }
-        if (DistanceToPlayer >= AggroRange)
+        if (DistanceToPlayer >= AggroRange+1.0f)
         {
             PlayerSpotted = false;
         }

@@ -5,9 +5,12 @@ using UnityEngine;
 public class PlayerAI : MonoBehaviour {
 
 
+    public int hitpoints;
+    private int currentHitpoints;
+
     void Start()
     {
-
+        
     }
 
 
@@ -28,6 +31,15 @@ public class PlayerAI : MonoBehaviour {
         if (other.tag == "Enemy")
         {
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHitpoints -= damage;
+        if (currentHitpoints <= 0)
+        {
+            Debug.Log("Killed");
         }
     }
 
