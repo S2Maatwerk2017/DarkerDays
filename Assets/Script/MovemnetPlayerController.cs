@@ -6,11 +6,15 @@ using UnityEngine;
 public class MovemnetPlayerController : MonoBehaviour
 {
     public float MoveSpeed;
+    public float attackTime;
+
     private float seconds;
     private Rigidbody2D RB;
     private Animator ani;
     private bool playerMoving;
     [HideInInspector]public Vector2 lastMove;
+    private bool playerMeleeAttacking;
+    private float attackTimeCounter;
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
@@ -27,31 +31,56 @@ public class MovemnetPlayerController : MonoBehaviour
 	void Update ()
     {
         playerMoving = false;
-        if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+
+        if (playerMeleeAttacking != true)
         {
-            //transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
-            RB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * PlayerDodgeStart(), RB.velocity.y);
-            playerMoving = true;
-            lastMove = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
-        }
-        if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
-        {
-            //transform.Translate(new Vector3(0f, Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime, 0f));
-            RB.velocity = new Vector2(RB.velocity.x, Input.GetAxisRaw("Vertical") * PlayerDodgeStart());
-            playerMoving = true;
-            lastMove = new Vector2(0f, Input.GetAxisRaw("Vertical"));
-        }
+
+            if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+            {
+                //transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
+                RB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * PlayerDodgeStart(), RB.velocity.y);
+                playerMoving = true;
+                lastMove = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+            }
+            if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
+            {
+                //transform.Translate(new Vector3(0f, Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime, 0f));
+                RB.velocity = new Vector2(RB.velocity.x, Input.GetAxisRaw("Vertical") * PlayerDodgeStart());
+                playerMoving = true;
+                lastMove = new Vector2(0f, Input.GetAxisRaw("Vertical"));
+            }
 
 
-        //Stopt het doorschuiven
-        if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
-        {
-            RB.velocity = new Vector2(0f, RB.velocity.y);
+            // Stopt het doorschuiven
+            if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
+            {
+                RB.velocity = new Vector2(0f, RB.velocity.y);
+            }
+
+            if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
+            {
+                RB.velocity = new Vector2(RB.velocity.x, 0f);
+            }
+
+            // Kijken of space ingedrukt wordt voor een aanval
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                attackTimeCounter = attackTime;
+                playerMeleeAttacking = true;
+                RB.velocity = Vector2.zero;
+                ani.SetBool("PlayerMeleeAttacking", true);
+            }
         }
 
-        if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
+        if (attackTimeCounter > 0)
         {
-            RB.velocity = new Vector2(RB.velocity.x, 0f);
+            attackTimeCounter -= Time.deltaTime;
+        }
+
+        if (attackTimeCounter < 0)
+        {
+            playerMeleeAttacking = false;
+            ani.SetBool("PlayerMeleeAttacking", false);
         }
 
         //animatie
@@ -64,7 +93,7 @@ public class MovemnetPlayerController : MonoBehaviour
         // Seconden bijhouden tussen de frames
         seconds += Time.deltaTime;
         
-        //Dodge 
+        // Dodge 
         if (MoveSpeed == 5)
         {
             PlayerDodgeStart();
