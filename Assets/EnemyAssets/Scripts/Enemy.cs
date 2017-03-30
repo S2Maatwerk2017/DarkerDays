@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class AIMovement : MonoBehaviour {
+public class Enemy : MonoBehaviour {
 
     [Header("Debugger")]
     [Tooltip("ENABLE TO SHOW RAYCAST AND SPAM THE CONSOLE WITH DATA")]
@@ -13,58 +14,154 @@ public class AIMovement : MonoBehaviour {
     [Range(0,20)]
     public float AggroRange;
     [Tooltip("The speed at which the enemy moves")]
-    [Range(0,4)]
+    [Range(0,7)]
     public float MoveSpeed;
     public float TimeBetweenMove;
     public float TimeToMove;
 
+    private float DistanceToPlayer { get { return Vector3.Distance(this.transform.position, Player.transform.position); } }
 
     private GameObject Player;
-    private bool PlayerSpotted;
+    public bool PlayerSpotted;
     private Rigidbody MyRigidbody;
     private bool moving;
     private Vector3 moveDirection;
     private float TimeBetweenMoveCounter;
     private float TimeToMoveCounter;
-    
 
-    void Start()
+    private NavMeshAgent agent;
+    private int timer;
+
+    public void Start()
+    {
+        Setup();
+        AggroRange = Player.GetComponent<SphereCollider>().radius;
+    }
+
+    public void Update()
+    {
+        StandardAI();
+    }
+
+    public void Setup()
     {
         Player = GameObject.Find("Player");
         MyRigidbody = GetComponent<Rigidbody>();
         PlayerSpotted = false;
+        agent = GetComponent<NavMeshAgent>();
     }
 
-    void Update()
+    public void MoveNav()
     {
-        DoRayCast();
-        Move();
+        if (PlayerSpotted == true)
+        {
+            DoBehavior();
+            if (Vector3.Distance(this.transform.position, Player.transform.position) > 7)
+            {
+                PlayerSpotted = false;
+            }
+        }
+        else if(timer >= 120)
+        {
+            moveRandom();
+            timer = 0;
+        }
+        timer++;
     }
 
+    public void StandardAI()
+    {
+        if (PlayerSpotted == true)
+        {
+            DoBehavior();
+        }
+        else
+        {
+            MoveNav();
+        }
+    }
+
+    private void moveRandom()
+    {
+        int x = (int)Random.Range(-3, 3);
+        int z = (int)Random.Range(-3, 3);
+        
+        Vector3 NextLocation = this.transform.position;
+        NextLocation.x += (x * MoveSpeed);
+        NextLocation.z += (z * MoveSpeed);
+
+        agent.SetDestination(NextLocation);
+    }
+
+    public virtual void DoBehavior()
+    {
+        RunToPlayer();
+    }
+
+    public void RunFromPlayer()
+    {
+        
+        if (DistanceToPlayer >= AggroRange)
+        {
+            Attack();
+            agent.SetDestination(this.transform.position);
+            if (DistanceToPlayer >= AggroRange+1)
+            {
+                PlayerSpotted = false;
+            }
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(transform.position - Player.transform.position);
+            Vector3 runTo = transform.position + transform.forward * 2.5f;
+            agent.SetDestination(runTo);
+        }
+    }
+
+    public void RunToPlayer()
+    {
+        if (DistanceToPlayer <= 2)
+        {
+            Attack();
+        }
+        else
+        {
+            agent.SetDestination(Player.transform.position);
+        }
+        if (DistanceToPlayer >= AggroRange)
+        {
+            PlayerSpotted = false;
+        }
+    }
+
+    public virtual void Attack() {
+        //Let each underlaying class implement their own variant.
+        Debug.Log("Attack not implemented");
+    }
+    
+    
     private void DoRayCast()
     {
         Vector3 targetdirection = Player.transform.position - this.transform.position;
         RaycastHit hit;
         Physics.Raycast(this.transform.position, targetdirection, out hit);
-        float DistanceToPlayer = Vector3.Distance(this.transform.position, Player.transform.position);
         if (DEBUGMODE == true)
         {
             Debug.DrawRay(transform.position, targetdirection, Color.red);
         }
-            if (hit.transform.gameObject.name == "Player" && DistanceToPlayer < AggroRange)
-            {
-                Debug.Log("PLAYER SPOTTED! ATTACK!");
-                PlayerSpotted = true;
-            }
-            else
-            {
-                Debug.Log("What?");
-                PlayerSpotted = false;
-            }
-        
-
+        if (hit.transform.gameObject.tag == "Player")
+        {
+            Debug.Log("PLAYER SPOTTED! ATTACK!");
+            //PlayerSpotted = true;
+        }
+        else
+        {
+            Debug.Log("Wall spotted");
+            //PlayerSpotted = false;
+        }
     }
 
+    /*
 
     private void Move()
     {
@@ -78,10 +175,10 @@ public class AIMovement : MonoBehaviour {
             }
 
             //Check if the enemy is x distance away from the player, if so, stop using the playerspotted behavior.
-            /*if (DistanceToPlayer > AggroRange)
+            if (DistanceToPlayer > AggroRange)
             {
                 PlayerSpotted = false;
-            }*/
+            }
         }
 
         //If player has not been spotted, move in a random direction.
@@ -121,7 +218,7 @@ public class AIMovement : MonoBehaviour {
 
         }
     }
-
+    
     public virtual void DoBehavior()
     {
         int speed = 0;
@@ -144,7 +241,7 @@ public class AIMovement : MonoBehaviour {
         return Vector3.MoveTowards(MyLocation, PlayerLocation, Speed * Time.deltaTime);
     }
 
-
+*/
     public void PlayerIsSpotted()
     {
         PlayerSpotted = true;
