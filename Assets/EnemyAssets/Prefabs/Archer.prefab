@@ -112,12 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUGMODE: 1
-  MoveOrFlee: 0
   AggroRange: 6
   MoveSpeed: 2
   Damage: 0
-  TimeBetweenMove: 0
-  TimeToMove: 0
+  MaxHealth: 10
   Player: {fileID: 0}
   PlayerSpotted: 0
   projectile: {fileID: 1948076958550704, guid: 38694e290ef77384b8b2551a4f1c3848, type: 2}

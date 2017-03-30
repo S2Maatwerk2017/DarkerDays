@@ -112,12 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DEBUGMODE: 1
-  MoveOrFlee: 0
   AggroRange: 9.7
   MoveSpeed: 2.6
   Damage: 2
-  TimeBetweenMove: 0
-  TimeToMove: 0
+  MaxHealth: 5
   Player: {fileID: 0}
   PlayerSpotted: 0
 --- !u!195 &195726261026851954
