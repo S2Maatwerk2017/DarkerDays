@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeAttack : MonoBehaviour {
+public class MeleeAttack : MonoBehaviour
+{
+    public int DamageToGive;
+    public GameObject DamageBurst;
 
 	// Use this for initialization
 	void Start()
@@ -16,11 +19,18 @@ public class MeleeAttack : MonoBehaviour {
 
 	}
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider col)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy")
         {
-            Destroy(other.gameObject);
+            Debug.Log("YAYmelee");
+
+            col.gameObject.GetComponent<Health>().TakeDamage(5);
+            if (col.gameObject.GetComponent<Health>().dead == true)
+            {
+                Destroy(col.gameObject);
+            }
+
         }
     }
 }

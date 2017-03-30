@@ -9,18 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1992012623748130}
+  m_RootGameObject: {fileID: 1056469281482496}
   m_IsPrefabParent: 1
---- !u!1 &1992012623748130
+--- !u!1 &1056469281482496
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4071501061409124}
-  - component: {fileID: 20503039811276682}
-  - component: {fileID: 114834515229599532}
+  - component: {fileID: 4539824334870928}
+  - component: {fileID: 20393275608985220}
+  - component: {fileID: 114631281435209172}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -28,25 +28,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4071501061409124
+--- !u!4 &4539824334870928
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1992012623748130}
+  m_GameObject: {fileID: 1056469281482496}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 8.9, y: -7.67, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &20503039811276682
+--- !u!20 &20393275608985220
 Camera:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1992012623748130}
+  m_GameObject: {fileID: 1056469281482496}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -61,7 +61,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -75,17 +75,16 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!114 &114834515229599532
+--- !u!114 &114631281435209172
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1992012623748130}
+  m_GameObject: {fileID: 1056469281482496}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 520d8890946b9484db5106a50fa0d24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTarget: {fileID: 1864422034689450, guid: 9638a97ec8cd79e4fb0b8895510969cd,
-    type: 2}
+  followTarget: {fileID: 0}
   moveSpeed: 2
