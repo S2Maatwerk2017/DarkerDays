@@ -19,6 +19,9 @@ public class Enemy : MonoBehaviour {
     [Tooltip("The damage the enemy deals per hit")]
     [Range(0,20)]
     public int Damage;
+    [Tooltip("The amount of health given to the enemy")]
+    public int MaxHealth;
+    private int CurrentHealth;
 
     public float TimeBetweenMove;
     public float TimeToMove;
@@ -41,6 +44,7 @@ public class Enemy : MonoBehaviour {
     {
         Setup();
         AggroRange = Player.GetComponent<SphereCollider>().radius;
+        CurrentHealth = MaxHealth;
     }
 
     public void Update()
@@ -250,5 +254,19 @@ public class Enemy : MonoBehaviour {
     public void PlayerIsSpotted()
     {
         PlayerSpotted = true;
+    }
+
+    public void HurtEnemy(int value)
+    {
+        CurrentHealth -= value;
+        if (CurrentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void SetMaxHealth()
+    {
+        CurrentHealth = MaxHealth;
     }
 }
