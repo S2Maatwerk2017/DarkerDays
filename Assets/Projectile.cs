@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-    public float speed;
-    public Player player;
-    private Rigidbody2D myRigidBody2D;
+    public float speed = 0;
+    public GameObject player;
+    private Rigidbody myRigidBody;
+    public int Damage;
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
-        myRigidBody2D = GetComponent<Rigidbody2D>();
+        player = GameObject.Find("Player");
+        myRigidBody = GetComponent<Rigidbody>();
     }
 
-    void OnTriggerEnter2D(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            //Player take damage
+            player.GetComponent<PlayerAI>().TakeDamage(Damage);
             Destroy(gameObject);
         }
     }

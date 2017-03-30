@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour {
     public float TimeToMove;
 
     private float DistanceToPlayer { get { return Vector3.Distance(this.transform.position, Player.transform.position); } }
+    public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
 
     public GameObject Player;
     public bool PlayerSpotted;
@@ -146,7 +147,7 @@ public class Enemy : MonoBehaviour {
     
     private void DoRayCast()
     {
-        Vector3 targetdirection = Player.transform.position - this.transform.position;
+        
         RaycastHit hit;
         Physics.Raycast(this.transform.position, targetdirection, out hit);
         if (DEBUGMODE == true)
