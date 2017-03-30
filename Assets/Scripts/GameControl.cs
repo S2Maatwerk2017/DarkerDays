@@ -60,9 +60,3 @@ public class Player : Character
 {
 	public int ActionPoints;
 }
-
-[Serializable]
-public class Enemy : Character
-{
-
-}
