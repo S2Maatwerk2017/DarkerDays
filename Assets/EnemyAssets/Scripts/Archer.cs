@@ -14,11 +14,17 @@ public class Archer : Enemy, IStrategy {
 
     public override void Attack()
     {
-        /*
-        this.transform.LookAt(Player.transform);
-        Instantiate(projectile, this.transform);
-        projectile.GetComponent<Rigidbody>().position += Vector3.forward * Time.deltaTime * projectile.GetComponent<Projectile>().speed;
-       */
+        if (Timer >= 60)
+        {
+             //TO BE FIXED !!!!!!!!!!!!!!!!!!
+            this.transform.LookAt(Player.transform);
+            var arrow = Instantiate(projectile,this.transform.position, Quaternion.identity);
+            arrow.GetComponent<Rigidbody>().velocity = (Player.transform.position - transform.position).normalized * 2;
+                        
+            Timer = 0;
+        }
+        Timer++;
+       
         Debug.Log("Archer Attack");
     }
 }

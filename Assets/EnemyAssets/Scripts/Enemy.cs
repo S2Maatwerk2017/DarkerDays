@@ -5,40 +5,33 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
 
+    //Adjustables
     [Header("Debugger")]
     [Tooltip("ENABLE TO SHOW RAYCAST AND SPAM THE CONSOLE WITH DATA")]
     public bool DEBUGMODE;
     [Header("Variables")]
-    public bool MoveOrFlee;
-    [Tooltip("The range at which the enemy must be compared to the player to do an action")]
-    [Range(0,20)]
+    [Tooltip("The range at which the enemy must be compared to the player to do an action")][Range(0,20)]
     public float AggroRange;
-    [Tooltip("The speed at which the enemy moves")]
-    [Range(0,7)]
+    [Tooltip("The speed at which the enemy moves")][Range(0,7)]
     public float MoveSpeed;
-    [Tooltip("The damage the enemy deals per hit")]
-    [Range(0,20)]
+    [Tooltip("The damage the enemy deals per hit")][Range(0,20)]
     public int Damage;
     [Tooltip("The amount of health given to the enemy")]
     public int MaxHealth;
+
+    //Hidden publics
+    [HideInInspector]public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
+    [HideInInspector]public GameObject Player;
+    [HideInInspector]public bool PlayerSpotted;
+
+    //Private data
     private int CurrentHealth;
-
-    public float TimeBetweenMove;
-    public float TimeToMove;
-
-    private float DistanceToPlayer { get { return Vector3.Distance(this.transform.position, Player.transform.position); } }
-    public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
-
-    public GameObject Player;
-    public bool PlayerSpotted;
-    private Rigidbody MyRigidbody;
-    private bool moving;
-    private Vector3 moveDirection;
-    private float TimeBetweenMoveCounter;
-    private float TimeToMoveCounter;
-
-    private NavMeshAgent agent;
     private int timer;
+    private float DistanceToPlayer { get { return Vector3.Distance(this.transform.position, Player.transform.position); } }
+
+    //Bodyparts
+    private Rigidbody MyRigidbody;
+    private NavMeshAgent agent;
 
     public void Start()
     {
@@ -169,88 +162,7 @@ public class Enemy : MonoBehaviour {
             //PlayerSpotted = false;
         }
     }
-
-    /*
-
-    private void Move()
-    {
-        //If Player has been spotted, call the virtual Behavior method. (standard run away/ go to player)
-        if (PlayerSpotted)
-        {
-            float DistanceToPlayer = Vector3.Distance(Player.transform.position, this.transform.position);
-            if (DistanceToPlayer > 1)
-            {
-                DoBehavior();
-            }
-
-            //Check if the enemy is x distance away from the player, if so, stop using the playerspotted behavior.
-            if (DistanceToPlayer > AggroRange)
-            {
-                PlayerSpotted = false;
-            }
-        }
-
-        //If player has not been spotted, move in a random direction.
-        else
-        {
-            //If the enemy is moving, allow the enemy walk for x amount of time (TimeToMoveCounter) before resetting.
-            if (moving)
-            {
-                Debug.Log("Moving on");
-                TimeToMoveCounter -= Time.deltaTime;
-                MyRigidbody.velocity = moveDirection;
-
-                //If the counter reaches zero, reset moving and calculate a wait timer.
-                if (TimeToMoveCounter < 0)
-                {
-                    moving = false;
-                    TimeBetweenMoveCounter = Random.Range(TimeBetweenMove * 0.75f, TimeBetweenMove * 1.25f);
-                }
-            }
-
-            //If the enemy is not moving, wait x amount of time (TimeBetweenMoveCounter) before assigning a new location and timer.
-            else
-            {
-                TimeBetweenMoveCounter -= Time.deltaTime;
-                MyRigidbody.velocity = Vector3.zero;
-
-                //If timer is lower than 0, assign a new location and timer.
-                if (TimeBetweenMoveCounter < 0)
-                {
-                    moving = true;
-                    TimeToMoveCounter = Random.Range(TimeToMove * 0.75f, TimeToMove * 1.25f);
-
-                    moveDirection = new Vector3(Random.Range(-1f, 1f) * MoveSpeed, Random.Range(-1f, 1f) * MoveSpeed, 0f);
-
-                }
-            }
-
-        }
-    }
     
-    public virtual void DoBehavior()
-    {
-        int speed = 0;
-        if (MoveOrFlee)
-        {
-            speed = (int)MoveSpeed;
-        }
-        else if (!MoveOrFlee)
-        {
-            speed = (int)-MoveSpeed;
-        }
-        Vector3 Location = GetNextLocation(speed);
-        transform.position = Location;
-    }
-
-    private Vector3 GetNextLocation(float Speed)
-    {
-        Vector3 PlayerLocation = Player.transform.position;
-        Vector3 MyLocation = this.transform.position;
-        return Vector3.MoveTowards(MyLocation, PlayerLocation, Speed * Time.deltaTime);
-    }
-
-*/
     public void PlayerIsSpotted()
     {
         PlayerSpotted = true;

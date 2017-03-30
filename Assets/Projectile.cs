@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.gameObject.tag == "Player" && other is BoxCollider)
         {
             player.GetComponent<PlayerAI>().TakeDamage(Damage);
             Destroy(gameObject);
