@@ -14,12 +14,19 @@ public class CollisionArrow : MonoBehaviour {
 		
 	}
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter(Collider col)
     {       
         if (col.gameObject.tag == "Enemy")
         {
             Debug.Log("YAY");
             Destroy(gameObject);
+
+            col.gameObject.GetComponent<Health>().TakeDamage(5);
+            if (col.gameObject.GetComponent<Health>().dead == true)
+            {
+                Destroy(col.gameObject);
+            }
+
         }
     }
 
