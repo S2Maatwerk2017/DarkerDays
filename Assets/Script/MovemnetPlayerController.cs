@@ -82,11 +82,11 @@ public class MovemnetPlayerController : MonoBehaviour
     {
         if (seconds > 1)
         {
-                if (Input.GetKey(KeyCode.LeftControl))
-                {
-                    MoveSpeed = MoveSpeed * 2;
-                    seconds = 0;
-                }
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                MoveSpeed = MoveSpeed * 2;
+                seconds = 0;
+            }
         }
         return MoveSpeed;
     }
