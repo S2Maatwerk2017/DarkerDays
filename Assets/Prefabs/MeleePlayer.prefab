@@ -73,9 +73,10 @@ GameObject:
   - component: {fileID: 114871774291589118}
   - component: {fileID: 54229221629107396}
   - component: {fileID: 65123926040947766}
+  - component: {fileID: 135080833307417242}
   m_Layer: 0
   m_Name: MeleePlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716688806628970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.68, y: -6.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364249642846902}
@@ -247,6 +248,18 @@ MonoBehaviour:
   lastMove: {x: 0, y: 0, z: 0}
   playerRangedAttacking: 0
   isPlayerRanged: 0
+--- !u!135 &135080833307417242
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212036294110662804
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -14,7 +14,7 @@ public class Knight : Enemy, IStrategy {
     {
         if (Timer >= 60)
         {
-            Player.GetComponent<PlayerAI>().TakeDamage(Damage);
+            Player.GetComponent<Health>().TakeDamage(Damage);
             Timer = 0;
         }
         Timer++;
