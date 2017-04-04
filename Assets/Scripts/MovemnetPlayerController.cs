@@ -16,6 +16,7 @@ public class MovemnetPlayerController : MonoBehaviour
     [HideInInspector] public Vector3 lastMove;
     private bool playerMeleeAttacking;
     public bool playerRangedAttacking;
+    public bool isPlayerRanged;
     private float attackTimeCounter;
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
@@ -27,6 +28,10 @@ public class MovemnetPlayerController : MonoBehaviour
         seconds = 0;
         ani = GetComponent<Animator>();
         RB = GetComponent<Rigidbody>();
+        if (isPlayerRanged)
+        {
+            ani.SetBool("IsPlayerRanged", isPlayerRanged);
+        }
     }
 
     // Update is called once per frame
