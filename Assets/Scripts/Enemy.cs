@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour {
 
     public void Setup()
     {
-        Player = GameObject.Find("Player");
+        Player = GameObject.FindGameObjectWithTag("Player");
         MyRigidbody = GetComponent<Rigidbody>();
         PlayerSpotted = false;
         agent = GetComponent<NavMeshAgent>();

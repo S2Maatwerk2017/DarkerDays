@@ -42,32 +42,52 @@ public class MovemnetPlayerController : MonoBehaviour
         if (playerMeleeAttacking != true)
         {
 
-            if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+            //if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+            //{
+            //    //transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
+            //    RB.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * PlayerDodgeStart(),0f, RB.velocity.z);
+            //    playerMoving = true;
+            //    lastMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+            //}
+            //if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
+            //{
+            //    //transform.Translate(new Vector3(0f, Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime, 0f));
+            //    RB.velocity = new Vector3(RB.velocity.x, 0f, Input.GetAxisRaw("Vertical") * PlayerDodgeStart());
+            //    playerMoving = true;
+            //    lastMove = new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
+            //}
+
+
+            //lopen werkend!!
+            var HorSpeed = Input.GetAxis("Horizontal") * Time.deltaTime * PlayerDodgeStart();
+            if(Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
             {
-                //transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime, 0f, 0f));
-                RB.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * PlayerDodgeStart(), RB.velocity.y, 0f);
                 playerMoving = true;
                 lastMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
             }
-            if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
+            var VerSpeed = Input.GetAxis("Vertical") * Time.deltaTime * PlayerDodgeStart();
+            if(Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
             {
-                //transform.Translate(new Vector3(0f, Input.GetAxisRaw("Vertical") * moveSpeed * Time.deltaTime, 0f));
-                RB.velocity = new Vector3(RB.velocity.x, Input.GetAxisRaw("Vertical") * PlayerDodgeStart(), 0f);
                 playerMoving = true;
-                lastMove = new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                lastMove = new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
             }
 
+            transform.Translate(HorSpeed, VerSpeed, 0f);
 
             // Stopt het doorschuiven
-            if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
-            {
-                RB.velocity = new Vector3(0f, RB.velocity.y, 0f);
-            }
-
             if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
             {
-                RB.velocity = new Vector3(RB.velocity.x, 0f, 0f);
+                //RB.velocity = new Vector3(0f, 0f, 0f);
+                transform.position = transform.position;
             }
+
+            if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
+            {
+                //RB.velocity = new Vector3(0f, 0f, 0f);
+                transform.position = transform.position;
+            }
+
+
 
             // Kijken of space ingedrukt wordt voor een aanval
             if (Input.GetKeyDown(KeyCode.Space))
@@ -95,7 +115,7 @@ public class MovemnetPlayerController : MonoBehaviour
         ani.SetFloat("MoveY", Input.GetAxisRaw("Vertical"));
         ani.SetBool("PlayerMoving", playerMoving);
         ani.SetFloat("LastMoveX", lastMove.x);
-        ani.SetFloat("LastMoveY", lastMove.y);
+        ani.SetFloat("LastMoveY", lastMove.z);
 
         // Seconden bijhouden tussen de frames
         seconds += Time.deltaTime;
@@ -137,5 +157,13 @@ public class MovemnetPlayerController : MonoBehaviour
             seconds = 0;
         }
         return MoveSpeed;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy")
+        {
+            other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
+        }
     }
 }
