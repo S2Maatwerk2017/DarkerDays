@@ -125,6 +125,7 @@ public class Enemy : MonoBehaviour {
         if (DistanceToPlayer <= 1)
         {
             Attack();
+            agent.SetDestination(this.transform.position);
         }
         else
         {
@@ -168,7 +169,7 @@ public class Enemy : MonoBehaviour {
         PlayerSpotted = true;
     }
 
-    public void HurtEnemy(int value)
+    public void TakeDamage(int value)
     {
         CurrentHealth -= value;
         if (CurrentHealth <= 0)
