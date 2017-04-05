@@ -25,11 +25,7 @@ public class MeleeAttack : MonoBehaviour
         {
             Debug.Log("YAYmelee");
 
-            col.gameObject.GetComponent<Health>().TakeDamage(5);
-            if (col.gameObject.GetComponent<Health>().dead == true)
-            {
-                Destroy(col.gameObject);
-            }
+            col.gameObject.GetComponent<Enemy>().TakeDamage(5);
 
         }
     }
