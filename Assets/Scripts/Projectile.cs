@@ -5,13 +5,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
     public float speed = 0;
-    public GameObject player;
+    private GameObject player;
+    public GameObject DamageNumber;
     private Rigidbody myRigidBody;
-    public int Damage;
+    public int DamageToGive;
 
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         myRigidBody = GetComponent<Rigidbody>();
     }
 
@@ -19,7 +20,14 @@ public class Projectile : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player" && other is BoxCollider)
         {
-            player.GetComponent<PlayerAI>().TakeDamage(Damage);
+            if (!player.GetComponent<PlayerHealthManager>().iFramesActive)
+            {
+                player.GetComponent<PlayerHealthManager>().HurtPlayer(DamageToGive);
+                var clone = (GameObject)Instantiate(DamageNumber, player.GetComponent<Transform>().position + new Vector3(0f, 2f, 0.5f),
+                        Quaternion.Euler(90f, 0f, 0f));
+                clone.GetComponent<DamageNumbers>().damageNumber = DamageToGive;
+            }
+
             Destroy(gameObject);
         }
     }
