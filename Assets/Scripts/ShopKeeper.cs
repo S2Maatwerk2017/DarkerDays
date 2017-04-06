@@ -1,16 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
-public class ShopKeeper : MonoBehaviour {
+namespace Assets.Scripts
+{
+    public class ShopKeeper : NPC
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        // Use this for initialization
+        void Start ()
+        {
+            FillDialogList();
+        }
+
+        // Update is called once per frame
+        void Update ()
+        {
+		    
+        }
+
+        //TODO Zet hier de tekst van de npc in.
+        private void FillDialogList()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
