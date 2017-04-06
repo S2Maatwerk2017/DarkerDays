@@ -24,8 +24,6 @@ public class MeleeAttack : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("YAYmelee");
-
             col.gameObject.GetComponent<Enemy>().TakeDamage(5);
             Instantiate(DamageBurst, col.gameObject.GetComponent<Transform>().position,
                 col.gameObject.GetComponent<Transform>().rotation);
