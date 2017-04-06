@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trade : MonoBehaviour {
+public class Item : MonoBehaviour
+{
 
 	// Use this for initialization
 	void Start () {
