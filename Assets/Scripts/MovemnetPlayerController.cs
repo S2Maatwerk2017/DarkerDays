@@ -20,7 +20,7 @@ public class MovemnetPlayerController : MonoBehaviour
     private float attackTimeCounter;
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
-    
+
 
     // Use this for initialization
     void Start()
@@ -32,6 +32,7 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
         }
+        
     }
 
     // Update is called once per frame
@@ -96,6 +97,7 @@ public class MovemnetPlayerController : MonoBehaviour
                 playerMeleeAttacking = true;
                 RB.velocity = Vector3.zero;
                 ani.SetBool("PlayerMeleeAttacking", true);
+                SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
             }
         }
 
