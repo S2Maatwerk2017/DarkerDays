@@ -18,6 +18,7 @@ public class Health : MonoBehaviour
 	    currentHealth = maxHealth;
 	    tempHealth = maxHealth;
 	    CurrentMaxHealth = maxHealth;
+        dead = false;
 	}
 	
 	// Update is called once per frame
@@ -32,13 +33,13 @@ public class Health : MonoBehaviour
         CheckDead(); 
     }
 
-    void RecoverHealth(int heal)
+    public void RecoverHealth(int heal)
     {
         currentHealth = currentHealth + heal;
         CheckMoreThanMaxHealth();
     }
 
-    void RegenHealth()
+    public void RegenHealth()
     {
         currentHealth = currentHealth + currentHealth / 20;
     }
@@ -92,6 +93,10 @@ public class Health : MonoBehaviour
         {
             currentHealth = 0;
             dead = true;
+        }
+        else
+        {
+            dead = false;
         }
     }
 
