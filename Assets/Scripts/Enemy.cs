@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour {
         StandardAI();
     }
 
-    public void Setup()
+    public virtual void Setup()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         MyRigidbody = GetComponent<Rigidbody>();
@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour {
         timer++;
     }
 
-    public void StandardAI()
+    public virtual void StandardAI()
     {
         if (PlayerSpotted == true)
         {
