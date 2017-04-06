@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
-{
+public class RandomNPC : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
