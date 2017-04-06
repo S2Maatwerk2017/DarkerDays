@@ -164,7 +164,6 @@ MonoBehaviour:
   lastMove: {x: 0, y: 0, z: 0}
   playerRangedAttacking: 0
   isPlayerRanged: 1
-  DiagnalMoveSpeedMultiplier: 0.75
 --- !u!114 &114866126033374726
 MonoBehaviour:
   m_ObjectHideFlags: 1
