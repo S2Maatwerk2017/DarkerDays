@@ -27,8 +27,11 @@ public class Projectile : MonoBehaviour {
                         Quaternion.Euler(90f, 0f, 0f));
                 clone.GetComponent<DamageNumbers>().damageNumber = DamageToGive;
             }
-
             Destroy(gameObject);
         }
+        //if(other.gameObject.tag == "World")
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 }
