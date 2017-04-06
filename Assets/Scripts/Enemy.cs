@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour {
     [Tooltip("The amount of health given to the enemy")]
     public int MaxHealth;
 
+    public GameObject DamageNumber;
+
     //Hidden publics
     [HideInInspector]public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
     [HideInInspector]public GameObject Player;
