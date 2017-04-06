@@ -18,6 +18,8 @@ public class MovemnetPlayerController : MonoBehaviour
     public bool playerRangedAttacking;
     public bool isPlayerRanged;
     private float attackTimeCounter;
+    private float CurrentMoveSpeed;
+    public float DiagnalMoveSpeedMultiplier;
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
@@ -60,35 +62,44 @@ public class MovemnetPlayerController : MonoBehaviour
 
 
             //lopen werkend!!
-            var HorSpeed = Input.GetAxis("Horizontal") * Time.deltaTime * PlayerDodgeStart();
+            //var HorSpeed = Input.GetAxis("Horizontal") * PlayerDodgeStart();
             if(Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
             {
+                RB.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * CurrentMoveSpeed, 0f, RB.velocity.z);
                 playerMoving = true;
                 lastMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
             }
-            var VerSpeed = Input.GetAxis("Vertical") * Time.deltaTime * PlayerDodgeStart();
+            //var VerSpeed = Input.GetAxis("Vertical") * PlayerDodgeStart();
             if(Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
             {
+                RB.velocity = new Vector3(RB.velocity.x, 0f, Input.GetAxisRaw("Vertical") * CurrentMoveSpeed);
                 playerMoving = true;
                 lastMove = new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
             }
 
-            transform.Translate(HorSpeed, VerSpeed, 0f);
+            //RB.velocity = new Vector3(HorSpeed, 0f, VerSpeed);
+            //transform.Translate(HorSpeed, VerSpeed, 0f);
 
             // Stopt het doorschuiven
-            if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
-            {
-                //RB.velocity = new Vector3(0f, 0f, 0f);
-                transform.position = transform.position;
-            }
-
             if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
             {
-                //RB.velocity = new Vector3(0f, 0f, 0f);
-                transform.position = transform.position;
+                RB.velocity = new Vector3(0f, 0f, RB.velocity.z);
+                //transform.position = transform.position;
+            }
+            if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
+            {
+                RB.velocity = new Vector3(RB.velocity.x, 0f, 0f);
+                //transform.position = transform.position;
             }
 
-
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.5f && Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.5f)
+            {
+                CurrentMoveSpeed = MoveSpeed * DiagnalMoveSpeedMultiplier;
+            }
+            else
+            {
+                CurrentMoveSpeed = MoveSpeed;
+            }
 
             // Kijken of space ingedrukt wordt voor een aanval
             if (Input.GetKeyDown(KeyCode.Space))

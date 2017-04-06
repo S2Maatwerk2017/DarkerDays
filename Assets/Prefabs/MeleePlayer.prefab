@@ -113,8 +113,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716688806628970}
+<<<<<<< HEAD
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+=======
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 4.04, y: 1, z: -21.07}
+>>>>>>> 2fc6ea7d32c3540956de3ceb0a73d4d8bae4c761
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364249642846902}
@@ -244,6 +249,22 @@ MonoBehaviour:
   lastMove: {x: 0, y: 0, z: 0}
   playerRangedAttacking: 0
   isPlayerRanged: 0
+<<<<<<< HEAD
+=======
+  DiagnalMoveSpeedMultiplier: 0.75
+--- !u!135 &135080833307417242
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
+>>>>>>> 2fc6ea7d32c3540956de3ceb0a73d4d8bae4c761
 --- !u!212 &212036294110662804
 SpriteRenderer:
   m_ObjectHideFlags: 1
