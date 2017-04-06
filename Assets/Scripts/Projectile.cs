@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player" && other is BoxCollider)
         {
-            player.GetComponent<PlayerAI>().TakeDamage(Damage);
+            player.GetComponent<Health>().TakeDamage(Damage);
             Destroy(gameObject);
         }
     }

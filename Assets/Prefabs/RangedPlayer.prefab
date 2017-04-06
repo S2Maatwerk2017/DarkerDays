@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1881807871013480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.73, y: -7.96, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4772368061593324}
@@ -85,7 +85,7 @@ Transform:
   m_GameObject: {fileID: 1276273499865850}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.106660165, y: 0.08153082, z: 1}
+  m_LocalScale: {x: 0.08, y: 0.08, z: 1}
   m_Children: []
   m_Father: {fileID: 4772368061593324}
   m_RootOrder: 0
@@ -103,7 +103,7 @@ Transform:
   - {fileID: 4319914226213552}
   m_Father: {fileID: 4212754487292196}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!54 &54929933223624224
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -129,8 +129,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.57776, y: 0.80999374, z: 0.2}
-  m_Center: {x: -0.00422287, y: -0.027445793, z: 0}
+  m_Size: {x: 0.625, y: 0.875, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95387914097851852
 Animator:
   serializedVersion: 3
@@ -163,6 +163,7 @@ MonoBehaviour:
   attackTime: 0.2
   lastMove: {x: 0, y: 0, z: 0}
   playerRangedAttacking: 0
+  isPlayerRanged: 1
 --- !u!114 &114866126033374726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,7 +207,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -991188319
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300002, guid: 2303f873adb053242af44b27438e9aae, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -241,8 +242,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -991188319
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: fffd793cb511e504db40d121a44d40f3, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 21300000, guid: 7375f4e9b3a62524a83638669cc58c98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
