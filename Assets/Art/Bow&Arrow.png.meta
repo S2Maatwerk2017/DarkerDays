@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2303f873adb053242af44b27438e9aae
-timeCreated: 1490263079
+timeCreated: 1490884885
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -75,12 +75,12 @@ TextureImporter:
       name: Bow&Arrow_0
       rect:
         serializedVersion: 2
-        x: 8
+        x: 9
         y: 7
-        width: 105
-        height: 103
-      alignment: 9
-      pivot: {x: 0.585135, y: 0.5805889}
+        width: 104
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -89,11 +89,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 17
-        y: 126
+        y: 127
         width: 111
         height: 112
-      alignment: 9
-      pivot: {x: 0.27565804, y: 0.722339}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

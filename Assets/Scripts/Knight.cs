@@ -12,11 +12,12 @@ public class Knight : Enemy, IStrategy {
 
     public override void Attack()
     {
-        if (Timer >= 60)
+        if (!Player.GetComponent<PlayerHealthManager>().iFramesActive)
         {
-            Player.GetComponent<PlayerAI>().TakeDamage(Damage);
-            Timer = 0;
+            Player.GetComponent<PlayerHealthManager>().HurtPlayer(Damage);
+            var clone = (GameObject)Instantiate(DamageNumber, Player.GetComponent<Transform>().position + new Vector3(0f, 2f, 0.5f),
+                    Quaternion.Euler(90f, 0f, 0f));
+            clone.GetComponent<DamageNumbers>().damageNumber = Damage;
         }
-        Timer++;
     }
 }
