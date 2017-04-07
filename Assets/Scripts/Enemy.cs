@@ -1,30 +1,42 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
 
     //Adjustables
     [Header("Debugger")]
     [Tooltip("ENABLE TO SHOW RAYCAST AND SPAM THE CONSOLE WITH DATA")]
     public bool DEBUGMODE;
     [Header("Variables")]
-    [Tooltip("The range at which the enemy must be compared to the player to do an action")][Range(0,20)]
+    [Tooltip("The range at which the enemy must be compared to the player to do an action")]
+    [Range(0, 20)]
     public float AggroRange;
-    [Tooltip("The speed at which the enemy moves")][Range(0,7)]
+    [Tooltip("The speed at which the enemy moves")]
+    [Range(0, 7)]
     public float MoveSpeed;
-    [Tooltip("The damage the enemy deals per hit")][Range(0,20)]
+    [Tooltip("The damage the enemy deals per hit")]
+    [Range(0, 20)]
     public int Damage;
     [Tooltip("The amount of health given to the enemy")]
     public int MaxHealth;
 
+    //soundlists
+    public List<AudioClip> DeathSounds = new List<AudioClip>();
+    public List<AudioClip> AttackSounds = new List<AudioClip>();
+    public List<AudioClip> MoveSounds = new List<AudioClip>();
+
     public GameObject DamageNumber;
 
     //Hidden publics
-    [HideInInspector]public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
-    [HideInInspector]public GameObject Player;
-    [HideInInspector]public bool PlayerSpotted;
+    [HideInInspector] public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
+    [HideInInspector] public GameObject Player;
+    [HideInInspector] public bool PlayerSpotted;
 
     //Private data
     private int CurrentHealth;
@@ -55,6 +67,31 @@ public class Enemy : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
     }
 
+    private void PlayRandomCategorieSound(SoundsToPlay Soundstoplay)
+    {
+        List<AudioClip> Soundlist = null;
+
+        switch (Soundstoplay)
+        {
+            case SoundsToPlay.Attack:
+                Soundlist = AttackSounds;
+                goto default;
+            case SoundsToPlay.Death:
+                Soundlist = DeathSounds;
+                goto default;
+            case SoundsToPlay.Move:
+                Soundlist = MoveSounds;
+                goto default;
+            default:
+                if (Soundlist != null)
+                {
+                    SFXManager.instance.PlaySingle(Soundlist[Random.Range(0, Soundlist.Count)]);
+                }
+                break;
+        }
+    }
+
+
     public void MoveNav()
     {
         if (PlayerSpotted == true)
@@ -65,7 +102,7 @@ public class Enemy : MonoBehaviour {
                 PlayerSpotted = false;
             }
         }
-        else if(timer >= 120)
+        else if (timer >= 120)
         {
             moveRandom();
             timer = 0;
@@ -89,7 +126,7 @@ public class Enemy : MonoBehaviour {
     {
         int x = (int)Random.Range(-3, 3);
         int z = (int)Random.Range(-3, 3);
-        
+
         Vector3 NextLocation = this.transform.position;
         NextLocation.x += (x * MoveSpeed);
         NextLocation.z += (z * MoveSpeed);
@@ -104,12 +141,12 @@ public class Enemy : MonoBehaviour {
 
     public void RunFromPlayer()
     {
-        
+
         if (DistanceToPlayer >= AggroRange)
         {
             Attack();
             agent.SetDestination(this.transform.position);
-            if (DistanceToPlayer >= AggroRange+1)
+            if (DistanceToPlayer >= AggroRange + 1)
             {
                 PlayerSpotted = false;
             }
@@ -133,21 +170,22 @@ public class Enemy : MonoBehaviour {
         {
             agent.SetDestination(Player.transform.position);
         }
-        if (DistanceToPlayer >= AggroRange+1.0f)
+        if (DistanceToPlayer >= AggroRange + 1.0f)
         {
             PlayerSpotted = false;
         }
     }
 
-    public virtual void Attack() {
+    public virtual void Attack()
+    {
         //Let each underlaying class implement their own variant.
         Debug.Log("Attack not implemented");
     }
-    
-    
+
+
     private void DoRayCast()
     {
-        
+
         RaycastHit hit;
         Physics.Raycast(this.transform.position, targetdirection, out hit);
         if (DEBUGMODE == true)
@@ -165,7 +203,7 @@ public class Enemy : MonoBehaviour {
             //PlayerSpotted = false;
         }
     }
-    
+
     public void PlayerIsSpotted()
     {
         PlayerSpotted = true;
@@ -176,6 +214,7 @@ public class Enemy : MonoBehaviour {
         CurrentHealth -= value;
         if (CurrentHealth <= 0)
         {
+            PlayRandomCategorieSound(SoundsToPlay.Attack);
             Destroy(gameObject);
         }
     }
