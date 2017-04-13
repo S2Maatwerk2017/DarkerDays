@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GetItem : MonoBehaviour {
 
+    private Inventory Inventory = new Inventory();
+    private PlayerAI Player = new PlayerAI();
 	// Use this for initialization
 	void Start () {
 		
@@ -13,4 +15,13 @@ public class GetItem : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void PickUPItem(Item item)
+    {
+        if (Input.GetKey(KeyCode.Q)&& Player.)
+        {
+            Inventory.ListWithItems.Add(item);
+        }
+
+    }
 }
