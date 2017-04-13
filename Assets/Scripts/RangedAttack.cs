@@ -6,12 +6,8 @@ public class RangedAttack : MonoBehaviour {
 
     public GameObject projectilePrefab;
     private List<GameObject> Projectiles = new List<GameObject>();
-    //private Vector3 mousePosition;
-    //private float aimAngel;
-    //private Vector3 crossProduct;
     Rigidbody rigidbody;
     GameObject arrow;
-    //Camera cam;
     MovemnetPlayerController movementPlayer;
 
     private float projectileVelocity;
@@ -21,7 +17,6 @@ public class RangedAttack : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         projectileVelocity = 10f;
-        //cam = GameObject.Find("TestCamera").GetComponent<Camera>();
 
     }
 	
@@ -29,14 +24,6 @@ public class RangedAttack : MonoBehaviour {
 	void Update ()
     {
         movementPlayer = GetComponent<MovemnetPlayerController>();
-        //cam = GameObject.Find("TestCamera").GetComponent<Camera>();
-        //mousePosition = cam.ScreenToWorldPoint(Input.mousePosition).normalized;
-
-        //aimAngel = Vector2.Angle(Vector2.up, mousePosition);
-        //crossProduct = Vector3.Cross(Vector2.up, mousePosition);
-
-        //if (crossProduct.z < 0)
-        //    aimAngel = 360 - aimAngel;
         movementPlayer.playerRangedAttacking = false;
 
         if (Input.GetButtonDown("Fire1"))
@@ -65,6 +52,6 @@ public class RangedAttack : MonoBehaviour {
         
     }
 
-// j.hoefnagel@fontys.nl
+
 
 }

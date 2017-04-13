@@ -3,15 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainPlayer : MonoBehaviour, Level {
+public class Level : MonoBehaviour {
 
-    public int XP { get; set; }
-    public int Lvl { get; set; }
-    public int MaxHealth { get; set; }
+    public int XP;
+    public int Lvl;
+    public int MaxHealth;
 
     public void BepaalLvl()
     {
-        throw new NotImplementedException();
+        if (XP >= 100)
+        {
+            Lvl = Lvl + 1;
+            XP = XP - 100;
+        }
     }
 
     public void BepaalMaxHealth()
@@ -21,6 +25,6 @@ public class MainPlayer : MonoBehaviour, Level {
 
     public void GainXP(int Amount)
     {
-        throw new NotImplementedException();
+        XP = XP + Amount;
     }
 }

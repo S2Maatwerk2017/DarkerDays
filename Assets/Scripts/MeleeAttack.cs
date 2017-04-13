@@ -7,6 +7,7 @@ public class MeleeAttack : MonoBehaviour
     public int DamageToGive;
     public GameObject DamageBurst;
     public GameObject DamageNumber;
+    public Level Lvl;
 
     public int XP { get; private set; }
     public int Level { get; private set; }
@@ -28,12 +29,24 @@ public class MeleeAttack : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            col.gameObject.GetComponent<Enemy>().TakeDamage(5);
+            if (col.gameObject.GetComponent<Enemy>().TakeDamage(DamageToGive) == true)
+            {
+                Lvl.GainXP(50);
+                Lvl.BepaalLvl();
+
+                Debug.Log("yay");
+                Debug.Log(Lvl.XP);
+                Debug.Log(Lvl.Lvl);
+            }
+
+
+            col.gameObject.GetComponent<Enemy>().TakeDamage(DamageToGive);
             Instantiate(DamageBurst, col.gameObject.GetComponent<Transform>().position,
                 col.gameObject.GetComponent<Transform>().rotation);
             var clone = (GameObject)Instantiate(DamageNumber, col.gameObject.GetComponent<Transform>().position + new Vector3(0f, 2f, 0.5f),
                 Quaternion.Euler(90f, 0f, 0f));
             clone.GetComponent<DamageNumbers>().damageNumber = DamageToGive;
+
         }
     }
 }
