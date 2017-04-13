@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+public class Shop
 {
     public List<Item> Items { get; private set; }
 
-	// Use this for initialization
-	void Start ()
+
+
+    public Shop()
     {
-		Items = new List<Item>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+        Items = new List<Item>();
+    }
+
 
     //TODO Koop een item
     public Item BuyItem(int indexOfItem)
