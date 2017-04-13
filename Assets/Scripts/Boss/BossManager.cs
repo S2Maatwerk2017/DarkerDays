@@ -11,8 +11,9 @@ public class BossManager : MonoBehaviour {
     public GameObject Boss;
     public Transform BossSpawnLocation;
     public GameObject Gate;
+    public List<GameObject> Spawners;
 
-    private int EnemiesKilled;
+    private int EnemiesKilled = 0;
     private bool BattleHasStarted = false;
 
 	// Use this for initialization
@@ -27,11 +28,14 @@ public class BossManager : MonoBehaviour {
 
     public void EnemyWasKilled()
     {
+        Debug.Log("Test1");
         if (BattleHasStarted)
         {
+            Debug.Log("Test2");
             EnemiesKilled++;
             if (EnemiesKilled >= EnemiesToKill)
             {
+                Debug.Log("Test3");
                 Boss.GetComponent<Boss>().BossMayAggro = true;
             }
         }
@@ -59,6 +63,14 @@ public class BossManager : MonoBehaviour {
 
     private void StartFight()
     {
-        Instantiate(Boss, BossSpawnLocation.position, BossSpawnLocation.rotation);
+        Boss = Instantiate(Boss, BossSpawnLocation.position, BossSpawnLocation.rotation);
+    }
+
+    public void SpawnEnemies(bool shouldSpawn)
+    {
+        foreach (GameObject spawner in Spawners)
+        {
+            spawner.GetComponent<EnemySpawner>().ToggleSpawning(shouldSpawn);
+        }
     }
 }

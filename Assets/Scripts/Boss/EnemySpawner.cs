@@ -8,11 +8,13 @@ public class EnemySpawner : MonoBehaviour
     public bool Spawning;
     public float SpawnDelay;
     private float SpawnCountdown;
+    private List<GameObject> BossEnemies;
 
 	// Use this for initialization
 	void Start ()
 	{
 	    SpawnCountdown = 0f;
+        BossEnemies = new List<GameObject>();
 	}
 	
 	// Update is called once per frame
@@ -23,13 +25,19 @@ public class EnemySpawner : MonoBehaviour
 	        if (SpawnCountdown >= SpawnDelay)
 	        {
 	            SpawnCountdown = 0f;
-                var SpawnedEnemy = (GameObject)Instantiate(EnemyToSpawn[Random.Range(0, EnemyToSpawn.Length)], GetComponent<Transform>().position + new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)),
-                    Quaternion.Euler(0f, 0f, 0f));
-                //SpawnedEnemy.GetComponent<X>().X = X;
+                BossEnemies.Add((GameObject)Instantiate(EnemyToSpawn[Random.Range(0, EnemyToSpawn.Length)], GetComponent<Transform>().position + new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)),
+                    Quaternion.Euler(0f, 0f, 0f)));
             }
 	        else
 	        {
 	            SpawnCountdown += Time.deltaTime;
+	        }
+	    }
+	    else
+	    {
+	        foreach (var item in BossEnemies)
+	        {
+	            Destroy(item);
 	        }
 	    }
 	}

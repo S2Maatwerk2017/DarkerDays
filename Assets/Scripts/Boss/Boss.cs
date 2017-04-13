@@ -7,7 +7,6 @@ using UnityEngine.AI;
 
 public class Boss : Enemy, IStrategy
 {
-    public List<GameObject> Spawners;
     public GameObject BossManager;
     public bool BossMayAggro = false;
     public override void Setup()
@@ -21,11 +20,12 @@ public class Boss : Enemy, IStrategy
         if(BossMayAggro)
         {
             base.RunToPlayer();
-            SpawnEnemies(false);
+            BossManager.GetComponent<BossManager>().SpawnEnemies(false);
+
         }
         else
         {
-            SpawnEnemies(true);
+            BossManager.GetComponent<BossManager>().SpawnEnemies(true);
         }
     }
 
@@ -34,13 +34,6 @@ public class Boss : Enemy, IStrategy
         DoBehavior();
     }
 
-    private void SpawnEnemies(bool ShouldSpawn)
-    {
-        foreach (GameObject spawner in Spawners)
-        {
-            //spawner.GetComponent<EnemySpawner>().ToggleSpawning(ShouldSpawn);
-        }
-    }
 
     public override void Attack()
     {

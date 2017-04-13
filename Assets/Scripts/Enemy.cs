@@ -18,8 +18,13 @@ public class Enemy : MonoBehaviour {
     public int Damage;
     [Tooltip("The amount of health given to the enemy")]
     public int MaxHealth;
+    [Tooltip("Attack range of a melee enemy")][Range(0,10)]
+    public float AttackRange;
+    [Tooltip("Is this enemy part of a boss fight")]
+    public bool IsBossEnemy;
 
     public GameObject DamageNumber;
+    public GameObject DamageBurst;
 
     //Hidden publics
     [HideInInspector]public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
@@ -34,12 +39,17 @@ public class Enemy : MonoBehaviour {
     //Bodyparts
     private Rigidbody MyRigidbody;
     private NavMeshAgent agent;
+    private GameObject BossManager;
 
     public void Start()
     {
         Setup();
         AggroRange = Player.GetComponent<SphereCollider>().radius;
         CurrentHealth = MaxHealth;
+        if (IsBossEnemy)
+        {
+            BossManager = GameObject.Find("BossManager");
+        }
     }
 
     public void Update()
@@ -124,7 +134,7 @@ public class Enemy : MonoBehaviour {
 
     public void RunToPlayer()
     {
-        if (DistanceToPlayer <= 1)
+        if (DistanceToPlayer <= AttackRange)
         {
             Attack();
             agent.SetDestination(this.transform.position);
@@ -174,8 +184,17 @@ public class Enemy : MonoBehaviour {
     public virtual void TakeDamage(int value)
     {
         CurrentHealth -= value;
+
+        Instantiate(DamageBurst, transform.position, transform.rotation);
+        var clone = (GameObject)Instantiate(DamageNumber, transform.position + new Vector3(0f, 2f, 0.5f), Quaternion.Euler(90f, 0f, 0f));
+        clone.GetComponent<DamageNumbers>().damageNumber = value;
+
         if (CurrentHealth <= 0)
         {
+            if (IsBossEnemy)
+            {
+                BossManager.GetComponent<BossManager>().EnemyWasKilled();
+            }
             Destroy(gameObject);
         }
     }
