@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    public List<Dialog> Dialogs { get; private set; }
+    public List<Dialog> Dialogs;
 
 	// Use this for initialization
 	void Start ()
     {
-		Dialogs = new List<Dialog>();
-	}
+        Debug.Log("Start npc");
+    }
 	
 	// Update is called once per frame
 	void Update ()
