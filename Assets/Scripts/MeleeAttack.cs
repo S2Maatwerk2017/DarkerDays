@@ -8,8 +8,12 @@ public class MeleeAttack : MonoBehaviour
     public GameObject DamageBurst;
     public GameObject DamageNumber;
 
-	// Use this for initialization
-	void Start()
+    public int XP { get; private set; }
+    public int Level { get; private set; }
+    public int MaxHealth { get; private set; }
+
+    // Use this for initialization
+    void Start()
     {
 		
 	}
