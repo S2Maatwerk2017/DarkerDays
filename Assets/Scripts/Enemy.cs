@@ -171,7 +171,7 @@ public class Enemy : MonoBehaviour {
         PlayerSpotted = true;
     }
 
-    public void TakeDamage(int value)
+    public virtual void TakeDamage(int value)
     {
         CurrentHealth -= value;
         if (CurrentHealth <= 0)
