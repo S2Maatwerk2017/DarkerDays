@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -19,6 +20,29 @@ namespace Assets.Scripts
 
         //TODO Zet hier de tekst van de npc in.
         private void FillDialogList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnCollisionEnter(Collision other)
+        {
+            switch (other.collider.tag)
+            {
+                case "Player":
+                {
+                    ShowDialog();
+                    OpenShop();
+                    break;
+                }
+            }
+        }
+
+        private void OpenShop()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ShowDialog()
         {
             throw new NotImplementedException();
         }
