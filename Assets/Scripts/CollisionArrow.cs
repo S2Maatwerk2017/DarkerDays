@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class CollisionArrow : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+    public int DamageToGive;
+    public GameObject DamageBurst;
+    public GameObject DamageNumber;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -15,19 +19,19 @@ public class CollisionArrow : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider col)
-    {       
+    {
         if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("YAY");
+            col.gameObject.GetComponent<Enemy>().TakeDamage(DamageToGive);
+            Instantiate(DamageBurst, col.gameObject.GetComponent<Transform>().position,
+                col.gameObject.GetComponent<Transform>().rotation);
+            var clone = (GameObject)Instantiate(DamageNumber, col.gameObject.GetComponent<Transform>().position + new Vector3(0f, 2f, 0.5f),
+                Quaternion.Euler(90f, 0f, 0f));
+            clone.GetComponent<DamageNumbers>().damageNumber = DamageToGive;
+        }
+        if (col.gameObject.tag != "Player")
+        {
             Destroy(gameObject);
-
-            col.gameObject.GetComponent<Health>().TakeDamage(5);
-            if (col.gameObject.GetComponent<Health>().dead == true)
-            {
-                Destroy(col.gameObject);
-            }
-
         }
     }
-
 }

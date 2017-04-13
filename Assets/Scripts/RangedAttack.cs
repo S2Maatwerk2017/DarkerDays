@@ -11,6 +11,7 @@ public class RangedAttack : MonoBehaviour {
     //private Vector3 crossProduct;
     Rigidbody rigidbody;
     GameObject arrow;
+    private float attackTimeCounter;
     //Camera cam;
     MovemnetPlayerController movementPlayer;
 
@@ -37,22 +38,35 @@ public class RangedAttack : MonoBehaviour {
 
         //if (crossProduct.z < 0)
         //    aimAngel = 360 - aimAngel;
-        movementPlayer.playerRangedAttacking = false;
 
         if (Input.GetButtonDown("Fire1"))
         {
-            
-            movementPlayer.playerRangedAttacking = true;
-            arrow = (GameObject)Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            Projectiles.Add(arrow);           
-            rigidbody = arrow.GetComponent<Rigidbody>();
-            Vector3 arrowDirection = new Vector3(movementPlayer.lastMove.x, movementPlayer.lastMove.y);
-            rigidbody.AddForce(arrowDirection * projectileVelocity, ForceMode.Impulse);
+            if (movementPlayer.playerRangedAttacking == false)
+            {
+                attackTimeCounter = movementPlayer.attackTime;
+                movementPlayer.playerRangedAttacking = true;
+                arrow = (GameObject)Instantiate(projectilePrefab, transform.position, Quaternion.Euler(90f, 0f, 0f));
+                Projectiles.Add(arrow);
+                rigidbody = arrow.GetComponent<Rigidbody>();
+                Vector3 arrowDirection = new Vector3(movementPlayer.lastMove.x, 0f, movementPlayer.lastMove.z);
+                rigidbody.AddForce(arrowDirection * projectileVelocity, ForceMode.Impulse);
 
-            Destroy(arrow, 3.0f);
+                Destroy(arrow, 3.0f);
+            }
 
 
 
+        }
+
+        if (attackTimeCounter > 0)
+        {
+            attackTimeCounter -= Time.deltaTime;
+        }
+
+        if (attackTimeCounter < 0)
+        {
+            movementPlayer.playerRangedAttacking = false;
+            movementPlayer.ani.SetBool("PlayerRangedAttacking", false);
         }
         PlayerRangedAttackCheck();
 
