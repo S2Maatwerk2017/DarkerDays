@@ -5,46 +5,64 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.AI;
 
-    public class Boss : Enemy, IStrategy
+public class Boss : Enemy, IStrategy
+{
+    public List<GameObject> Spawners;
+    public GameObject BossManager;
+    public bool BossMayAggro = false;
+    public override void Setup()
     {
-        public List<GameObject> Spawners;
-        public GameObject BossManager;
-
-        public override void Setup()
-        {
-            BossManager = GameObject.Find("BossManager");
-            base.Setup();
-        }
-
-        public override void DoBehavior()
-        {
-            if (BossManager.GetComponent<BossManager>().BossMayAggro)
-            {
-
-            }
-            else
-            {
-                SpawnEnemies();
-            }
-        }
-
-        public override void StandardAI()
-        {
-            DoBehavior();
-        }
-
-        private void SpawnEnemies()
-        {
-            foreach (GameObject spawner in Spawners)
-            {
-                //spawner.GetComponent<SpawnerScript>().Spawn();
-            }
-        }
-
-        public override void Attack()
-        {
-            
-        }
-
+        BossManager = GameObject.Find("BossManager");
+        base.Setup();
     }
+
+    public override void DoBehavior()
+    {
+        if(BossMayAggro)
+        {
+            base.RunToPlayer();
+            SpawnEnemies(false);
+        }
+        else
+        {
+            SpawnEnemies(true);
+        }
+    }
+
+    public override void StandardAI()
+    {
+        DoBehavior();
+    }
+
+    private void SpawnEnemies(bool ShouldSpawn)
+    {
+        foreach (GameObject spawner in Spawners)
+        {
+            //spawner.GetComponent<EnemySpawner>().ToggleSpawning(ShouldSpawn);
+        }
+    }
+
+    public override void Attack()
+    {
+        if (!Player.GetComponent<PlayerHealthManager>().iFramesActive)
+        {
+            Player.GetComponent<PlayerHealthManager>().HurtPlayer(Damage);
+            var clone = (GameObject)Instantiate(DamageNumber, Player.GetComponent<Transform>().position + new Vector3(0f, 2f, 0.5f),
+                    Quaternion.Euler(90f, 0f, 0f));
+            clone.GetComponent<DamageNumbers>().damageNumber = Damage;
+        }
+    }
+
+    public override void TakeDamage(int value)
+    {
+        if (!BossMayAggro)
+        {
+            //Insert sound indicating that the boss can't be hit?
+        }
+        else
+        {
+            base.TakeDamage(value);
+        }
+    }
+}
 

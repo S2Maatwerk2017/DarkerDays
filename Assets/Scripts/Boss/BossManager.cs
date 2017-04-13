@@ -13,6 +13,7 @@ public class BossManager : MonoBehaviour {
     public GameObject Gate;
 
     private int EnemiesKilled;
+    private bool BattleHasStarted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -26,19 +27,23 @@ public class BossManager : MonoBehaviour {
 
     public void EnemyWasKilled()
     {
-        EnemiesKilled++;
-        if (EnemiesKilled >= EnemiesToKill)
+        if (BattleHasStarted)
         {
-            BossMayAggro = true;
+            EnemiesKilled++;
+            if (EnemiesKilled >= EnemiesToKill)
+            {
+                Boss.GetComponent<Boss>().BossMayAggro = true;
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !BattleHasStarted)
         {
             CloseGate();
             StartFight();
+            BattleHasStarted = true;
         }
     }
 
@@ -47,8 +52,13 @@ public class BossManager : MonoBehaviour {
         Gate.GetComponent<Gate>().CloseGate();
     }
 
+    public void OpenGate()
+    {
+        Gate.GetComponent<Gate>().OpenGate();
+    }
+
     private void StartFight()
     {
-        Instantiate(Boss, BossSpawnLocation);
+        Instantiate(Boss, BossSpawnLocation.position, BossSpawnLocation.rotation);
     }
 }

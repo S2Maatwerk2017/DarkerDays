@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 4913560710485838}
   - component: {fileID: 212675286031471660}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Boss Sprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ Transform:
   m_GameObject: {fileID: 1490170174246354}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0}
   m_Children: []
   m_Father: {fileID: 4765674153270404}
   m_RootOrder: 0
@@ -114,12 +114,14 @@ MonoBehaviour:
   DEBUGMODE: 1
   AggroRange: 3.7
   MoveSpeed: 1.04
-  Damage: 0
-  MaxHealth: 10
+  Damage: 3
+  MaxHealth: 100
   DamageNumber: {fileID: 0}
   Player: {fileID: 0}
   PlayerSpotted: 0
-  Spawnable: {fileID: 1794765095872720, guid: 7ef1f2db00dfa3a47b0b917e19285496, type: 2}
+  Spawners: []
+  BossManager: {fileID: 0}
+  BossMayAggro: 0
 --- !u!195 &195412612047897862
 NavMeshAgent:
   m_ObjectHideFlags: 1
