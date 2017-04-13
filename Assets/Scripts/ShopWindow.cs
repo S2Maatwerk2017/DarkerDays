@@ -10,10 +10,9 @@ namespace Assets.Scripts
         public Shop Shop { get; private set; }
         public Player Player { get; private set; }
 
-        public ShopWindow(Player player)
+        public ShopWindow()
         {
             Shop = new Shop();
-            Player = player;
         }
 
         private void CreateGUI()

@@ -40,14 +40,11 @@ namespace Assets.Scripts
             {
                 case "Player":
                 {
-<<<<<<< HEAD
                     Debug.Log("PlayerCollision geslaagd");
                     ShowDialog();
+                        playerCollide = true;
                     OpenShop();
-=======
-                    playerCollide = true;
-                    //OpenShop();
->>>>>>> Jethro_Branch
+
                     break;
                 }
             }
@@ -57,13 +54,10 @@ namespace Assets.Scripts
         {
             ShopWindow shopWindow = new ShopWindow();
         }
-<<<<<<< HEAD
 
         private void ShowDialog()
         {
             OpenShop();
         }
-=======
->>>>>>> Jethro_Branch
     }
 }
