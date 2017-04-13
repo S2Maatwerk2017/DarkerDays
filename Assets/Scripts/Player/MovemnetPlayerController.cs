@@ -20,6 +20,9 @@ public class MovemnetPlayerController : MonoBehaviour
     private float attackTimeCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
+
+    PlayerHealthManager PlayerHealth;
+    
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
@@ -30,6 +33,7 @@ public class MovemnetPlayerController : MonoBehaviour
         seconds = 0;
         ani = GetComponent<Animator>();
         RB = GetComponent<Rigidbody>();
+        PlayerHealth = GetComponent<PlayerHealthManager>();
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
@@ -177,6 +181,10 @@ public class MovemnetPlayerController : MonoBehaviour
         if (other.tag == "Enemy")
         {
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
+        }
+        if (other.tag == "Bed")
+        {
+            PlayerHealth.SetFullHealth();
         }
     }
 }
