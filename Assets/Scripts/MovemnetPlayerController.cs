@@ -108,7 +108,7 @@ public class MovemnetPlayerController : MonoBehaviour
                 playerMeleeAttacking = true;
                 RB.velocity = Vector3.zero;
                 ani.SetBool("PlayerMeleeAttacking", true);
-                SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+               // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
             }
         }
 
@@ -171,7 +171,7 @@ public class MovemnetPlayerController : MonoBehaviour
         }
         return MoveSpeed;
     }
-
+    Inventory Inventory = new Inventory();
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
