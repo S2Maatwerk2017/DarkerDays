@@ -111,7 +111,7 @@ public class MovemnetPlayerController : MonoBehaviour
                 playerMeleeAttacking = true;
                 RB.velocity = Vector3.zero;
                 ani.SetBool("PlayerMeleeAttacking", true);
-               // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
             }
         }
 
