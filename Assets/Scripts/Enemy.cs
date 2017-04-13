@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour {
 
     public GameObject DamageNumber;
 
+
     //Hidden publics
     [HideInInspector]public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
     [HideInInspector]public GameObject Player;
@@ -34,12 +35,14 @@ public class Enemy : MonoBehaviour {
     //Bodyparts
     private Rigidbody MyRigidbody;
     private NavMeshAgent agent;
+    private Wallet wallet = new Wallet();
 
     public void Start()
     {
         Setup();
         AggroRange = Player.GetComponent<SphereCollider>().radius;
         CurrentHealth = MaxHealth;
+        wallet.Gold = 5;
     }
 
     public void Update()
@@ -171,17 +174,24 @@ public class Enemy : MonoBehaviour {
         PlayerSpotted = true;
     }
 
-    public void TakeDamage(int value)
+    public bool TakeDamage(int value)
     {
         CurrentHealth -= value;
         if (CurrentHealth <= 0)
         {
             Destroy(gameObject);
+            return true;
         }
+        return false;
     }
 
     public void SetMaxHealth()
     {
         CurrentHealth = MaxHealth;
+    }
+
+    public int GetGold()
+    {
+        return wallet.Gold;
     }
 }
