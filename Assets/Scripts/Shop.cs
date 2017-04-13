@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 
 public class Shop
@@ -10,7 +12,11 @@ public class Shop
 
     public Shop()
     {
-        Items = new List<Item>();
+        Items = new List<Item>()
+        {
+            new HpItem(10, "Banana", "Regenerates health with 2 hp", 5, 2)
+        };
+        Debug.Log("Shop aangemaakt met " + Convert.ToString(Items.Count) + Items);
     }
 
 

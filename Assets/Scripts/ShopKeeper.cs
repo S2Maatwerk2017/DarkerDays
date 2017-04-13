@@ -30,6 +30,7 @@ namespace Assets.Scripts
             {
                 case "Player":
                 {
+                    Debug.Log("PlayerCollision geslaagd");
                     ShowDialog();
                     OpenShop();
                     break;
@@ -39,12 +40,12 @@ namespace Assets.Scripts
 
         private void OpenShop()
         {
-            throw new NotImplementedException();
+            ShopWindow shopWindow = new ShopWindow();
         }
 
         private void ShowDialog()
         {
-            throw new NotImplementedException();
+            OpenShop();
         }
     }
 }
