@@ -1,17 +1,23 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using UnityEngine;
 
-namespace Assets.Scripts.Player
-{
-    public class Wallet
+public class Wallet : MonoBehaviour {
+
+    public int Gold;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+
+    public void GainGold(int goldIncrease)
     {
-        public int gold;
-
-        public void GainGold(int money)
-        {
-            gold = gold + money;
-        }
+        Gold = Gold + goldIncrease;
     }
 }

@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 135080833307417242}
   - component: {fileID: 114716780120551820}
   - component: {fileID: 82861378282886124}
+  - component: {fileID: 114699090887813220}
   m_Layer: 0
   m_Name: MeleePlayer
   m_TagString: Player
@@ -117,7 +118,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716688806628970}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.04, y: 1, z: -21.07}
+  m_LocalPosition: {x: 4, y: 1, z: -21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364249642846902}
@@ -132,7 +133,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1343535428997920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.025, y: -0.856, z: 0}
+  m_LocalPosition: {x: 0.025, y: -0.938, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4276222839787152}
@@ -250,7 +251,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0.079
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -274,6 +275,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114699090887813220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e2bbbd6778181408cfce35d98aa9b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gold: 0
 --- !u!114 &114716780120551820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,10 +298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020b6c3b6f9841249b282492a0e31c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxHealth: 50
-  playerCurrentHealth: 50
+  playerMaxHealth: 0
+  playerCurrentHealth: 0
   iFramesActive: 0
-  iFramesLength: 1
+  iFramesLength: 0
 --- !u!114 &114817060021382166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,12 +329,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d116513b66e90704bb9386d994e456aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 5
-  attackTime: 0.2
+  MoveSpeed: 0
+  attackTime: 0
   lastMove: {x: 0, y: 0, z: 0}
   playerRangedAttacking: 0
   isPlayerRanged: 0
-  DiagnalMoveSpeedMultiplier: 0.75
+  DiagnalMoveSpeedMultiplier: 0
 --- !u!135 &135080833307417242
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -22,7 +22,6 @@ public class MovemnetPlayerController : MonoBehaviour
     public float DiagnalMoveSpeedMultiplier;
 
     PlayerHealthManager PlayerHealth;
-    
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
