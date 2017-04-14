@@ -25,6 +25,7 @@ public class MovemnetPlayerController : MonoBehaviour
     private PlayerHealthManager PlayerHealth;
 
     private Wallet wallet;
+    private PlayerLevel level;
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
@@ -37,6 +38,7 @@ public class MovemnetPlayerController : MonoBehaviour
         RB = GetComponent<Rigidbody>();
         PlayerHealth = GetComponent<PlayerHealthManager>();
         wallet = GetComponent<Wallet>();
+        level = GetComponent<PlayerLevel>();
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
@@ -191,6 +193,11 @@ public class MovemnetPlayerController : MonoBehaviour
     public void IncreaseGold(int IncreaseGold)
     {
         wallet.GainGold(IncreaseGold);
+    }
+
+    public void IncreaseXP(int increaseXP)
+    {
+        level.gainXP(increaseXP);
     }
 
     public void SetFullHealth()
