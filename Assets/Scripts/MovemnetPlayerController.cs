@@ -23,6 +23,10 @@ public class MovemnetPlayerController : MonoBehaviour
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
+    //sound fields
+    public List<AudioClip> attackAudioClips = new List<AudioClip>();
+
+
 
     // Use this for initialization
     void Start()
@@ -108,7 +112,7 @@ public class MovemnetPlayerController : MonoBehaviour
                 playerMeleeAttacking = true;
                 RB.velocity = Vector3.zero;
                 ani.SetBool("PlayerMeleeAttacking", true);
-                SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                SFXManager.instance.PlaySingle(attackAudioClips);
             }
         }
 

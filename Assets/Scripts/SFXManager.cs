@@ -33,13 +33,22 @@ public class SFXManager : MonoBehaviour
 	}
 
 
+    public void PlaySingle(List<AudioClip> clips)
+    {
+        //if (!SfxSource.isPlaying)
+        //{
+            SfxSource.clip = clips[Random.Range(0, clips.Count)];
+            SfxSource.Play();
+        //}
+    }
+
     public void PlaySingle(AudioClip clip)
     {
-        if (!SfxSource.isPlaying)
-        {
+        //if (!SfxSource.isPlaying)
+        //{
             SfxSource.clip = clip;
             SfxSource.Play();
-        }
+        //}
     }
 
     public void RandomizeSfx(params AudioClip[] clips)

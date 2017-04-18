@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour
             default:
                 if (Soundlist != null)
                 {
-                    SFXManager.instance.PlaySingle(Soundlist[Random.Range(0, Soundlist.Count)]);
+                    SFXManager.instance.PlaySingle(Soundlist);
                 }
                 break;
         }
@@ -132,6 +132,7 @@ public class Enemy : MonoBehaviour
         NextLocation.z += (z * MoveSpeed);
 
         agent.SetDestination(NextLocation);
+        PlayRandomCategorieSound(SoundsToPlay.Move);
     }
 
     public virtual void DoBehavior()
@@ -165,10 +166,12 @@ public class Enemy : MonoBehaviour
         {
             Attack();
             agent.SetDestination(this.transform.position);
+            PlayRandomCategorieSound(SoundsToPlay.Move);
         }
         else
         {
             agent.SetDestination(Player.transform.position);
+            PlayRandomCategorieSound(SoundsToPlay.Move);
         }
         if (DistanceToPlayer >= AggroRange + 1.0f)
         {
@@ -180,6 +183,7 @@ public class Enemy : MonoBehaviour
     {
         //Let each underlaying class implement their own variant.
         Debug.Log("Attack not implemented");
+        PlayRandomCategorieSound(SoundsToPlay.Attack);
     }
 
 
@@ -214,7 +218,7 @@ public class Enemy : MonoBehaviour
         CurrentHealth -= value;
         if (CurrentHealth <= 0)
         {
-            PlayRandomCategorieSound(SoundsToPlay.Attack);
+            PlayRandomCategorieSound(SoundsToPlay.Death);
             Destroy(gameObject);
         }
     }
