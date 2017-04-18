@@ -7,8 +7,12 @@ TagManager:
   - Enemy
   - Projectile
   - World
+<<<<<<< HEAD
   - Item
   - Bag
+=======
+  - InventoryPanel
+>>>>>>> 0642a3a3099b23163f2a53c9dbafab994685139d
   layers:
   - Default
   - TransparentFX
