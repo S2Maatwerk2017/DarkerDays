@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - Projectile
   - World
-  - Bed
+  - InventoryPanel
   layers:
   - Default
   - TransparentFX
