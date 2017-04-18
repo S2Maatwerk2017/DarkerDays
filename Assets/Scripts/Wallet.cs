@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
-{
+public class Wallet : MonoBehaviour {
 
-    public string Naam { get; private set; }
+    public int Gold;
 
 	// Use this for initialization
 	void Start () {
@@ -16,4 +15,10 @@ public class Item : MonoBehaviour
 	void Update () {
 		
 	}
+
+    public void GainGold(int GainGold)
+    {
+        Gold = Gold + GainGold;
+        Debug.Log(Gold);
+    }
 }
