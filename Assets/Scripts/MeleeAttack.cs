@@ -34,6 +34,7 @@ public class MeleeAttack : MonoBehaviour
             if (enemy.TakeDamage(DamageToGive) == true)
             {
                 Player.GetComponent<MovemnetPlayerController>().IncreaseGold(enemy.GetGold());
+                Player.GetComponent<MovemnetPlayerController>().IncreaseXP(enemy.GetXP());
             }
         }
     }
