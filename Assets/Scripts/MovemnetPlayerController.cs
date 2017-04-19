@@ -192,13 +192,6 @@ public class MovemnetPlayerController : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
         }
 
-        if (other.tag == "Chest")
-        {
-            if (chest.ChestOpened == false)
-                { 
-                    RecieveItemFromAChest();
-                }
-        }
     }
 
 
@@ -217,13 +210,4 @@ public class MovemnetPlayerController : MonoBehaviour
         PlayerHealth.SetMaxHealth();
     }
 
-    public void RecieveItemFromAChest()
-    {
-        
-        chest.addRandomItemsToInventory(inventory);
-        Debug.Log(inventory.ListWithItems[0]);
-        Debug.Log(inventory.ListWithItems[1]);
-        Debug.Log(inventory.ListWithItems[2]);
-
-    }
 }

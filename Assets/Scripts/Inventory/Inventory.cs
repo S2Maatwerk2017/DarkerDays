@@ -21,24 +21,27 @@ public class Inventory : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-	    playerInventory = GetComponent<Player_Inventory>();
+        playerInventory = GetComponent<Player_Inventory>();
 
-	    slotAmount = playerInventory.Items().Count;
-	    InventoryPanel = GameObject.Find("Inventory Panel");
-	    SlotPanel = InventoryPanel.transform.FindChild("Slot Panel").gameObject;
+        slotAmount = playerInventory.Items().Count;
+        InventoryPanel = GameObject.Find("Inventory Panel");
+        SlotPanel = InventoryPanel.transform.FindChild("Slot Panel").gameObject;
 
-	    for (int i = 0; i < slotAmount; i++)
-	    {
+        for (int i = 0; i < slotAmount; i++)
+        {
             InventoryItems.Add(new HP_Item());
-	        InventorySlots.Add(Instantiate(InventorySlot));
+            InventorySlots.Add(Instantiate(InventorySlot));
             InventorySlots[i].transform.SetParent(SlotPanel.transform);
-            
-	    }
+
+        }
 
         foreach (Item i in playerInventory.Items().ToList())
         {
             AddItem(i.ItemID);
         }
+
+        InventoryPanel.SetActive(false);
+
         //AddItem(1);
         //AddItem(2);
         //AddItem(3);
@@ -49,8 +52,8 @@ public class Inventory : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+
+    }
 
     public void AddItem(int id)
     {
