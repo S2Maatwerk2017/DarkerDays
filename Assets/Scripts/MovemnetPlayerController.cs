@@ -13,12 +13,10 @@ public class MovemnetPlayerController : MonoBehaviour
     //private Animator ani;
     public Animator ani { get; private set; }
     private bool playerMoving;
-    [HideInInspector]
-    public Vector3 lastMove;
+    [HideInInspector] public Vector3 lastMove;
     private bool playerMeleeAttacking;
     public bool playerRangedAttacking;
     public bool isPlayerRanged;
-    public bool canMove = true;
     private float attackTimeCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
@@ -36,7 +34,7 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
         }
-
+        
     }
 
     // Update is called once per frame
@@ -62,62 +60,55 @@ public class MovemnetPlayerController : MonoBehaviour
             //    lastMove = new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
             //}
 
-            // als de speler niet mag bewegen doe niks.
-            if (canMove)
+
+            //lopen werkend!!
+            //var HorSpeed = Input.GetAxis("Horizontal") * PlayerDodgeStart();
+            if(Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
             {
-                //lopen werkend!!
-                //var HorSpeed = Input.GetAxis("Horizontal") * PlayerDodgeStart();
-                if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
-                {
-                    RB.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * CurrentMoveSpeed, 0f, RB.velocity.z);
-                    playerMoving = true;
-                    lastMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-                }
-                //var VerSpeed = Input.GetAxis("Vertical") * PlayerDodgeStart();
-                if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
-                {
-                    RB.velocity = new Vector3(RB.velocity.x, 0f, Input.GetAxisRaw("Vertical") * CurrentMoveSpeed);
-                    playerMoving = true;
-                    lastMove = new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
-                }
+                RB.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * CurrentMoveSpeed, 0f, RB.velocity.z);
+                playerMoving = true;
+                lastMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+            }
+            //var VerSpeed = Input.GetAxis("Vertical") * PlayerDodgeStart();
+            if(Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
+            {
+                RB.velocity = new Vector3(RB.velocity.x, 0f, Input.GetAxisRaw("Vertical") * CurrentMoveSpeed);
+                playerMoving = true;
+                lastMove = new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
+            }
 
-                //RB.velocity = new Vector3(HorSpeed, 0f, VerSpeed);
-                //transform.Translate(HorSpeed, VerSpeed, 0f);
+            //RB.velocity = new Vector3(HorSpeed, 0f, VerSpeed);
+            //transform.Translate(HorSpeed, VerSpeed, 0f);
 
-                // Stopt het doorschuiven
-                if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
-                {
-                    RB.velocity = new Vector3(0f, 0f, RB.velocity.z);
-                    //transform.position = transform.position;
-                }
-                if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
-                {
-                    RB.velocity = new Vector3(RB.velocity.x, 0f, 0f);
-                    //transform.position = transform.position;
-                }
+            // Stopt het doorschuiven
+            if (Input.GetAxisRaw("Horizontal") < 0.5f && Input.GetAxisRaw("Horizontal") > -0.5f)
+            {
+                RB.velocity = new Vector3(0f, 0f, RB.velocity.z);
+                //transform.position = transform.position;
+            }
+            if (Input.GetAxisRaw("Vertical") < 0.5f && Input.GetAxisRaw("Vertical") > -0.5f)
+            {
+                RB.velocity = new Vector3(RB.velocity.x, 0f, 0f);
+                //transform.position = transform.position;
+            }
 
-                if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.5f && Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.5f)
-                {
-                    CurrentMoveSpeed = MoveSpeed * DiagnalMoveSpeedMultiplier;
-                }
-                else
-                {
-                    CurrentMoveSpeed = MoveSpeed;
-                }
-
-                // Kijken of space ingedrukt wordt voor een aanval
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    attackTimeCounter = attackTime;
-                    playerMeleeAttacking = true;
-                    RB.velocity = Vector3.zero;
-                    ani.SetBool("PlayerMeleeAttacking", true);
-                    SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
-                }
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0.5f && Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0.5f)
+            {
+                CurrentMoveSpeed = MoveSpeed * DiagnalMoveSpeedMultiplier;
             }
             else
             {
-                RB.velocity = new Vector3();
+                CurrentMoveSpeed = MoveSpeed;
+            }
+
+            // Kijken of space ingedrukt wordt voor een aanval
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                attackTimeCounter = attackTime;
+                playerMeleeAttacking = true;
+                RB.velocity = Vector3.zero;
+                ani.SetBool("PlayerMeleeAttacking", true);
+                SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
             }
         }
 
