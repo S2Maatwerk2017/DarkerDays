@@ -26,6 +26,7 @@ public class Player_Inventory : MonoBehaviour
 
     public List<Item> Items()
     {
+        ItemsList.Clear();
         if (File.Exists(FilePath))
         {
             using (StreamReader sr = new StreamReader(FilePath))
