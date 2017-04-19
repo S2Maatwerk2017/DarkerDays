@@ -4,12 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Projectile
-  - World
+  - Bed
   - InventoryPanel
+<<<<<<< HEAD
   - Chest
   - Bed
+=======
+  - Enemy
+  - Item
+  - HP_Item
+>>>>>>> 078d78659ad8fbe3a65975e8695c0b098723b5a6
   layers:
   - Default
   - TransparentFX
@@ -46,13 +50,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Ground
-    uniqueID: 1216313239
-    locked: 0
-  - name: Player
-    uniqueID: 3303778977
-    locked: 0
-  - name: WorldObjects
-    uniqueID: 2930177561
     locked: 0

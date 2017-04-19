@@ -9,7 +9,11 @@ public class Player_Inventory : MonoBehaviour
 {
     public List<Item> ItemsList = new List<Item>();
     public Item item { get; private set; }
+<<<<<<< HEAD
     private string FilePath = @"C:\Users\tomli\Documents\GitHub\DarkerDays\Assets\TekstFood.txt";
+=======
+    private string FilePath = @"C:\Users\maxhe\Source\Repos\DarkerDays\Assets\TekstFood.txt";
+>>>>>>> 078d78659ad8fbe3a65975e8695c0b098723b5a6
 
     // Use this for initialization
 

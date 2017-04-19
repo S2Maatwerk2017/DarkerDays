@@ -184,7 +184,7 @@ public class MovemnetPlayerController : MonoBehaviour
         }
         return MoveSpeed;
     }
-
+    Inventory Inventory = new Inventory();
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")

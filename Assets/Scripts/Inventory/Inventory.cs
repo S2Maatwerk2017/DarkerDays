@@ -52,8 +52,13 @@ public class Inventory : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+<<<<<<< HEAD
 
     }
+=======
+		Debug.Log(InventoryItems.Count);
+	}
+>>>>>>> 078d78659ad8fbe3a65975e8695c0b098723b5a6
 
     public void AddItem(int id)
     {
@@ -69,6 +74,7 @@ public class Inventory : MonoBehaviour {
                 itemobj.transform.position = Vector2.zero;
                 break;
             }
+
         }
     }
 }
