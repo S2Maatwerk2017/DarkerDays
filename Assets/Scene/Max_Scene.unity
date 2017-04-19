@@ -606,9 +606,33 @@ Prefab:
       propertyPath: m_Type
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114443192431319014, guid: 6e8b7b2a3e09e0c46861e1310e864694, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6e8b7b2a3e09e0c46861e1310e864694, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1380806284 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1640861671129812, guid: 6e8b7b2a3e09e0c46861e1310e864694,
+    type: 2}
+  m_PrefabInternal: {fileID: 1315809313}
+--- !u!114 &1380806285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1380806284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c8cf6cc79cc264cab0d877bcaa382f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectItemID: 4
+  objectName: HP Item
+  objectPrice: 3
+  objectDescription: Goede HP
+  objectAmount: 1
+  objectTag: HP
+  objectHpGain: 5
 --- !u!1 &1472536550 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1716688806628970, guid: 1d419cb79d657a54cb905cc136cb47d9,
@@ -638,7 +662,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropBag: {fileID: 0}
   prefab: {fileID: 1541865734058052, guid: 7e2b5de81b2a0a94db7e3ff24ef51232, type: 2}
+  Inventory: {fileID: 0}
   player: {fileID: 0}
+  dropItem: {fileID: 0}
 --- !u!1 &1589922816 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1133089499626360, guid: f86b16acec39f2f4591ed19ed005d771,
