@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - World
   - Bed
+  - Chest
   layers:
   - Default
   - TransparentFX

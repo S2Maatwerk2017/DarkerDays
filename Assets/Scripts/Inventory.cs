@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour {
     {
         ListWithItems = new List<Item>();
     }
+
 	// Use this for initialization
 	void Start () {
 		
