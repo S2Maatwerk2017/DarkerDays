@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Projectile
   - World
+  - ShopKeeper
+  - DialogBox
   layers:
   - Default
   - TransparentFX
