@@ -30,11 +30,13 @@ public class DialogBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Currentshopkeeper != null)
+        {
+            SetEndOfLine(Currentshopkeeper);
+        }
         if (Currentshopkeeper.playerCollide)
-            {
-                SetDialogBox(true);
-                Currentshopkeeper.playerCollide = false;
-            }
+        {
+            SetDialogBox(true);
             if (Input.GetKeyDown(KeyCode.N))
             {
                 Debug.Log("+1");
@@ -42,23 +44,19 @@ public class DialogBox : MonoBehaviour
             }
             if (currentLine >= endOfLine)
             {
+                Currentshopkeeper.playerCollide = false;
                 Debug.Log(currentLine);
                 Debug.Log("Aantal lines " + Currentshopkeeper.Dialogs[currentDialog].Lines.Count);
                 Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
                 Debug.Log(endOfLine);
                 SetDialogBox(false);
                 currentLine = 0;
-
             }
             else
             {
                 textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
             }
-            if (Currentshopkeeper != null)
-            {
-                SetEndOfLine(Currentshopkeeper);
-            }
-        
+        }
     }
 
     public void SetEndOfLine(ShopKeeper shopkeeper)
