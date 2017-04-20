@@ -9,7 +9,6 @@ public class DialogBox : MonoBehaviour
 {
     public GameObject TextBox;
     public ShopKeeper Currentshopkeeper;
-    public RandomNPC CurrentRandomNPC;
     public MovemnetPlayerController playermovement;
     public Text textToShow;
     public GameObject ShopDialog;
@@ -41,62 +40,39 @@ public class DialogBox : MonoBehaviour
         }
         if (Currentshopkeeper.playerCollide)
         {
-            SetEndOfLine((NPC)Currentshopkeeper);
             SetDialogBox(true);
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                Debug.Log("+1");
-                currentLine += 1;
-            }
-            if (currentLine >= endOfLine)
-            {
-                Currentshopkeeper.playerCollide = false;
-                Debug.Log(currentLine);
-                Debug.Log("Aantal lines " + Currentshopkeeper.Dialogs[currentDialog].Lines.Count);
-                Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
-                Debug.Log(endOfLine);
-                SetDialogBox(false);
-                currentLine = 0;
-            }
-            else
-            {
-                textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
-            }
+            Currentshopkeeper.playerCollide = false;
         }
-        if (CurrentRandomNPC.playerCollide)
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            SetEndOfLine((NPC)CurrentRandomNPC);
-            SetDialogBox(true);
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                currentLine += 1;
-            }
-            if (currentLine >= endOfLine)
-            {
-                CurrentRandomNPC.playerCollide = false;
-                SetDialogBox(false);
-                currentLine = 0;
-            }
-            else
-            {
-                textToShow.text = CurrentRandomNPC.Dialogs[0].Lines[currentLine];
-            }
+            Debug.Log("+1");
+            currentLine += 1;
+        }
+        if (currentLine >= endOfLine)
+        {
+            Currentshopkeeper.playerCollide = false;
+            Debug.Log(currentLine);
+            Debug.Log("Aantal lines " + Currentshopkeeper.Dialogs[currentDialog].Lines.Count);
+            Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
+            Debug.Log(endOfLine);
+            SetDialogBox(false);
+            SetDialogShopBox(true);
+            //shopwindow.SetDialogBox(true);
+            currentLine = 0;
+
+        }
+        else
+        {
+            textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
         }
     }
 
-    public void SetEndOfLine(NPC npc)
+
+    public void SetEndOfLine(ShopKeeper shopkeeper)
     {
-        if (npc.GetType() == typeof(RandomNPC))
-        {
-            npc = (RandomNPC)npc;
-        }
-        else if (npc.GetType() == typeof(ShopKeeper))
-        {
-            npc = (ShopKeeper)npc;
-        }
         if (endOfLine == 0)
         {
-            endOfLine = npc.Dialogs[currentDialog].Lines.Count;
+            endOfLine = shopkeeper.Dialogs[currentDialog].Lines.Count;
         }
     }
 

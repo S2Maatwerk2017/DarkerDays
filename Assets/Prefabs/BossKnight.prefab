@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 195726261026851954}
   - component: {fileID: 114117039496436268}
   m_Layer: 0
-  m_Name: Knight
+  m_Name: BossKnight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,11 @@ MonoBehaviour:
   MoveSpeed: 2.6
   Damage: 5
   MaxHealth: 5
+  AttackRange: 0
+  IsBossEnemy: 1
   DamageNumber: {fileID: 1639270009125572, guid: 36024c27d0f89b042b825bc1751e0b7b,
+    type: 2}
+  DamageBurst: {fileID: 1741610336478772, guid: e9174e6293dbc974ab7c2bc31eea25a8,
     type: 2}
   Player: {fileID: 0}
   PlayerSpotted: 0

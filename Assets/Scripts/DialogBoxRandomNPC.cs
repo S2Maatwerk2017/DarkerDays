@@ -5,11 +5,10 @@ using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogBox : MonoBehaviour
+public class DialogBoxRandomNPC : MonoBehaviour
 {
     public GameObject TextBox;
     public ShopKeeper Currentshopkeeper;
-    public RandomNPC CurrentRandomNPC;
     public MovemnetPlayerController playermovement;
     public Text textToShow;
     public GameObject ShopDialog;
@@ -41,8 +40,9 @@ public class DialogBox : MonoBehaviour
         }
         if (Currentshopkeeper.playerCollide)
         {
-            SetEndOfLine((NPC)Currentshopkeeper);
             SetDialogBox(true);
+            
+
             if (Input.GetKeyDown(KeyCode.N))
             {
                 Debug.Log("+1");
@@ -56,47 +56,25 @@ public class DialogBox : MonoBehaviour
                 Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
                 Debug.Log(endOfLine);
                 SetDialogBox(false);
+                SetDialogShopBox(true);
+                //shopwindow.SetDialogBox(true);
                 currentLine = 0;
+
             }
             else
             {
                 textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
             }
         }
-        if (CurrentRandomNPC.playerCollide)
-        {
-            SetEndOfLine((NPC)CurrentRandomNPC);
-            SetDialogBox(true);
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                currentLine += 1;
-            }
-            if (currentLine >= endOfLine)
-            {
-                CurrentRandomNPC.playerCollide = false;
-                SetDialogBox(false);
-                currentLine = 0;
-            }
-            else
-            {
-                textToShow.text = CurrentRandomNPC.Dialogs[0].Lines[currentLine];
-            }
-        }
+        
     }
 
-    public void SetEndOfLine(NPC npc)
+
+    public void SetEndOfLine(ShopKeeper shopkeeper)
     {
-        if (npc.GetType() == typeof(RandomNPC))
-        {
-            npc = (RandomNPC)npc;
-        }
-        else if (npc.GetType() == typeof(ShopKeeper))
-        {
-            npc = (ShopKeeper)npc;
-        }
         if (endOfLine == 0)
         {
-            endOfLine = npc.Dialogs[currentDialog].Lines.Count;
+            endOfLine = shopkeeper.Dialogs[currentDialog].Lines.Count;
         }
     }
 
