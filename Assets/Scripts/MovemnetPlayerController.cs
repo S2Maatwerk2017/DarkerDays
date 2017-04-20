@@ -13,13 +13,21 @@ public class MovemnetPlayerController : MonoBehaviour
     //private Animator ani;
     public Animator ani { get; private set; }
     private bool playerMoving;
-    [HideInInspector] public Vector3 lastMove;
+    [HideInInspector]
+    public Vector3 lastMove;
     private bool playerMeleeAttacking;
     public bool playerRangedAttacking;
     public bool isPlayerRanged;
     private float attackTimeCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
+
+    private PlayerHealthManager PlayerHealth;
+
+    private Wallet wallet;
+    private PlayerLevel level;
+    private Inventory inventory;
+    GetItemFromChest chest = new GetItemFromChest();
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
@@ -30,11 +38,15 @@ public class MovemnetPlayerController : MonoBehaviour
         seconds = 0;
         ani = GetComponent<Animator>();
         RB = GetComponent<Rigidbody>();
+        PlayerHealth = GetComponent<PlayerHealthManager>();
+        wallet = GetComponent<Wallet>();
+        level = GetComponent<PlayerLevel>();
+        inventory = GetComponent<Inventory>();
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
         }
-        
+
     }
 
     // Update is called once per frame
@@ -63,14 +75,14 @@ public class MovemnetPlayerController : MonoBehaviour
 
             //lopen werkend!!
             //var HorSpeed = Input.GetAxis("Horizontal") * PlayerDodgeStart();
-            if(Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+            if (Input.GetAxisRaw("Horizontal") > 0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
             {
                 RB.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * CurrentMoveSpeed, 0f, RB.velocity.z);
                 playerMoving = true;
                 lastMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
             }
             //var VerSpeed = Input.GetAxis("Vertical") * PlayerDodgeStart();
-            if(Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
+            if (Input.GetAxisRaw("Vertical") > 0.5f || Input.GetAxisRaw("Vertical") < -0.5f)
             {
                 RB.velocity = new Vector3(RB.velocity.x, 0f, Input.GetAxisRaw("Vertical") * CurrentMoveSpeed);
                 playerMoving = true;
@@ -108,8 +120,9 @@ public class MovemnetPlayerController : MonoBehaviour
                 playerMeleeAttacking = true;
                 RB.velocity = Vector3.zero;
                 ani.SetBool("PlayerMeleeAttacking", true);
-               // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
             }
+
         }
 
         if (attackTimeCounter > 0)
@@ -178,5 +191,23 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
         }
+
     }
+
+
+    public void IncreaseGold(int IncreaseGold)
+    {
+        wallet.GainGold(IncreaseGold);
+    }
+
+    public void IncreaseXP(int increaseXP)
+    {
+        level.gainXP(increaseXP);
+    }
+
+    public void SetFullHealth()
+    {
+        PlayerHealth.SetMaxHealth();
+    }
+
 }
