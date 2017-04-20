@@ -46,7 +46,7 @@ public class Boss : Enemy, IStrategy
         }
     }
 
-    public override void TakeDamage(int value)
+    public override bool TakeDamage(int value)
     {
         if (!BossMayAggro)
         {
@@ -54,8 +54,9 @@ public class Boss : Enemy, IStrategy
         }
         else
         {
-            base.TakeDamage(value);
+            return base.TakeDamage(value);
         }
+        return true;
     }
 }
 
