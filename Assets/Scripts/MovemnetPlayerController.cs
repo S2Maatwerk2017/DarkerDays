@@ -21,10 +21,14 @@ public class MovemnetPlayerController : MonoBehaviour
     private float attackTimeCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
+    public Inventory Inventory;
 
     private PlayerHealthManager PlayerHealth;
 
     private Wallet wallet;
+    private PlayerLevel level;
+    private Inventory inventory;
+    GetItemFromChest chest = new GetItemFromChest();
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
@@ -32,16 +36,19 @@ public class MovemnetPlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Inventory = new Inventory();
+
         seconds = 0;
         ani = GetComponent<Animator>();
         RB = GetComponent<Rigidbody>();
         PlayerHealth = GetComponent<PlayerHealthManager>();
         wallet = GetComponent<Wallet>();
+        level = GetComponent<PlayerLevel>();
+        inventory = GetComponent<Inventory>();
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
         }
-
     }
 
     // Update is called once per frame
@@ -117,6 +124,7 @@ public class MovemnetPlayerController : MonoBehaviour
                 ani.SetBool("PlayerMeleeAttacking", true);
                 // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
             }
+
         }
 
         if (attackTimeCounter > 0)
@@ -178,13 +186,13 @@ public class MovemnetPlayerController : MonoBehaviour
         }
         return MoveSpeed;
     }
-    Inventory Inventory = new Inventory();
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
         }
+
     }
 
 
@@ -193,8 +201,14 @@ public class MovemnetPlayerController : MonoBehaviour
         wallet.GainGold(IncreaseGold);
     }
 
+    public void IncreaseXP(int increaseXP)
+    {
+        level.gainXP(increaseXP);
+    }
+
     public void SetFullHealth()
     {
         PlayerHealth.SetMaxHealth();
     }
+
 }

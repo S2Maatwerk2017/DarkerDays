@@ -7,7 +7,9 @@ public class DropItem : MonoBehaviour
 {
     public GameObject dropBag;
     public GameObject prefab;
+    public Player_Inventory Inventory;
     public PlayerAI player = new PlayerAI();
+    public Item dropItem;
 	// Use this for initialization
 	void Start ()
 	{
@@ -18,18 +20,13 @@ public class DropItem : MonoBehaviour
 	void Update () {
 	    if (Input.GetKeyUp(KeyCode.K))
 	    {
-	        DropBagWithItems();
+	        DropItemFunction(1);
 	    }
 	}
 
-    void AddItemToBag(Item item)
+    void DropItemFunction(int itemID)
     {
+        Inventory.ItemsList.Remove(Inventory.GetItemByID(itemID));
         
-    }
-
-    void DropBagWithItems()
-    {
-        Vector3 vector = new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z);
-        dropBag = (GameObject)Instantiate(prefab);
     }
 }

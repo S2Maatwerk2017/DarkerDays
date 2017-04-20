@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour {
     private Rigidbody MyRigidbody;
     private NavMeshAgent agent;
     private Wallet wallet = new Wallet();
+    private PlayerLevel level = new PlayerLevel();
 
     public void Start()
     {
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour {
         AggroRange = Player.GetComponent<SphereCollider>().radius;
         CurrentHealth = MaxHealth;
         wallet.Gold = 5;
+        level.XP = 25;
     }
 
     public void Update()
@@ -193,5 +195,10 @@ public class Enemy : MonoBehaviour {
     public int GetGold()
     {
         return wallet.Gold;
+    }
+
+    public int GetXP()
+    {
+        return level.XP;
     }
 }

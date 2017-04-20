@@ -4,15 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Projectile
-  - World
-<<<<<<< HEAD
-  - Item
-  - Bag
-=======
-  - InventoryPanel
->>>>>>> 0642a3a3099b23163f2a53c9dbafab994685139d
+  - Chest
   layers:
   - Default
   - TransparentFX
@@ -49,13 +41,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Ground
-    uniqueID: 1216313239
-    locked: 0
-  - name: Player
-    uniqueID: 3303778977
-    locked: 0
-  - name: WorldObjects
-    uniqueID: 2930177561
     locked: 0
