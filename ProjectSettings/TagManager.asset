@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - Item
   - HP_Item
+  - Projectile
+  - Banana
+  - Apple
+  - Cucumber
   layers:
   - Default
   - TransparentFX

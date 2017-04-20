@@ -21,6 +21,7 @@ public class MovemnetPlayerController : MonoBehaviour
     private float attackTimeCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
+    public Inventory Inventory;
 
     private PlayerHealthManager PlayerHealth;
 
@@ -32,6 +33,8 @@ public class MovemnetPlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Inventory = new Inventory();
+
         seconds = 0;
         ani = GetComponent<Animator>();
         RB = GetComponent<Rigidbody>();
@@ -41,7 +44,6 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
         }
-
     }
 
     // Update is called once per frame
@@ -178,7 +180,6 @@ public class MovemnetPlayerController : MonoBehaviour
         }
         return MoveSpeed;
     }
-    Inventory Inventory = new Inventory();
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
