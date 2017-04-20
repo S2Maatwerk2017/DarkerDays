@@ -35,7 +35,7 @@ public class DialogBox : MonoBehaviour
                 SetDialogBox(true);
                 Currentshopkeeper.playerCollide = false;
             }
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetKeyDown(KeyCode.N))
             {
                 Debug.Log("+1");
                 currentLine += 1;

@@ -26,8 +26,8 @@ namespace Assets.Scripts
         {
             List<string> lines = new List<string>();
             lines.Add("Hallo");
-            lines.Add("Welkom bij mijn shop.");
-            lines.Add("Kijk rustig rond.");
+            lines.Add("Welkom bij mijn shop");
+            lines.Add("Kijk rustig rond");
             Dialogs.Add(new Dialog(lines));
         }
 
