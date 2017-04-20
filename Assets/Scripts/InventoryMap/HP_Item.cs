@@ -46,7 +46,7 @@ namespace Assets.Scripts
 
         public void AddItemFromMapToList(int itemID, Collision collision)
         {
-            collision.transform.GetComponent<Inventory>().AddNewItem(collision.transform.GetComponent<Player_Inventory>().GetItemByID(itemID));
+            collision.transform.GetComponent<global::Inventory>().AddNewItem(collision.transform.GetComponent<Player_Inventory>().GetItemByID(itemID));
             this.gameObject.SetActive(false);
             //collision.transform.GetComponent<Inventory>().RefreshInventory();
         }
