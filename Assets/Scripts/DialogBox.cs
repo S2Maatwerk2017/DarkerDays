@@ -11,6 +11,8 @@ public class DialogBox : MonoBehaviour
     public ShopKeeper Currentshopkeeper;
     public MovemnetPlayerController playermovement;
     public Text textToShow;
+    public GameObject ShopDialog;
+    private ShopWindow shopwindow;
 
     public int currentDialog;
     public int currentLine;
@@ -22,7 +24,9 @@ public class DialogBox : MonoBehaviour
     {
         Debug.Log("dialogbox start");
         TextBox = GameObject.Find("DialogBox");
+        //shopwindow = new ShopWindow();
         SetDialogBox(false);
+        SetDialogShopBox(false);
         currentDialog = 0;
         endOfLine = 0;
     }
@@ -30,11 +34,15 @@ public class DialogBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Currentshopkeeper != null)
+        {
+            SetEndOfLine(Currentshopkeeper);
+        }
         if (Currentshopkeeper.playerCollide)
-            {
-                SetDialogBox(true);
-                Currentshopkeeper.playerCollide = false;
-            }
+        {
+            SetDialogBox(true);
+            
+
             if (Input.GetKeyDown(KeyCode.V))
             {
                 Debug.Log("+1");
@@ -42,11 +50,14 @@ public class DialogBox : MonoBehaviour
             }
             if (currentLine >= endOfLine)
             {
+                Currentshopkeeper.playerCollide = false;
                 Debug.Log(currentLine);
                 Debug.Log("Aantal lines " + Currentshopkeeper.Dialogs[currentDialog].Lines.Count);
                 Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
                 Debug.Log(endOfLine);
                 SetDialogBox(false);
+                SetDialogShopBox(true);
+                //shopwindow.SetDialogBox(true);
                 currentLine = 0;
 
             }
@@ -54,11 +65,7 @@ public class DialogBox : MonoBehaviour
             {
                 textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
             }
-            if (Currentshopkeeper != null)
-            {
-                SetEndOfLine(Currentshopkeeper);
-            }
-        
+        }
     }
 
     public void SetEndOfLine(ShopKeeper shopkeeper)
@@ -73,6 +80,20 @@ public class DialogBox : MonoBehaviour
     public void SetDialogBox(bool value)
     {
         TextBox.SetActive(value);
+        if (!value)
+        {
+            playermovement.canMove = true;
+        }
+        else
+        {
+            playermovement.canMove = false;
+        }
+    }
+
+    public void SetDialogShopBox(bool value)
+    {
+        Debug.Log(ShopDialog.ToString() + "hey hey");
+        ShopDialog.SetActive(value);
         if (!value)
         {
             playermovement.canMove = true;
