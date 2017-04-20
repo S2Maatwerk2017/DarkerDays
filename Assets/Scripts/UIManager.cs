@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,8 +9,10 @@ public class UIManager : MonoBehaviour
     public Slider healthBar;
     public Text healthText;
     public Text LvlText;
+    public Text GoldText;
     private PlayerHealthManager playerHealth;
     private PlayerLevel playerLevel;
+    public MovemnetPlayerController playerCtrl;
     private static bool UImanagerExists;
 
     // Use this for initialization
@@ -24,6 +27,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        playerCtrl = FindObjectOfType<MovemnetPlayerController>();
         playerHealth = FindObjectOfType<PlayerHealthManager>();
         playerLevel = FindObjectOfType<PlayerLevel>();
     }
@@ -34,6 +38,7 @@ public class UIManager : MonoBehaviour
         healthBar.maxValue = playerHealth.playerMaxHealth;
         healthBar.value = playerHealth.playerCurrentHealth;
         healthText.text = "HP: " + playerHealth.playerCurrentHealth + "/" + playerHealth.playerMaxHealth;
-        //LvlText.text = "LVL: " + playerLevel.Lvl;
+        LvlText.text = "LVL: " + playerLevel.Lvl;
+        GoldText.text = Convert.ToString(playerCtrl.ToStringGold());
     }
 }

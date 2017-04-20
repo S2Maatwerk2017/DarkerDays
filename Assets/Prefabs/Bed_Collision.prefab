@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4989210208508442}
   - component: {fileID: 65144684407520934}
   - component: {fileID: 208008768227311270}
+  - component: {fileID: 114061168029757576}
   m_Layer: 0
   m_Name: Bed_Collision
   m_TagString: Bed
@@ -35,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1825453734510074}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -7.52, y: 0, z: -20.39}
+  m_LocalPosition: {x: -5.48, y: -0, z: -17.34}
   m_LocalScale: {x: 0.5, y: 0.8, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,6 +54,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.863534, y: 0.99470234, z: 1}
   m_Center: {x: 15.990627, y: -5.392952, z: 0}
+--- !u!114 &114061168029757576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1825453734510074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9c9ad62829725c48b61190e47091885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!208 &208008768227311270
 NavMeshObstacle:
   m_ObjectHideFlags: 1
