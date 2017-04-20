@@ -39,11 +39,11 @@ public class DialogBox : MonoBehaviour
             SetEndOfLine(Currentshopkeeper);
         }
         if (Currentshopkeeper.playerCollide)
-        {
-            SetDialogBox(true);
-            
-
-            if (Input.GetKeyDown(KeyCode.V))
+            {
+                SetDialogBox(true);
+                Currentshopkeeper.playerCollide = false;
+            }
+            if (Input.GetKeyDown(KeyCode.N))
             {
                 Debug.Log("+1");
                 currentLine += 1;

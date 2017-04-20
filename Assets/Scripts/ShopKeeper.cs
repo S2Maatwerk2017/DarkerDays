@@ -26,11 +26,8 @@ namespace Assets.Scripts
         {
             List<string> lines = new List<string>();
             lines.Add("Hallo");
-            lines.Add("Doei");
-            lines.Add("Wtf doe je hier nog????");
-            lines.Add("Ga WEG!!!");
-            lines.Add("Ik vind het niet leuk meer.");
-            
+            lines.Add("Welkom bij mijn shop");
+            lines.Add("Kijk rustig rond");
             Dialogs.Add(new Dialog(lines));
         }
 
