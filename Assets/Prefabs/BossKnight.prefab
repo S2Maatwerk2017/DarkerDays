@@ -127,8 +127,8 @@ MonoBehaviour:
   AggroRange: 9.7
   MoveSpeed: 2.6
   Damage: 5
-  MaxHealth: 5
-  AttackRange: 0
+  MaxHealth: 20
+  AttackRange: 1
   IsBossEnemy: 1
   DamageNumber: {fileID: 1639270009125572, guid: 36024c27d0f89b042b825bc1751e0b7b,
     type: 2}

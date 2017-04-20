@@ -54,9 +54,13 @@ public class Boss : Enemy, IStrategy
         }
         else
         {
-            return base.TakeDamage(value);
+            if (base.TakeDamage(value))
+            {
+                BossManager.GetComponent<BossManager>().OpenGate();
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 }
 
