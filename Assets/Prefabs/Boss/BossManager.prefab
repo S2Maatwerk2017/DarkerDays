@@ -65,7 +65,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BossMayAggro: 0
-  EnemiesToKill: 0
+  EnemiesToKill: 20
   Boss: {fileID: 1134854346306616, guid: c84db4abf8e073546a2127c1c42fbf90, type: 2}
   BossSpawnLocation: {fileID: 0}
   Gate: {fileID: 0}
+  Spawners: []
