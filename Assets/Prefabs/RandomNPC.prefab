@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1967760920767266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.61, y: 1.27, z: -21.9}
+  m_LocalPosition: {x: 10.61, y: 1, z: -21.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4440166446556424}
@@ -126,6 +126,7 @@ MonoBehaviour:
   MyRigidbody: {fileID: 54718555240550854}
   agent: {fileID: 195785279948560046}
   MoveSpeed: 2.6
+  playerCollide: 0
 --- !u!195 &195785279948560046
 NavMeshAgent:
   m_ObjectHideFlags: 1

@@ -200,6 +200,7 @@ public class Enemy : MonoBehaviour {
             {
                 BossManager.GetComponent<BossManager>().EnemyWasKilled();
             }
+
             Destroy(gameObject);
             return true;
         }
