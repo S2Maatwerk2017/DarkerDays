@@ -39,34 +39,34 @@ public class DialogBox : MonoBehaviour
             SetEndOfLine(Currentshopkeeper);
         }
         if (Currentshopkeeper.playerCollide)
-            {
-                SetDialogBox(true);
-                Currentshopkeeper.playerCollide = false;
-            }
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                Debug.Log("+1");
-                currentLine += 1;
-            }
-            if (currentLine >= endOfLine)
-            {
-                Currentshopkeeper.playerCollide = false;
-                Debug.Log(currentLine);
-                Debug.Log("Aantal lines " + Currentshopkeeper.Dialogs[currentDialog].Lines.Count);
-                Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
-                Debug.Log(endOfLine);
-                SetDialogBox(false);
-                SetDialogShopBox(true);
-                //shopwindow.SetDialogBox(true);
-                currentLine = 0;
+        {
+            SetDialogBox(true);
+            Currentshopkeeper.playerCollide = false;
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Debug.Log("+1");
+            currentLine += 1;
+        }
+        if (currentLine >= endOfLine)
+        {
+            Currentshopkeeper.playerCollide = false;
+            Debug.Log(currentLine);
+            Debug.Log("Aantal lines " + Currentshopkeeper.Dialogs[currentDialog].Lines.Count);
+            Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
+            Debug.Log(endOfLine);
+            SetDialogBox(false);
+            SetDialogShopBox(true);
+            //shopwindow.SetDialogBox(true);
+            currentLine = 0;
 
-            }
-            else
-            {
-                textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
-            }
+        }
+        else
+        {
+            textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
         }
     }
+
 
     public void SetEndOfLine(ShopKeeper shopkeeper)
     {
