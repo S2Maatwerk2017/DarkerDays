@@ -9,6 +9,7 @@ public class DialogBox : MonoBehaviour
 {
     public GameObject TextBox;
     public ShopKeeper Currentshopkeeper;
+    public RandomNPC CurrentRandomNPC;
     public MovemnetPlayerController playermovement;
     public Text textToShow;
 
@@ -30,12 +31,9 @@ public class DialogBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Currentshopkeeper != null)
-        {
-            SetEndOfLine(Currentshopkeeper);
-        }
         if (Currentshopkeeper.playerCollide)
         {
+            SetEndOfLine((NPC)Currentshopkeeper);
             SetDialogBox(true);
             if (Input.GetKeyDown(KeyCode.N))
             {
@@ -57,13 +55,40 @@ public class DialogBox : MonoBehaviour
                 textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
             }
         }
+        if (CurrentRandomNPC.playerCollide)
+        {
+            SetEndOfLine((NPC)CurrentRandomNPC);
+            SetDialogBox(true);
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                currentLine += 1;
+            }
+            if (currentLine >= endOfLine)
+            {
+                CurrentRandomNPC.playerCollide = false;
+                SetDialogBox(false);
+                currentLine = 0;
+            }
+            else
+            {
+                textToShow.text = CurrentRandomNPC.Dialogs[0].Lines[currentLine];
+            }
+        }
     }
 
-    public void SetEndOfLine(ShopKeeper shopkeeper)
+    public void SetEndOfLine(NPC npc)
     {
+        if (npc.GetType() == typeof(RandomNPC))
+        {
+            npc = (RandomNPC)npc;
+        }
+        else if (npc.GetType() == typeof(ShopKeeper))
+        {
+            npc = (ShopKeeper)npc;
+        }
         if (endOfLine == 0)
         {
-            endOfLine = shopkeeper.Dialogs[currentDialog].Lines.Count;
+            endOfLine = npc.Dialogs[currentDialog].Lines.Count;
         }
     }
 
