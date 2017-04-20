@@ -6,13 +6,21 @@ TagManager:
   tags:
   - Bed
   - InventoryPanel
+<<<<<<< HEAD
+  - Chest
+  - Bed
+=======
   - Enemy
   - Item
   - HP_Item
+<<<<<<< HEAD
   - Projectile
   - Banana
   - Apple
   - Cucumber
+=======
+>>>>>>> 078d78659ad8fbe3a65975e8695c0b098723b5a6
+>>>>>>> 1bafc320cc4a9ebf9699db3d60588217c5231e2f
   layers:
   - Default
   - TransparentFX

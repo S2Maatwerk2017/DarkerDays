@@ -26,6 +26,9 @@ public class MovemnetPlayerController : MonoBehaviour
     private PlayerHealthManager PlayerHealth;
 
     private Wallet wallet;
+    private PlayerLevel level;
+    private Inventory inventory;
+    GetItemFromChest chest = new GetItemFromChest();
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
@@ -40,6 +43,8 @@ public class MovemnetPlayerController : MonoBehaviour
         RB = GetComponent<Rigidbody>();
         PlayerHealth = GetComponent<PlayerHealthManager>();
         wallet = GetComponent<Wallet>();
+        level = GetComponent<PlayerLevel>();
+        inventory = GetComponent<Inventory>();
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
@@ -119,6 +124,7 @@ public class MovemnetPlayerController : MonoBehaviour
                 ani.SetBool("PlayerMeleeAttacking", true);
                 // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
             }
+
         }
 
         if (attackTimeCounter > 0)
@@ -186,6 +192,7 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
         }
+
     }
 
 
@@ -194,8 +201,14 @@ public class MovemnetPlayerController : MonoBehaviour
         wallet.GainGold(IncreaseGold);
     }
 
+    public void IncreaseXP(int increaseXP)
+    {
+        level.gainXP(increaseXP);
+    }
+
     public void SetFullHealth()
     {
         PlayerHealth.SetMaxHealth();
     }
+
 }
