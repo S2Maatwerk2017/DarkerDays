@@ -210,4 +210,9 @@ public class MovemnetPlayerController : MonoBehaviour
         PlayerHealth.SetMaxHealth();
     }
 
+    public string ToStringGold()
+    {
+        return "Gold: " + Convert.ToString(wallet.Gold);
+    }
+
 }
