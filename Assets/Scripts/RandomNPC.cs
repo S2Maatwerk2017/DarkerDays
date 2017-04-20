@@ -21,32 +21,53 @@ public class RandomNPC : NPC
     }
     private void Update()
     {
-        if (timer >= 120)
+        if (!playerCollide)
         {
-            Move();
+            if (timer >= 120)
+            {
+                Move();
+                timer = 0;
+            }
+            timer++;
+        }
+        else
+        {
+            DontMove();
             timer = 0;
         }
-        timer++;
+
     }
 
     private void Move()
     {
+        Vector3 NextLocation;
+        Debug.Log("stop niet met lopen");
         int x = (int)Random.Range(-3, 3);
         int z = (int)Random.Range(-3, 3);
 
-        Vector3 NextLocation = this.transform.position;
+        NextLocation = this.transform.position;
         NextLocation.x += (x * MoveSpeed);
         NextLocation.z += (z * MoveSpeed);
+        agent.SetDestination(NextLocation);
+    }
 
+    private void DontMove()
+    {
+        Vector3 NextLocation;
+        Debug.Log("stop met lopen");
+        NextLocation = this.transform.position;
+        this.MyRigidbody.velocity = new Vector3();
         agent.SetDestination(NextLocation);
     }
 
     public void OnCollisionEnter(Collision other)
     {
+        Debug.Log("in methode");
         switch (other.collider.tag)
         {
             case "Player":
                 {
+                    Debug.Log("in switch");
                     playerCollide = true;
                     //OpenShop();
                     break;
