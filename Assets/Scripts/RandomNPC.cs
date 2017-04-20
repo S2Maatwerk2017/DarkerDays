@@ -66,12 +66,12 @@ public class RandomNPC : NPC
         switch (other.collider.tag)
         {
             case "Player":
-                {
-                    Debug.Log("in switch");
-                    playerCollide = true;
-                    //OpenShop();
-                    break;
-                }
+
+                Debug.Log("in switch");
+                playerCollide = true;
+                //OpenShop();
+                break;
+
         }
     }
 

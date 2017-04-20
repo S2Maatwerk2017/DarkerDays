@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class DialogBox : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class DialogBox : MonoBehaviour
     public RandomNPC CurrentRandomNPC;
     public MovemnetPlayerController playermovement;
     public Text textToShow;
+    public Text TextItemName;
+    public Text TextItemAmount;
+    public Text TextItemCost;
     public GameObject ShopDialog;
     private ShopWindow shopwindow;
 
@@ -45,21 +49,33 @@ public class DialogBox : MonoBehaviour
             SetDialogBox(true);
             if (Input.GetKeyDown(KeyCode.N))
             {
+                if (currentLine == -1)
+                {
+                    Debug.Log("Exit Shop");
+                    Currentshopkeeper.playerCollide = false;
+                    SetDialogShopBox(false);
+                    SetDialogBox(false);
+                    currentLine = 0;
+                    return;
+                }
                 Debug.Log("+1");
                 currentLine += 1;
+
             }
             if (currentLine >= endOfLine)
             {
-                Currentshopkeeper.playerCollide = false;
                 Debug.Log(currentLine);
                 Debug.Log("Aantal lines " + Currentshopkeeper.Dialogs[currentDialog].Lines.Count);
                 Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
                 Debug.Log(endOfLine);
                 SetDialogBox(false);
-                currentLine = 0;
+                SetDialogShopBox(true);
+                currentLine = -1;
             }
-            else
+            else if (currentLine > -1)
             {
+                Debug.Log("Show new line");
+                Debug.Log(currentLine);
                 textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
             }
         }
@@ -96,6 +112,7 @@ public class DialogBox : MonoBehaviour
         }
         if (endOfLine == 0)
         {
+            Debug.Log("Set End Of Line");
             endOfLine = npc.Dialogs[currentDialog].Lines.Count;
         }
     }
@@ -124,6 +141,10 @@ public class DialogBox : MonoBehaviour
         }
         else
         {
+            Shop shop = new Shop();
+            TextItemCost.text = shop.Items.First().Price + "g";
+            TextItemAmount.text = shop.Items.First().Amount + "x";
+            TextItemName.text = shop.Items.First().Name;
             playermovement.canMove = false;
         }
     }
