@@ -20,6 +20,13 @@ public class MovemnetPlayerController : MonoBehaviour
     private float attackTimeCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
+
+    private PlayerHealthManager PlayerHealth;
+
+    private Wallet wallet;
+    private PlayerLevel level;
+    private Inventory inventory;
+    GetItemFromChest chest = new GetItemFromChest();
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
 
@@ -30,6 +37,10 @@ public class MovemnetPlayerController : MonoBehaviour
         seconds = 0;
         ani = GetComponent<Animator>();
         RB = GetComponent<Rigidbody>();
+        PlayerHealth = GetComponent<PlayerHealthManager>();
+        wallet = GetComponent<Wallet>();
+        level = GetComponent<PlayerLevel>();
+        inventory = GetComponent<Inventory>();
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
@@ -109,7 +120,7 @@ public class MovemnetPlayerController : MonoBehaviour
                     playerMeleeAttacking = true;
                     RB.velocity = Vector3.zero;
                     ani.SetBool("PlayerMeleeAttacking", true);
-                    SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
                 }
             }
             else
@@ -185,5 +196,28 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
         }
+
     }
+
+
+    public void IncreaseGold(int IncreaseGold)
+    {
+        wallet.GainGold(IncreaseGold);
+    }
+
+    public void IncreaseXP(int increaseXP)
+    {
+        level.gainXP(increaseXP);
+    }
+
+    public void SetFullHealth()
+    {
+        PlayerHealth.SetMaxHealth();
+    }
+
+    public string ToStringGold()
+    {
+        return "Gold: " + Convert.ToString(wallet.Gold);
+    }
+
 }
