@@ -9,6 +9,8 @@ TagManager:
   - World
   - InventoryPanel
   - Chest
+  - ShopKeeper
+  - DialogBox
   - Bed
   layers:
   - Default
