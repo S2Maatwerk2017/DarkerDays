@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
 using UnityEngine;
@@ -13,12 +14,45 @@ public class RandomNPC : NPC
 
     public float MoveSpeed;
     public bool playerCollide = false;
+    public List<Dialog> Options;
+
+    //is -1 als er nog niets is geselecteerd, 0 voor eerste 1 voor tweede.
+    public int SelectedOptionIndex = -1;
 
     private void Start()
     {
         Dialogs = new List<Dialog>();
         FillDialogList();
+        FillOptionList();
     }
+
+    private void FillOptionList()
+    {
+        Options = new List<Dialog>();
+        List<DialogLine> options = new List<DialogLine>();
+        options.Add(new DialogLine("Ja graag, die wasmachine is totaal niet te duur", false, true));
+        options.Add(new DialogLine("Nee, wat moet ik met een wasmachine", false, false));
+        Options.Add(new Dialog(options));
+    }
+
+    //Set Selected Option
+    public void SelectOption(int index)
+    {
+        SelectedOptionIndex = index;
+    }
+
+    public bool AlreadySelectedCorrectOption(int currentLine)
+    {
+        if (SelectedOptionIndex != -1)
+        {
+            if (Options[0].Lines[SelectedOptionIndex].IsCorrectOption && Dialogs[0].Lines[currentLine].HasOptions)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void Update()
     {
         if (!playerCollide)
@@ -42,8 +76,8 @@ public class RandomNPC : NPC
     {
         Vector3 NextLocation;
         Debug.Log("stop niet met lopen");
-        int x = (int)Random.Range(-3, 3);
-        int z = (int)Random.Range(-3, 3);
+        int x = (int)UnityEngine.Random.Range(-3, 3);
+        int z = (int)UnityEngine.Random.Range(-3, 3);
 
         NextLocation = this.transform.position;
         NextLocation.x += (x * MoveSpeed);
@@ -78,9 +112,10 @@ public class RandomNPC : NPC
     //TODO Zet hier de tekst van de npc in.
     private void FillDialogList()
     {
-        List<string> lines = new List<string>();
-        lines.Add("random text");
-        lines.Add("Welkom in mijn wereld");
+        List<DialogLine> lines = new List<DialogLine>();
+        lines.Add(new DialogLine("random text", false, false));
+        lines.Add(new DialogLine("Welkom in mijn wereld", false, false));
+        lines.Add(new DialogLine("Wil je voor 10000 gold een wasmachine kopen?", true, false));
         Dialogs.Add(new Dialog(lines));
     }
 }
