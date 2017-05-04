@@ -25,15 +25,17 @@ public class MeleeAttack : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            Instantiate(DamageBurst, col.gameObject.GetComponent<Transform>().position,
-                col.gameObject.GetComponent<Transform>().rotation);
-            var clone = (GameObject)Instantiate(DamageNumber, col.gameObject.GetComponent<Transform>().position + new Vector3(0f, 2f, 0.5f),
-                Quaternion.Euler(90f, 0f, 0f));
-            clone.GetComponent<DamageNumbers>().damageNumber = DamageToGive;
+            //col.gameObject.GetComponent<Enemy>().TakeDamage(DamageToGive);
+            //Instantiate(DamageBurst, col.gameObject.GetComponent<Transform>().position,
+            //    col.gameObject.GetComponent<Transform>().rotation);
+            //var clone = (GameObject)Instantiate(DamageNumber, col.gameObject.GetComponent<Transform>().position + new Vector3(0f, 2f, 0.5f),
+            //    Quaternion.Euler(90f, 0f, 0f));
+            //clone.GetComponent<DamageNumbers>().damageNumber = DamageToGive;
             Enemy enemy = col.gameObject.GetComponent<Enemy>();
             if (enemy.TakeDamage(DamageToGive) == true)
             {
                 Player.GetComponent<MovemnetPlayerController>().IncreaseGold(enemy.GetGold());
+                Player.GetComponent<MovemnetPlayerController>().IncreaseXP(enemy.GetXP());
             }
         }
     }

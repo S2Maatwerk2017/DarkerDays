@@ -9,7 +9,7 @@ public class Player_Inventory : MonoBehaviour
 {
     public List<Item> ItemsList = new List<Item>();
     public Item item { get; private set; }
-    private string FilePath = @"D:\Unity Projects\ProftaakS21M\DarkerDays\Assets\TekstFood.txt";
+    private string FilePath = @"C:\Users\Sjors\Desktop\School\Semester 2 Maatwerk\DarkerDays\Assets\TekstFood.txt";
 
     // Use this for initialization
 
@@ -26,6 +26,7 @@ public class Player_Inventory : MonoBehaviour
 
     public List<Item> Items()
     {
+        ItemsList.Clear();
         if (File.Exists(FilePath))
         {
             using (StreamReader sr = new StreamReader(FilePath))

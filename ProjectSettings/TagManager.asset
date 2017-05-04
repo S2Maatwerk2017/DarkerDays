@@ -8,6 +8,10 @@ TagManager:
   - Projectile
   - World
   - InventoryPanel
+  - Chest
+  - ShopKeeper
+  - DialogBox
+  - Bed
   layers:
   - Default
   - TransparentFX
