@@ -28,7 +28,7 @@ namespace Assets.Scripts
             {
                 ShopDialog = GameObject.Find("ShopWindow");
             }
-            Debug.Log("dialogbox start");
+            Debug.Log("ShopWindow start");
             //SetDialogBox(false);
         }
 
@@ -39,7 +39,9 @@ namespace Assets.Scripts
 
         public ShopWindow()
         {
+            Debug.Log("Maak shop aan vanuit ShopWindow");
             Shop = new Shop();
+            Debug.Log("Shop toegevoegd aan ShopWindow");
         }
         
         private void CreateGUI()

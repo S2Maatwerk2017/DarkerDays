@@ -27,8 +27,6 @@ public class Inventory : MonoBehaviour {
     // Use this for initialization
     void Start ()
 	{
-
-
         playerInventory = GetComponent<Player_Inventory>();
 
         slotAmount = playerInventory.Items().Count;

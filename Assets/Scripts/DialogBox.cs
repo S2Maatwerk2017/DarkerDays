@@ -141,6 +141,7 @@ public class DialogBox : MonoBehaviour
         }
         else
         {
+            Debug.Log("Maak Shop aan vanaf Dialog box");
             Shop shop = new Shop();
             TextItemCost.text = shop.Items.First().Price + "g";
             TextItemAmount.text = shop.Items.First().Amount + "x";
