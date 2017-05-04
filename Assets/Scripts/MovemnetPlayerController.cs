@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Skills;
 using UnityEngine;
 
 public class MovemnetPlayerController : MonoBehaviour
@@ -28,6 +29,7 @@ public class MovemnetPlayerController : MonoBehaviour
     private Wallet wallet;
     private PlayerLevel level;
     private Inventory inventory;
+    private AllSkills alleSkils;
     GetItemFromChest chest = new GetItemFromChest();
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
@@ -43,6 +45,7 @@ public class MovemnetPlayerController : MonoBehaviour
         wallet = GetComponent<Wallet>();
         level = GetComponent<PlayerLevel>();
         inventory = GetComponent<Inventory>();
+        alleSkils = new AllSkills();
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
@@ -123,7 +126,17 @@ public class MovemnetPlayerController : MonoBehaviour
                     playerMeleeAttacking = true;
                     RB.velocity = Vector3.zero;
                     ani.SetBool("PlayerMeleeAttacking", true);
-                // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                    // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                }
+
+                if (Input.GetKeyDown(KeyCode.J))
+                {
+                    ChooseSkill(alleSkils.SearchSkill(2));
+                }
+
+                if (Input.GetKeyDown(KeyCode.K))
+                {
+                    ChooseSkill(alleSkils.SearchSkill(1));
                 }
             }
             else
@@ -142,6 +155,7 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             playerMeleeAttacking = false;
             ani.SetBool("PlayerMeleeAttacking", false);
+            ani.SetInteger("SkillNumber", 0);
         }
 
         //animatie
@@ -191,6 +205,14 @@ public class MovemnetPlayerController : MonoBehaviour
             seconds = 0;
         }
         return MoveSpeed;
+    }
+
+    public void ChooseSkill(Skill skill)
+    {
+        attackTimeCounter = skill.Delay;
+        playerMeleeAttacking = true;
+        RB.velocity = Vector3.zero;
+        ani.SetInteger("SkillNumber", skill.ID);
     }
 
     public void OnTriggerEnter(Collider other)
