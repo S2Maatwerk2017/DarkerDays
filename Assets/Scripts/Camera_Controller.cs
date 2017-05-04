@@ -13,7 +13,7 @@ public class Camera_Controller : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-       
+        followTarget = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame

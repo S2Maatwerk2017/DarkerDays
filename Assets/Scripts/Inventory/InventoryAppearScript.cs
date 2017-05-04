@@ -9,25 +9,22 @@ namespace Assets.Scripts.Inventory
     public class InventoryAppearScript : MonoBehaviour
     {
 
-        public GameObject InventoryDispaly;
+        public GameObject InventoryDisplay;
         //Assign an inspector
 
         private bool isShowing;
 
         void Start()
         {
-
+            InventoryDisplay = GameObject.FindGameObjectWithTag("InventoryPanel");
         }
 
         void Update()
-        {
-            Debug.Log(isShowing);
-           
+        {           
             if (Input.GetKeyDown(KeyCode.I))
             {
                 isShowing = !isShowing;
-                InventoryDispaly.SetActive(isShowing);
-                
+                InventoryDisplay.SetActive(isShowing);
             }
         }
 

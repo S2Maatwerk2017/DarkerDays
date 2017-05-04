@@ -21,12 +21,10 @@ public class Inventory : MonoBehaviour {
     private GameObject SlotPanel;
     public GameObject InventorySlot;
     public GameObject InventoryItem;
-    public GameObject RandomItem;
 
     // Use this for initialization
     void Start ()
 	{
-
         //loadList = GetComponent<Load_ItemList>();
         //slotAmount = Load_ItemList.Items().Count;
         InventoryPanel = GameObject.Find("Inventory Panel");
