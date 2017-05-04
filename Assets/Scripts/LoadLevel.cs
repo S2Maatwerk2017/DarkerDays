@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadLevel : MonoBehaviour
 {
 	public void loadLevel(string scenename)
 	{
-		Application.LoadLevel(scenename);
+		SceneManager.LoadScene(scenename);
 	}
 
 	public void reloadCurrentLevel()
 	{
-		Application.LoadLevel(Application.loadedLevel);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }

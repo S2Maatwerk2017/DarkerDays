@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +13,6 @@ public class GameControl : MonoBehaviour {
 	public Canvas PauseMenu;
 
 	public static GameControl Control;
-	public World World;
 
 	void Awake()
 	{
@@ -50,25 +49,43 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 
-	public void NewGame(string levelname)
+	public void LoadLevel(string levelname)
 	{
 		Application.LoadLevel(levelname);
 	}
 
 	public void SaveGame(string savename)
 	{
-		BinaryFormatter binaryFormatter = new BinaryFormatter();
-		FileStream file = File.Create(Application.persistentDataPath + "//" + savename + "." + saveDataExtension);
-		binaryFormatter.Serialize(file, World);
-		file.Close();
+		XmlSerializer serializer = new XmlSerializer(typeof(PlayerBundel));
+		using (FileStream file = File.Create(Application.persistentDataPath + "//" + savename + "." + saveDataExtension))
+		{
+			serializer.Serialize(file, getPlayerBundel());
+		}
+	}
+
+	private PlayerBundel getPlayerBundel()
+	{
+		var player = GameObject.FindGameObjectWithTag("Player");
+		return new PlayerBundel(player.GetComponent<MovemnetPlayerController>(), player.GetComponent<PlayerLevel>(), player.GetComponent<Wallet>());
 	}
 
 	public void LoadGame(string savename)
 	{
-		BinaryFormatter binaryFormatter = new BinaryFormatter();
-		FileStream file = File.Open(Application.persistentDataPath + "//" + savename + saveDataExtension, FileMode.Open);
-		World = (World)binaryFormatter.Deserialize(file);
-		file.Close();
+		XmlSerializer serializer = new XmlSerializer(typeof(PlayerBundel));
+		using (FileStream file = File.Open(Application.persistentDataPath + "//" + savename + "." + saveDataExtension, FileMode.Open))
+		{
+			ApplyLoadedPlayer(serializer.Deserialize(file) as PlayerBundel);
+		}
+	}
+
+	private void ApplyLoadedPlayer(PlayerBundel playerBundel)
+	{
+		var player = GameObject.FindGameObjectWithTag("Player");
+		/*
+		player.GetComponent<MovemnetPlayerController>().LoadMovementPlayerController(playerBundel.MovementPlayerController);
+		player.GetComponent<PlayerLevel>().LoadPlayerLevel(playerBundel.PlayerLevel);
+		player.GetComponent<Wallet>().LoadWallet(playerBundel.Wallet);
+		*/
 	}
 
 	public List<string> GetSaveNames()
@@ -81,25 +98,4 @@ public class GameControl : MonoBehaviour {
 		}
 		return savenames;
 	}
-}
-
-//het onderstaande is tijdelijk
-
-[Serializable]
-public class World
-{
-	public Player Player;
-	public List<Enemy> Enemies;
-}
-
-[Serializable]
-public abstract class Character
-{
-	public int Health;	
-}
-
-[Serializable]
-public class Player : Character
-{
-	public int ActionPoints;
 }

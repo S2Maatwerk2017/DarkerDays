@@ -17,6 +17,7 @@ public class MenuControl : MonoBehaviour
 	public Canvas LoadMenu;
 	public Dropdown LoadGamesList;
 	public Button LoadGameButton;
+	public Canvas YouDiedScreen;
 
 	// Use this for initialization
 	void Start()
@@ -26,12 +27,13 @@ public class MenuControl : MonoBehaviour
 		PauseMenu = PauseMenu.GetComponent<Canvas>();
 		SaveMenu = SaveMenu.GetComponent<Canvas>();
 		LoadMenu = LoadMenu.GetComponent<Canvas>();
+		YouDiedScreen = YouDiedScreen.GetComponent<Canvas>();
 	}
 
 	public void NewGame(string levelname)
 	{
 		ChooseCharacterMenu.enabled = false;
-		control.NewGame(levelname);
+		control.LoadLevel(levelname);
 	}
 
 	public void ShowLoadMenu(Canvas CurrentMenu)
@@ -98,6 +100,7 @@ public class MenuControl : MonoBehaviour
 		MainMenu.enabled = true;
 		PauseMenu.enabled = false;
 		ChooseCharacterMenu.enabled = false;
+		YouDiedScreen.enabled = false;
 	}
 
 	public void ExitGame()
