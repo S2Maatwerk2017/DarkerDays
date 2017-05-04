@@ -3,18 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Chest
-<<<<<<< HEAD
-  - Apple
-  - Banana
-=======
-  - ShopKeeper
-  - DialogBox
->>>>>>> a2fdd230fbe2bc3c6a17a2c0d5a96557bd39c839
-  - Bed
-  - InventoryPanel
+  tags: []
   layers:
   - Default
   - TransparentFX
