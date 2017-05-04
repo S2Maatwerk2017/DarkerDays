@@ -27,7 +27,6 @@ namespace Assets.Scripts.Inventory
             {
                 isShowing = !isShowing;
                 InventoryDispaly.SetActive(isShowing);
-
                 if (isShowing)
                 {
                     

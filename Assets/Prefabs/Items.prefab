@@ -114,6 +114,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4342020578330358}
+  - component: {fileID: 114320161811727628}
   m_Layer: 0
   m_Name: Items
   m_TagString: Untagged
@@ -306,6 +307,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c8cf6cc79cc264cab0d877bcaa382f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114320161811727628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1594984211087930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8675ca9c957bd64da36c9db993b6845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsList: []
 --- !u!114 &114376554288958864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -844,7 +857,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1633627168223398}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.38}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children: []
   m_Father: {fileID: 4342020578330358}
@@ -852,6 +865,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.04799795, y: 0.49000168}
+  m_AnchoredPosition: {x: 8.25, y: 0.49000168}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour {
     public List<GameObject> InventorySlots = new List<GameObject>();
     public List<GameObject> ItemsOnMap = new List<GameObject>();
 
-    private Load_ItemList loadList;
+    //private Load_ItemList loadList;
 
     public List<Item> itemsList = new List<Item>();
 
@@ -28,13 +28,13 @@ public class Inventory : MonoBehaviour {
     void Start ()
 	{
 
-        loadList = GetComponent<Load_ItemList>();
+        //loadList = GetComponent<Load_ItemList>();
 
-        slotAmount = loadList.Items().Count;
+        slotAmount = Load_ItemList.Items().Count;
         InventoryPanel = GameObject.Find("Inventory Panel");
         SlotPanel = InventoryPanel.transform.FindChild("Slot Panel").gameObject;
 
-	    itemsList = loadList.Items();
+	    itemsList = Load_ItemList.Items();
 
         for (int i = 0; i < slotAmount; i++)
         {
@@ -68,7 +68,7 @@ public class Inventory : MonoBehaviour {
 
     public void AddItem(int id)
     {
-        Item itemToAdd = playerInventory.GetItemByID(id);
+        Item itemToAdd = Load_ItemList.GetItemByID(id);
         for (int i = 0; i < InventoryItems.Count; i++)
         {
             if (InventoryItems[i].ItemID == -1)
@@ -91,8 +91,14 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    public void AddNewItem(Item item)
+    public void AddNewItem(int Id)
     {
-        InventoryItems.Add(item);
+        foreach (Item item in itemsList)
+        {
+            if (item.ItemID == Id)
+            {
+                InventoryItems.Add(item);
+            }
+        }
     }
 }
