@@ -76,11 +76,8 @@ public class DialogBox : MonoBehaviour
             }
             else
             {
-                //if (!CurrentRandomNPC.AlreadySelectedCorrectOption(currentLine))
-                //{
-                    textToShow.text = CurrentRandomNPC.Dialogs[0].Lines[currentLine].Line;
-                //}
-                
+                textToShow.text = CurrentRandomNPC.Dialogs[0].Lines[currentLine].Line;
+
                 if (!CurrentRandomNPC.Dialogs[0].Lines[currentLine].HasOptions)
                 {
                     option1ToShow.text = "";
@@ -104,7 +101,7 @@ public class DialogBox : MonoBehaviour
                             Debug.Log("option2: " + option2ToShow.text);
                         }
                         //als optie 2 niet gevuld is
-                        else if(option2ToShow.text == "")
+                        else if (option2ToShow.text == "")
                         {
                             Debug.Log("option1 moet nu gevuld worden");
                             option1ToShow.text = CurrentRandomNPC.Options[0].Lines[i - 1].Line;
@@ -132,7 +129,7 @@ public class DialogBox : MonoBehaviour
             }
         }
     }
-    
+
     public void SetEndOfLine(NPC npc)
     {
         if (npc.GetType() == typeof(RandomNPC))
