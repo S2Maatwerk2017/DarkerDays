@@ -8,7 +8,7 @@ public class SFXManager : MonoBehaviour
 
     public AudioSource SfxSource;
     public AudioSource MusicSource;
-    public static SFXManager instance;
+    public static SFXManager Instance;
 
     public float lowPitchRange = .95f;
     public float highPitchRange = 1.05f;
@@ -17,8 +17,16 @@ public class SFXManager : MonoBehaviour
 
 
 	// Use this for initialization
-	void Awake () {
-
+	void Awake ()
+	{
+	    if (Instance == null)
+	    {
+	        Instance = this;
+	    }else if (Instance != this)
+	    {
+	        Destroy(gameObject);
+	    }
+        DontDestroyOnLoad(gameObject);
 	}
 
 
@@ -26,7 +34,7 @@ public class SFXManager : MonoBehaviour
     {
         //if (!SfxSource.isPlaying)
         //{
-            SfxSource.clip = clips[Random.Range(0, clips.Count)];
+            SfxSource.clip = clips[Random.Range(0, clips.Count-1)];
             SfxSource.Play();
         //}
     }
@@ -42,11 +50,9 @@ public class SFXManager : MonoBehaviour
 
     public void RandomizeSfx(List<AudioClip> clips)
     {
-        int randomIndex = Random.Range(0, clips.Count-1);
-        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
-
-        SfxSource.pitch = randomPitch;
-        SfxSource.clip = clips[randomIndex];
+        int randomindex = Random.Range(0, clips.Count -1);
+        SfxSource.clip = clips[randomindex];
+        SfxSource.pitch = Random.Range(lowPitchRange, highPitchRange);
         SfxSource.Play();
     }
 }

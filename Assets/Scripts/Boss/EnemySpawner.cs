@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -9,6 +10,9 @@ public class EnemySpawner : MonoBehaviour
     public float SpawnDelay;
     private float SpawnCountdown;
     private List<GameObject> BossEnemies;
+
+    public List<AudioClip> BossSpawnSounds;
+    public bool PlayBossSpawnSound;
 
 	// Use this for initialization
 	void Start ()
@@ -25,6 +29,10 @@ public class EnemySpawner : MonoBehaviour
 	        if (SpawnCountdown >= SpawnDelay)
 	        {
 	            SpawnCountdown = 0f;
+	            if (PlayBossSpawnSound)
+	            {
+	                SFXManager.Instance.RandomizeSfx(BossSpawnSounds);
+	            }
                 BossEnemies.Add((GameObject)Instantiate(EnemyToSpawn[Random.Range(0, EnemyToSpawn.Length)], GetComponent<Transform>().position + new Vector3(Random.Range(-1f, 1f), 1f, Random.Range(-1f, 1f)),
                     Quaternion.Euler(0f, 0f, 0f)));
             }

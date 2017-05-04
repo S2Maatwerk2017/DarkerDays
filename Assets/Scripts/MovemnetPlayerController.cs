@@ -25,6 +25,8 @@ public class MovemnetPlayerController : MonoBehaviour
 
     private PlayerHealthManager PlayerHealth;
 
+    public List<AudioClip> AttackClips;
+
     private Wallet wallet;
     private PlayerLevel level;
     private Inventory inventory;
@@ -119,11 +121,11 @@ public class MovemnetPlayerController : MonoBehaviour
                 // Kijken of space ingedrukt wordt voor een aanval
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    SFXManager.Instance.RandomizeSfx(AttackClips);
                     attackTimeCounter = attackTime;
                     playerMeleeAttacking = true;
                     RB.velocity = Vector3.zero;
                     ani.SetBool("PlayerMeleeAttacking", true);
-                // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
                 }
             }
             else

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,11 +27,10 @@ public class Enemy : MonoBehaviour {
     public GameObject DamageNumber;
     public GameObject DamageBurst;
 
-    //sound fields
-    public List<AudioClip> AttackSounds;
-    public List<AudioClip> DeathSounds;
-    public List<AudioClip> TakeDamageSounds;
-    public SFXManager PersonalSfxManager;
+    //soundfields
+    public List<AudioClip> AttackAudioClips;
+    public List<AudioClip> DeathAudioClips;
+    public List<AudioClip> TakeDamageAudioClips;
 
     //Hidden publics
     [HideInInspector]public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
@@ -73,7 +73,6 @@ public class Enemy : MonoBehaviour {
         MyRigidbody = GetComponent<Rigidbody>();
         PlayerSpotted = false;
         agent = GetComponent<NavMeshAgent>();
-        PersonalSfxManager = new SFXManager();
     }
 
     public void MoveNav()
@@ -162,8 +161,7 @@ public class Enemy : MonoBehaviour {
 
     public virtual void Attack() {
         //Let each underlaying class implement their own variant.
-        PersonalSfxManager.RandomizeSfx(AttackSounds);
-        Debug.Log("Attack not implemented");
+        SFXManager.Instance.RandomizeSfx(AttackAudioClips);
     }
     
     
@@ -207,11 +205,11 @@ public class Enemy : MonoBehaviour {
             {
                 BossManager.GetComponent<BossManager>().EnemyWasKilled();
             }
-            PersonalSfxManager.RandomizeSfx(DeathSounds);
+            SFXManager.Instance.RandomizeSfx(DeathAudioClips);
             Destroy(gameObject);
             return true;
         }
-        PersonalSfxManager.RandomizeSfx(TakeDamageSounds);
+        SFXManager.Instance.RandomizeSfx(TakeDamageAudioClips);
         return false;
     }
 

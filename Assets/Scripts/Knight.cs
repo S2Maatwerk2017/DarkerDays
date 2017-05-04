@@ -18,6 +18,7 @@ public class Knight : Enemy, IStrategy {
             var clone = (GameObject)Instantiate(DamageNumber, Player.GetComponent<Transform>().position + new Vector3(0f, 2f, 0.5f),
                     Quaternion.Euler(90f, 0f, 0f));
             clone.GetComponent<DamageNumbers>().damageNumber = Damage;
+            base.Attack();
         }
     }
 }
