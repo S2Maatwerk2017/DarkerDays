@@ -5,17 +5,20 @@ using UnityEngine;
 using System.IO;
 using Assets.Scripts;
 
-public class Player_Inventory : MonoBehaviour
+public class Load_ItemList : MonoBehaviour
 {
     public List<Item> ItemsList = new List<Item>();
     public Item item { get; private set; }
-    private string FilePath = @"C:\Users\Sjors\Desktop\School\Semester 2 Maatwerk\DarkerDays\Assets\TekstFood.txt";
+
+
+
+    private string FilePath;
 
     // Use this for initialization
 
     void Start()
     {
-
+        FilePath = Application.dataPath + "/TekstFood.txt";
     }
 
     // Update is called once per frame

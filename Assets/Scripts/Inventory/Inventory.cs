@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour {
     public List<GameObject> InventorySlots = new List<GameObject>();
     public List<GameObject> ItemsOnMap = new List<GameObject>();
 
-    private Player_Inventory playerInventory;
+    private Load_ItemList loadList;
 
     public List<Item> itemsList = new List<Item>();
 
@@ -28,14 +28,13 @@ public class Inventory : MonoBehaviour {
     void Start ()
 	{
 
+        loadList = GetComponent<Load_ItemList>();
 
-        playerInventory = GetComponent<Player_Inventory>();
-
-        slotAmount = playerInventory.Items().Count;
+        slotAmount = loadList.Items().Count;
         InventoryPanel = GameObject.Find("Inventory Panel");
         SlotPanel = InventoryPanel.transform.FindChild("Slot Panel").gameObject;
 
-	    itemsList = playerInventory.Items();
+	    itemsList = loadList.Items();
 
         for (int i = 0; i < slotAmount; i++)
         {

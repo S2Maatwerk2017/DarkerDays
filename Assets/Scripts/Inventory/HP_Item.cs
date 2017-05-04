@@ -24,7 +24,7 @@ namespace Assets.Scripts
 
         public override void OnCollisionEnter(Collision collision)
         {
-            Player_Inventory playerInventory = new Player_Inventory();
+            Load_ItemList playerInventory = new Load_ItemList();
             if (collision.gameObject.tag == "Player")
             {
                 if (this.gameObject.tag == "Banana")
@@ -37,7 +37,7 @@ namespace Assets.Scripts
                     AddItemFromMapToList(5, collision);
                 }
 
-                else if (this.gameObject.tag == "Cumcumber")
+                else if (this.gameObject.tag == "Cucumber")
                 {
                     AddItemFromMapToList(3, collision);
                 }
@@ -46,7 +46,7 @@ namespace Assets.Scripts
 
         public void AddItemFromMapToList(int itemID, Collision collision)
         {
-            collision.transform.GetComponent<global::Inventory>().AddNewItem(collision.transform.GetComponent<Player_Inventory>().GetItemByID(itemID));
+            collision.transform.GetComponent<global::Inventory>().AddNewItem(collision.transform.GetComponent<Load_ItemList>().GetItemByID(itemID));
             this.gameObject.SetActive(false);
             //collision.transform.GetComponent<Inventory>().RefreshInventory();
         }
