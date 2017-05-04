@@ -68,6 +68,7 @@ public class DialogBox : MonoBehaviour
             {
                 currentLine += 1;
             }
+            //als je bij het einde van de dialogs bent of als je al de juiste optie hebt geselecteerd.
             if (currentLine >= endOfLine || CurrentRandomNPC.AlreadySelectedCorrectOption(currentLine))
             {
                 CurrentRandomNPC.playerCollide = false;
@@ -75,20 +76,21 @@ public class DialogBox : MonoBehaviour
                 currentLine = 0;
             }
             else
-            {
+            {   //laat de dialog text zien
                 textToShow.text = CurrentRandomNPC.Dialogs[0].Lines[currentLine].Line;
-
+                //als de dialog geen opties heeft, laat de optie boxen dan niet zien.
                 if (!CurrentRandomNPC.Dialogs[0].Lines[currentLine].HasOptions)
                 {
                     option1ToShow.text = "";
                     option2ToShow.text = "";
                     option1ToShow.gameObject.SetActive(false);
                     option2ToShow.gameObject.SetActive(false);
-                }
+                }//als de dialog wel opties heeft en nog neit de correcte hebt geselecteerd en alle opties laat zien
                 else if (CurrentRandomNPC.Dialogs[0].Lines[currentLine].HasOptions && !CurrentRandomNPC.AlreadySelectedCorrectOption(currentLine) && optionsShown < CurrentRandomNPC.Dialogs[0].Lines.Count)
                 {
                     option1ToShow.gameObject.SetActive(true);
                     option2ToShow.gameObject.SetActive(true);
+                    //voor elke optie
                     for (int i = 1; i <= CurrentRandomNPC.Options[0].Lines.Count; i++)
                     {
                         Debug.Log(i + " + " + optionsShown);
@@ -112,7 +114,8 @@ public class DialogBox : MonoBehaviour
                     }
                 }
 
-                //als je optie 1 hebt geselecteerd
+                // als je optie 1 hebt geselecteerd    
+                //(dit is de correcte optie!!!! hier code inzetten om daadwerkelijk iets te doen.)
                 else if (EventSystem.current.currentSelectedGameObject == option1ToShow.gameObject)
                 {
                     CurrentRandomNPC.SelectOption(0);
