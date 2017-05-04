@@ -76,11 +76,11 @@ GameObject:
   - component: {fileID: 135080833307417242}
   - component: {fileID: 114716780120551820}
   - component: {fileID: 82861378282886124}
-  - component: {fileID: 114629564783688898}
-  - component: {fileID: 114073260396874416}
-  - component: {fileID: 114648653345742928}
-  - component: {fileID: 114474313664569210}
-  - component: {fileID: 114805127169528564}
+  - component: {fileID: 114382951834869198}
+  - component: {fileID: 114074330498199922}
+  - component: {fileID: 114514320945213600}
+  - component: {fileID: 114553868529026022}
+  - component: {fileID: 114199678626029960}
   m_Layer: 0
   m_Name: MeleePlayer
   m_TagString: Player
@@ -122,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716688806628970}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4, y: 1, z: -21}
+  m_LocalPosition: {x: 18.9, y: 1, z: -7.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364249642846902}
@@ -137,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1343535428997920}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.025, y: -0.938, z: 0}
+  m_LocalPosition: {x: 0.025, y: -0.856, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4276222839787152}
@@ -279,7 +279,51 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114073260396874416
+--- !u!114 &114074330498199922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbecef1f81fb0d46b8649b9a5258dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemsList: []
+--- !u!114 &114199678626029960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31c88d5ca407f349a3a771b7d90dc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryDispaly: {fileID: 0}
+--- !u!114 &114382951834869198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6945f626daa4b3c46970ff9e9a226bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryItems: []
+  InventorySlots: []
+  ItemsOnMap: []
+  itemsList: []
+  InventorySlot: {fileID: 1111467216151474, guid: 625e1edd0ec5c6e4ea5fec970cbd47a3,
+    type: 2}
+  InventoryItem: {fileID: 1582477838919792, guid: eede831d8f12d914a802dcc1360b38c7,
+    type: 2}
+  RandomItem: {fileID: 0}
+--- !u!114 &114514320945213600
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -292,18 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XP: 10
   Lvl: 1
---- !u!114 &114474313664569210
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1716688806628970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbecef1f81fb0d46b8649b9a5258dcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114629564783688898
+--- !u!114 &114553868529026022
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -314,19 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae0a240fa457fe4494c7809076c402c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gold: 10
---- !u!114 &114648653345742928
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1716688806628970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c31c88d5ca407f349a3a771b7d90dc8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventoryDispaly: {fileID: 0}
+  Gold: 5
 --- !u!114 &114716780120551820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -342,22 +363,6 @@ MonoBehaviour:
   playerCurrentHealth: 50
   iFramesActive: 0
   iFramesLength: 1
---- !u!114 &114805127169528564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1716688806628970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6945f626daa4b3c46970ff9e9a226bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InventorySlots: []
-  InventorySlot: {fileID: 1111467216151474, guid: 625e1edd0ec5c6e4ea5fec970cbd47a3,
-    type: 2}
-  InventoryItem: {fileID: 1582477838919792, guid: eede831d8f12d914a802dcc1360b38c7,
-    type: 2}
 --- !u!114 &114817060021382166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -391,6 +396,7 @@ MonoBehaviour:
   lastMove: {x: 0, y: 0, z: 0}
   playerRangedAttacking: 0
   isPlayerRanged: 0
+  canMove: 1
   DiagnalMoveSpeedMultiplier: 0.75
 --- !u!135 &135080833307417242
 SphereCollider:

@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 54460074995073008}
   - component: {fileID: 65583678628207060}
   - component: {fileID: 195726261026851954}
+  - component: {fileID: 114117039496436268}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Enemy
@@ -100,6 +101,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114117039496436268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1794765095872720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8658312e93262a41901c534c6654da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114251314712513216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -116,7 +128,11 @@ MonoBehaviour:
   MoveSpeed: 2.6
   Damage: 5
   MaxHealth: 5
+  AttackRange: 1
+  IsBossEnemy: 0
   DamageNumber: {fileID: 1639270009125572, guid: 36024c27d0f89b042b825bc1751e0b7b,
+    type: 2}
+  DamageBurst: {fileID: 1741610336478772, guid: e9174e6293dbc974ab7c2bc31eea25a8,
     type: 2}
   Player: {fileID: 0}
   PlayerSpotted: 0

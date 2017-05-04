@@ -1,31 +1,41 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Inventory : MonoBehaviour {
 
     public List<Item> InventoryItems = new List<Item>();
     public List<GameObject> InventorySlots = new List<GameObject>();
+    public List<GameObject> ItemsOnMap = new List<GameObject>();
 
     private Player_Inventory playerInventory;
+
+    public List<Item> itemsList = new List<Item>();
 
     private int slotAmount;
     private GameObject InventoryPanel;
     private GameObject SlotPanel;
     public GameObject InventorySlot;
     public GameObject InventoryItem;
+    public GameObject RandomItem;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
+
+
         playerInventory = GetComponent<Player_Inventory>();
 
         slotAmount = playerInventory.Items().Count;
         InventoryPanel = GameObject.Find("Inventory Panel");
         SlotPanel = InventoryPanel.transform.FindChild("Slot Panel").gameObject;
+
+	    itemsList = playerInventory.Items();
 
         for (int i = 0; i < slotAmount; i++)
         {
@@ -35,12 +45,14 @@ public class Inventory : MonoBehaviour {
 
         }
 
-        foreach (Item i in playerInventory.Items().ToList())
+        foreach (Item i in itemsList.ToList())
         {
             AddItem(i.ItemID);
         }
 
         InventoryPanel.SetActive(false);
+
+	    //Debug.Log(itemsList.Count);
 
         //AddItem(1);
         //AddItem(2);
@@ -52,7 +64,7 @@ public class Inventory : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
+        //AddItemToList( item, InventoryItems);
     }
 
     public void AddItem(int id)
@@ -70,5 +82,18 @@ public class Inventory : MonoBehaviour {
                 break;
             }
         }
+    }
+
+    void AddItemToList(Item item, List<Item> items)
+    {
+        if (!items.Contains(item))
+        {
+            items.Add(item);
+        }
+    }
+
+    public void AddNewItem(Item item)
+    {
+        InventoryItems.Add(item);
     }
 }
