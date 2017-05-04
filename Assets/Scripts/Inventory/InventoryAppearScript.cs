@@ -21,16 +21,13 @@ namespace Assets.Scripts.Inventory
 
         void Update()
         {
-            //Debug.Log(isShowing);
-
+            Debug.Log(isShowing);
+           
             if (Input.GetKeyDown(KeyCode.I))
             {
                 isShowing = !isShowing;
                 InventoryDispaly.SetActive(isShowing);
-                if (isShowing)
-                {
-                    
-                }
+                
             }
         }
 

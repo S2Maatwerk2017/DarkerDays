@@ -1,5 +1,5 @@
-HPItem;1;Banaan;2;Het is fruit.;1;Banana;5;2;8
-HPItem;2;Bigmac;4;Hmmmm;1;BigMac;8;5;7
-HPItem;3;Komkommer;1;Is het nu een komkommerof een dildo?;1;Cucumber;1;10;20
-HPItem;4;Dumpling;8;Duur he.;1;Dumpling;4;20;13
-HPItem;5;Pizza;10;Pizza magarita. Zelfs duurder dan die dumpling.;1;Apple;9;21;13
+HPItem;1;Banaan;2;Het is fruit.;1;Banana;5;29;-53
+HPItem;2;Bigmac;4;Hmmmm;1;BigMac;8;29;-32
+HPItem;3;Komkommer;1;Is het nu een komkommerof een dildo?;1;Cucumber;1;58;-40
+HPItem;4;Dumpling;8;Duur he.;1;Dumpling;4;10;-34
+HPItem;5;Pizza;10;Pizza magarita. Zelfs duurder dan die dumpling.;1;Apple;9;40;-39

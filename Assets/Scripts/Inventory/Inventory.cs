@@ -16,8 +16,7 @@ public class Inventory : MonoBehaviour {
     //private Load_ItemList loadList;
 
     public List<Item> itemsList = new List<Item>();
-
-    private int slotAmount;
+    
     private GameObject InventoryPanel;
     private GameObject SlotPanel;
     public GameObject InventorySlot;
@@ -29,26 +28,15 @@ public class Inventory : MonoBehaviour {
 	{
 
         //loadList = GetComponent<Load_ItemList>();
-
-        slotAmount = Load_ItemList.Items().Count;
+        //slotAmount = Load_ItemList.Items().Count;
         InventoryPanel = GameObject.Find("Inventory Panel");
         SlotPanel = InventoryPanel.transform.FindChild("Slot Panel").gameObject;
 
 	    itemsList = Load_ItemList.Items();
 
-        for (int i = 0; i < slotAmount; i++)
-        {
-            InventoryItems.Add(new HP_Item());
-            InventorySlots.Add(Instantiate(InventorySlot));
-            InventorySlots[i].transform.SetParent(SlotPanel.transform);
+        DoInventorySlots();
 
-        }
-
-        foreach (Item i in itemsList.ToList())
-        {
-            AddItem(i.ItemID);
-        }
-
+        
         InventoryPanel.SetActive(false);
 
 	    //Debug.Log(itemsList.Count);
@@ -66,22 +54,28 @@ public class Inventory : MonoBehaviour {
         //AddItemToList( item, InventoryItems);
     }
 
-    public void AddItem(int id)
+    private void DoInventorySlots()
     {
-        Item itemToAdd = Load_ItemList.GetItemByID(id);
-        for (int i = 0; i < InventoryItems.Count; i++)
+        foreach (GameObject gameObject in InventorySlots)
         {
-            if (InventoryItems[i].ItemID == -1)
+            Destroy(gameObject);
+        }
+        InventorySlots.Clear();
+        for (int i = 0; i < InventoryItems.Count(); i++)
+        {
+            InventorySlots.Add(Instantiate(InventorySlot));
+            InventorySlots[i].transform.SetParent(SlotPanel.transform);
+            if (InventoryItems[i].ItemID != -1)
             {
-                InventoryItems[i] = itemToAdd;
                 GameObject itemobj = Instantiate(InventoryItem);
                 itemobj.transform.SetParent(InventorySlots[i].transform);
-                itemobj.GetComponent<Image>().sprite = itemToAdd.Sprite;
+                itemobj.GetComponent<Image>().sprite = InventoryItems[i].Sprite;
                 itemobj.transform.position = Vector2.zero;
-                break;
             }
         }
     }
+
+    
 
     void AddItemToList(Item item, List<Item> items)
     {
@@ -98,6 +92,8 @@ public class Inventory : MonoBehaviour {
             if (item.ItemID == Id)
             {
                 InventoryItems.Add(item);
+                DoInventorySlots();
+                break;
             }
         }
     }

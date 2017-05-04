@@ -6,8 +6,7 @@ using System.Text;
 using UnityEngine;
 using Assets.Scripts.Inventory;
 
-namespace Assets.Scripts
-{
+
     public class HP_Item : Item
     {
         public int HPGain { get; private set; }
@@ -24,23 +23,9 @@ namespace Assets.Scripts
 
         public override void OnCollisionEnter(Collision collision)
         {
-            //Load_ItemList playerInventory = new Load_ItemList();
             if (collision.gameObject.tag == "Player")
             {
-                if (this.gameObject.tag == "Banana")
-                {
-                    AddItemFromMapToList(1, collision);
-                }
-
-                else if (this.gameObject.tag == "Apple")
-                {
-                    AddItemFromMapToList(5, collision);
-                }
-
-                else if (this.gameObject.tag == "Cucumber")
-                {
-                    AddItemFromMapToList(3, collision);
-                }
+                AddItemFromMapToList(this.ItemID, collision);
             }
         }
 
@@ -61,4 +46,4 @@ namespace Assets.Scripts
             
         }
     }
-}
+

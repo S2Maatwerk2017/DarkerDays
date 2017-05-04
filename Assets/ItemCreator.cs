@@ -16,6 +16,11 @@ public class ItemCreator : MonoBehaviour {
         //loadList = GetComponent<Load_ItemList>();
         itemsList = Load_ItemList.Items();
         PlaceItems();
+        Vector3 myPosition = new Vector3();
+        myPosition.x = 0;
+        myPosition.y = 1;
+        myPosition.z = 0;
+        this.transform.position = myPosition;
     }
 	
 	// Update is called once per frame
@@ -31,7 +36,7 @@ public class ItemCreator : MonoBehaviour {
             Location.x += item.Location[0];
             Location.z += item.Location[1];
             PickUpItem.GetComponent<HP_Item>().LoadNewData(item);
-            var _item = Instantiate(PickUpItem, Location, PickUpItem.transform.rotation);
+            var _item = Instantiate(PickUpItem, Location, PickUpItem.transform.rotation, this.transform);
         }
     }
 }

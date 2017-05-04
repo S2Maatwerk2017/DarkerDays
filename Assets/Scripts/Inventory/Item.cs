@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    public int ItemID { get; private set; }
+    public int ItemID;
     public string Name { get; private set; }
     public int Price { get; private set; }
     public string Description { get; private set; }
@@ -43,6 +43,7 @@ public abstract class Item : MonoBehaviour
         Description = item.Description;
         Amount = item.Amount;
         Tag = item.Tag;
+        this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(Tag);
         Location = item.Location;
     }
 }
