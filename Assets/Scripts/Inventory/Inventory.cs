@@ -31,11 +31,11 @@ public class Inventory : MonoBehaviour {
 
         playerInventory = GetComponent<Player_Inventory>();
 
-        slotAmount = playerInventory.Items().Count;
+        //slotAmount = playerInventory.Items().Count;
         InventoryPanel = GameObject.Find("Inventory Panel");
         SlotPanel = InventoryPanel.transform.FindChild("Slot Panel").gameObject;
 
-	    itemsList = playerInventory.Items();
+	    //itemsList = playerInventory.Items();
 
         for (int i = 0; i < slotAmount; i++)
         {

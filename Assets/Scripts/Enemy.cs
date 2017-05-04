@@ -26,6 +26,11 @@ public class Enemy : MonoBehaviour {
     public GameObject DamageNumber;
     public GameObject DamageBurst;
 
+    //sound fields
+    public List<AudioClip> AttackSounds;
+    public List<AudioClip> DeathSounds;
+    public List<AudioClip> TakeDamageSounds;
+    public SFXManager PersonalSfxManager;
 
     //Hidden publics
     [HideInInspector]public Vector3 targetdirection { get { return Player.transform.position - this.transform.position; } }
@@ -68,6 +73,7 @@ public class Enemy : MonoBehaviour {
         MyRigidbody = GetComponent<Rigidbody>();
         PlayerSpotted = false;
         agent = GetComponent<NavMeshAgent>();
+        PersonalSfxManager = new SFXManager();
     }
 
     public void MoveNav()
@@ -156,6 +162,7 @@ public class Enemy : MonoBehaviour {
 
     public virtual void Attack() {
         //Let each underlaying class implement their own variant.
+        PersonalSfxManager.RandomizeSfx(AttackSounds);
         Debug.Log("Attack not implemented");
     }
     
@@ -200,10 +207,11 @@ public class Enemy : MonoBehaviour {
             {
                 BossManager.GetComponent<BossManager>().EnemyWasKilled();
             }
-
+            PersonalSfxManager.RandomizeSfx(DeathSounds);
             Destroy(gameObject);
             return true;
         }
+        PersonalSfxManager.RandomizeSfx(TakeDamageSounds);
         return false;
     }
 
