@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Item:MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
-     public Player_Inventory PlayerInventory = new Player_Inventory();
-     public int ItemID { get; private set; }
-     public string Name { get; private set; }
-     public int Price { get; private set; }
-     public string Description { get; private set; }
-     public int Amount { get; private set; }
-     public string Tag { get; private set; }
-     public Sprite Sprite { get; private set; }
+    public int ItemID { get; private set; }
+    public string Name { get; private set; }
+    public int Price { get; private set; }
+    public string Description { get; private set; }
+    public int Amount { get; private set; }
+    public string Tag { get; private set; }
+    public Sprite Sprite { get; private set; }
 
-    public Item(int itemID,string name, int price, string description, int amount, string tag)
+
+    public Item(int itemID, string name, int price, string description, int amount, string tag)
     {
         this.ItemID = itemID;
         this.Name = name;
@@ -30,5 +30,4 @@ public abstract class Item:MonoBehaviour
     }
 
     public abstract void OnCollisionEnter(Collision collision);
-
 }
