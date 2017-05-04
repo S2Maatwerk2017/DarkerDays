@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Enemy
   - Chest
+  - Apple
+  - Banana
+  - Bed
+  - InventoryPanel
   layers:
   - Default
   - TransparentFX

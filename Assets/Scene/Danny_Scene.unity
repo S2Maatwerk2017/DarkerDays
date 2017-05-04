@@ -198,48 +198,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 017a1b8a460e00b40a37a7becb7c4d55, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &110421627
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4342020578330358, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 6.080002
-      objectReference: {fileID: 0}
-    - target: {fileID: 4342020578330358, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.5099983
-      objectReference: {fileID: 0}
-    - target: {fileID: 4342020578330358, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -21.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4342020578330358, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4342020578330358, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4342020578330358, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4342020578330358, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4342020578330358, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 84d654ddda19aeb4e98f9a66e52f93b1, type: 2}
-  m_IsPrefabParent: 0
 --- !u!4 &133676066 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4185354245574100, guid: 017a1b8a460e00b40a37a7becb7c4d55,
