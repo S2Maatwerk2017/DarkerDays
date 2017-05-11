@@ -35,9 +35,7 @@ public class DialogBox : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        string notEnoughMoney = "Niet genoeg geld joh faggot";
-        //als de shopkeeper collide met player.
+    {   //als de shopkeeper collide met player.
         if (Currentshopkeeper.playerCollide)
         {   //set options to show naar false
             option1ToShow.gameObject.SetActive(false);
