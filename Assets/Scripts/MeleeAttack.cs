@@ -39,7 +39,7 @@ public class MeleeAttack : MonoBehaviour
             }
             if (this.gameObject.tag == "HealSkill")
             {
-                Player.GetComponent<PlayerHealthManager>().HealPlayer(DamageToGive);
+                Player.GetComponent<PlayerHealthManager>().HealPlayer(DamageToGive / 2);
             }
         }
     }
