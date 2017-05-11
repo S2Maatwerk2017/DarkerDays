@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Enemy
   - InventoryPanel
   - ShopKeeper
@@ -11,6 +12,15 @@ TagManager:
   - Banana
   - Apple
   - Bed
+=======
+  - InventoryPanel
+  - ShopKeeper
+  - Enemy
+  - Bed
+  - Banana
+  - Apple
+  - Projectile
+>>>>>>> 4cdeb5f231f0ae670c9ac86f97332d2d415aa2d8
   - HealSkill
   layers:
   - Default
