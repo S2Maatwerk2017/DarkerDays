@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Assets.Scripts.Skills
 {
-    class ActionPoints
+    public class ActionPoints : MonoBehaviour
     {
         private float MaxActionPoints;
         private float CurrentActionPoints;
@@ -13,9 +14,9 @@ namespace Assets.Scripts.Skills
         private float RegenAmount;
 
 
-        public ActionPoints(float maxActionPoints)
+        public ActionPoints()
         {
-            MaxActionPoints = maxActionPoints;
+            MaxActionPoints = 3;
             CurrentActionPoints = MaxActionPoints;
             RegenAmount = 1;
         }
@@ -25,7 +26,7 @@ namespace Assets.Scripts.Skills
             return value % 5 == 0;
         }
 
-        private void RegenActionPoints()
+        public void RegenActionPoints()
         {
             CurrentActionPoints = CurrentActionPoints + RegenAmount;
             if (CurrentActionPoints >= MaxActionPoints)
@@ -34,12 +35,14 @@ namespace Assets.Scripts.Skills
             }
         }
 
-        public void UsePoints(int cost)
+        public bool UsePoints(int cost)
         {
             if (CurrentActionPoints >= cost)
             {
                 CurrentActionPoints = CurrentActionPoints - cost;
+                return true;
             }
+            return false;
         }
 
         public void IncreaseAP(int level)
@@ -48,6 +51,11 @@ namespace Assets.Scripts.Skills
             {
                 MaxActionPoints = MaxActionPoints + 1;
             }
+        }
+
+        public override string ToString()
+        {
+            return "AP: " + CurrentActionPoints + "/" + MaxActionPoints;
         }
     }
 }

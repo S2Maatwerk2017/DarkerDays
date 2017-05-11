@@ -36,6 +36,8 @@ public class MeleeAttack : MonoBehaviour
             {
                 Player.GetComponent<MovemnetPlayerController>().IncreaseGold(enemy.GetGold());
                 Player.GetComponent<MovemnetPlayerController>().IncreaseXP(enemy.GetXP());
+                Player.GetComponent<MovemnetPlayerController>().IncreaseAP();
+
             }
             if (this.gameObject.tag == "HealSkill")
             {
