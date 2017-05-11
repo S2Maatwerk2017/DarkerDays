@@ -30,7 +30,7 @@ public class RandomNPC : NPC
     {
         Options = new List<Dialog>();
         List<DialogLine> options = new List<DialogLine>();
-        options.Add(new DialogLine("Ja graag, die wasmachine is totaal niet te duur", false, true));
+        options.Add(new DialogLine("Ja graag, die wasmachine is totaal niet te duur", false, true,5));
         options.Add(new DialogLine("Nee, wat moet ik met een wasmachine", false, false));
         Options.Add(new Dialog(options));
     }
@@ -115,7 +115,7 @@ public class RandomNPC : NPC
         List<DialogLine> lines = new List<DialogLine>();
         lines.Add(new DialogLine("random text", false, false));
         lines.Add(new DialogLine("Welkom in mijn wereld", false, false));
-        lines.Add(new DialogLine("Wil je voor 10000 gold een wasmachine kopen?", true, false));
+        lines.Add(new DialogLine("Wil je voor 5 gold een wasmachine kopen?", true, false, 5));
         Dialogs.Add(new Dialog(lines));
     }
 }

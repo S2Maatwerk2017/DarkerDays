@@ -35,16 +35,20 @@ public class DialogBox : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   //als de shopkeeper collide met player.
         if (Currentshopkeeper.playerCollide)
-        {
+        {   //set options to show naar false
+            option1ToShow.gameObject.SetActive(false);
+            option2ToShow.gameObject.SetActive(false);
             SetEndOfLine((NPC)Currentshopkeeper);
             SetDialogBox(true);
+            //als je op n drukt, laat de volgende line zien.
             if (Input.GetKeyDown(KeyCode.N))
             {
                 Debug.Log("+1");
                 currentLine += 1;
             }
+            //als je aan het einde bent van de dialogs, laat de dialogbox niet meer zien.
             if (currentLine >= endOfLine)
             {
                 Currentshopkeeper.playerCollide = false;
@@ -60,6 +64,7 @@ public class DialogBox : MonoBehaviour
                 textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine].Line;
             }
         }
+        //als de currentrandomnpc met de player collide.
         if (CurrentRandomNPC.playerCollide)
         {
             SetEndOfLine((NPC)CurrentRandomNPC);
@@ -114,11 +119,13 @@ public class DialogBox : MonoBehaviour
                     }
                 }
 
-                // als je optie 1 hebt geselecteerd    
+                // als je optie 1 hebt geselecteerd
                 //(dit is de correcte optie!!!! hier code inzetten om daadwerkelijk iets te doen.)
                 else if (EventSystem.current.currentSelectedGameObject == option1ToShow.gameObject)
                 {
                     CurrentRandomNPC.SelectOption(0);
+                    //laat de speler geld betalen
+                    playermovement.PayGold(CurrentRandomNPC.Dialogs[0].Lines[currentLine].GoldToPay);
                     currentLine += 1;
                     EventSystem.current.SetSelectedGameObject(null);
                 }

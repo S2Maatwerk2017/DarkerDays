@@ -123,7 +123,7 @@ public class MovemnetPlayerController : MonoBehaviour
                     playerMeleeAttacking = true;
                     RB.velocity = Vector3.zero;
                     ani.SetBool("PlayerMeleeAttacking", true);
-                // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                    // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
                 }
             }
             else
@@ -206,6 +206,11 @@ public class MovemnetPlayerController : MonoBehaviour
     public void IncreaseGold(int IncreaseGold)
     {
         wallet.GainGold(IncreaseGold);
+    }
+
+    public void PayGold(int goldToPay)
+    {
+        wallet.PayGold(goldToPay);
     }
 
     public void IncreaseXP(int increaseXP)

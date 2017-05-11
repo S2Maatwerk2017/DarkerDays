@@ -21,4 +21,9 @@ public class Wallet : MonoBehaviour {
         Gold = Gold + GainGold;
         Debug.Log(Gold);
     }
+
+    public void PayGold(int gold)
+    {
+        Gold -= gold;
+    }
 }
