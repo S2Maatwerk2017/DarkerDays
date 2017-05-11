@@ -19,21 +19,22 @@ public class PlayerLevel : MonoBehaviour {
 
     }
 
-    public void bepaalLevel()
+    public bool bepaalLevel()
     {
         if (XP >= 100)
         {
             Lvl = Lvl + 1;
             XP = XP - 100;
+            return true;
         }
+        return false;
     }
 
-    public void gainXP(int ammount)
+    public bool gainXP(int ammount)
     {
         XP = XP + ammount;
         Debug.Log(XP);
-        bepaalLevel();
-        Debug.Log(Lvl);
+        return bepaalLevel();
     }
 
 }

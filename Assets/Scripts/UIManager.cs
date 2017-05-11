@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public Text healthText;
     public Text LvlText;
     public Text GoldText;
+    public Slider apBar;
     public Text APText;
     private PlayerHealthManager playerHealth;
     private PlayerLevel playerLevel;
@@ -44,6 +45,8 @@ public class UIManager : MonoBehaviour
         healthText.text = "HP: " + playerHealth.playerCurrentHealth + "/" + playerHealth.playerMaxHealth;
         LvlText.text = "LVL: " + playerLevel.Lvl;
         GoldText.text = Convert.ToString(playerCtrl.ToStringGold());
+        apBar.maxValue = actionPoints.MaxActionPoints;
+        apBar.value = actionPoints.CurrentActionPoints;
         APText.text = actionPoints.ToString();
     }
 }
