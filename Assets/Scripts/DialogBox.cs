@@ -135,11 +135,11 @@ public class DialogBox : MonoBehaviour
 
     public void SetEndOfLine(NPC npc)
     {
-        if (npc.GetType() == typeof(RandomNPC))
+        if (npc is RandomNPC)
         {
             npc = (RandomNPC)npc;
         }
-        else if (npc.GetType() == typeof(ShopKeeper))
+        else if (npc is ShopKeeper)
         {
             npc = (ShopKeeper)npc;
         }
