@@ -31,6 +31,7 @@ public class MovemnetPlayerController : MonoBehaviour
     private PlayerLevel level;
     private Inventory inventory;
     private AllSkills alleSkils;
+    public ActionPoints ActionPoints;
     GetItemFromChest chest = new GetItemFromChest();
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
@@ -47,6 +48,8 @@ public class MovemnetPlayerController : MonoBehaviour
         level = GetComponent<PlayerLevel>();
         inventory = GetComponent<Inventory>();
         alleSkils = new AllSkills();
+        ActionPoints = GetComponent<ActionPoints>();
+        apRegenCounter = 3;
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
@@ -147,6 +150,17 @@ public class MovemnetPlayerController : MonoBehaviour
 
         }
 
+        if (apRegenCounter > 0)
+        {
+            apRegenCounter -= Time.deltaTime;
+        }
+
+        if (apRegenCounter < 0)
+        {
+            ActionPoints.RegenActionPoints();
+            apRegenCounter = 3;
+        }
+
         if (attackTimeCounter > 0)
         {
             attackTimeCounter -= Time.deltaTime;
@@ -210,10 +224,14 @@ public class MovemnetPlayerController : MonoBehaviour
 
     public void ChooseSkill(Skill skill)
     {
-        attackTimeCounter = skill.Delay;
-        playerMeleeAttacking = true;
-        RB.velocity = Vector3.zero;
-        ani.SetInteger("SkillNumber", skill.ID);
+        if (ActionPoints.UsePoints(skill.Cost))
+        {
+            attackTimeCounter = skill.Delay;
+            playerMeleeAttacking = true;
+            RB.velocity = Vector3.zero;
+            ani.SetInteger("SkillNumber", skill.ID);
+        }
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -222,7 +240,6 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
         }
-
     }
 
     public void IncreaseGold(int IncreaseGold)
@@ -238,6 +255,11 @@ public class MovemnetPlayerController : MonoBehaviour
     public void SetFullHealth()
     {
         PlayerHealth.SetMaxHealth();
+    }
+
+    public void IncreaseAP()
+    {
+        ActionPoints.IncreaseAP(level.Lvl);
     }
 
     public string ToStringGold()
