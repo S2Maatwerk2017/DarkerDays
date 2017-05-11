@@ -208,9 +208,13 @@ public class MovemnetPlayerController : MonoBehaviour
         wallet.GainGold(IncreaseGold);
     }
 
-    public void PayGold(int goldToPay)
+    public bool PayGold(int goldToPay)
     {
-        wallet.PayGold(goldToPay);
+        if (wallet.PayGold(goldToPay))
+        {
+            return true;
+        }
+        return false;
     }
 
     public void IncreaseXP(int increaseXP)

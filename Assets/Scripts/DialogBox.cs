@@ -35,7 +35,9 @@ public class DialogBox : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   //als de shopkeeper collide met player.
+    {
+        string notEnoughMoney = "Niet genoeg geld joh faggot";
+        //als de shopkeeper collide met player.
         if (Currentshopkeeper.playerCollide)
         {   //set options to show naar false
             option1ToShow.gameObject.SetActive(false);
@@ -71,9 +73,16 @@ public class DialogBox : MonoBehaviour
             SetDialogBox(true);
             if (Input.GetKeyDown(KeyCode.N))
             {
-                currentLine += 1;
+                if ((currentLine + 1) == 3)
+                {
+                    currentLine += 2;
+                }
+                else
+                {
+                    currentLine += 1;
+                }
             }
-            //als je bij het einde van de dialogs bent of als je al de juiste optie hebt geselecteerd.
+            //als je bij het einde van de dialogs bent
             if (currentLine >= endOfLine )
             {
                 CurrentRandomNPC.playerCollide = false;
@@ -82,7 +91,14 @@ public class DialogBox : MonoBehaviour
             }
             else if (CurrentRandomNPC.AlreadySelectedCorrectOption(currentLine) && currentLine < endOfLine)
             {
-                currentLine += 1;
+                if ((currentLine + 1) == 3)
+                {
+                    currentLine += 2;
+                }
+                else
+                {
+                    currentLine += 1;
+                }
             }
             else
             {   //laat de dialog text zien
@@ -127,18 +143,38 @@ public class DialogBox : MonoBehaviour
                 //(dit is de correcte optie!!!! hier code inzetten om daadwerkelijk iets te doen.)
                 else if (EventSystem.current.currentSelectedGameObject == option1ToShow.gameObject)
                 {
-                    CurrentRandomNPC.SelectOption(0);
-                    //laat de speler geld betalen
-                    playermovement.PayGold(CurrentRandomNPC.Dialogs[0].Lines[currentLine].GoldToPay);
                     
-                    currentLine += 1;
+                    //laat de speler geld betalen
+                    if (playermovement.PayGold(CurrentRandomNPC.Dialogs[0].Lines[currentLine].GoldToPay))
+                    {
+                        CurrentRandomNPC.SelectOption(0);
+                        if ((currentLine + 1) == 3)
+                        {
+                            currentLine += 2;
+                        }
+                        else
+                        {
+                            currentLine += 1;
+                        }
+                    }
+                    else
+                    {
+                        currentLine = 3;
+                    }
                     EventSystem.current.SetSelectedGameObject(null);
                 }
                 //als je optie 2 hebt geselecteerd
                 else if (EventSystem.current.currentSelectedGameObject == option2ToShow.gameObject)
                 {
                     CurrentRandomNPC.SelectOption(1);
-                    currentLine += 1;
+                    if ((currentLine + 1) == 3)
+                    {
+                        currentLine += 2;
+                    }
+                    else
+                    {
+                        currentLine += 1;
+                    }
                     EventSystem.current.SetSelectedGameObject(null);
                 }
             }
