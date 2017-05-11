@@ -9,6 +9,14 @@ public class MenuControl : MonoBehaviour
 
 	private Canvas previousMenu;
 
+	private bool isMenuOpen
+	{
+		get
+		{
+			return MainMenu.enabled || ChooseCharacterMenu.enabled || SaveMenu.enabled || LoadMenu.enabled || YouDiedScreen.enabled;
+		}
+	}
+
 	public Canvas MainMenu;
 	public Canvas ChooseCharacterMenu;
 	public Canvas PauseMenu;
@@ -30,10 +38,32 @@ public class MenuControl : MonoBehaviour
 		YouDiedScreen = YouDiedScreen.GetComponent<Canvas>();
 	}
 
-	public void NewGame(string levelname)
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			PauseGame();
+		}
+	}
+
+	public void PauseGame()
+	{
+		if (Time.timeScale != 0)
+		{
+			Time.timeScale = 0;
+			PauseMenu.enabled = !isMenuOpen;
+		}
+		else
+		{
+			Time.timeScale = 1;
+			PauseMenu.enabled = false;
+		}
+	}
+
+	public void NewGame(string playertype)
 	{
 		ChooseCharacterMenu.enabled = false;
-		control.LoadLevel(levelname);
+		control.NewGame(playertype);
 	}
 
 	public void ShowLoadMenu(Canvas CurrentMenu)
@@ -86,7 +116,7 @@ public class MenuControl : MonoBehaviour
 
 	public void HidePauseMenu()
 	{
-		control.PauseGame();
+		PauseGame();
 	}
 
 	public void ShowCharacterCreation()

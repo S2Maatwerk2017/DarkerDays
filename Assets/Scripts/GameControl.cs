@@ -14,6 +14,10 @@ public class GameControl : MonoBehaviour {
 
 	public static GameControl Control;
 
+	public GameObject MeleePlayerPrefab;
+	public GameObject RangedPlayerPrefab;
+	public GameObject CameraPrefab;
+
 	void Awake()
 	{
 		if (Control == null)
@@ -27,26 +31,19 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 
-	void Update()
+	public void NewGame(string playertype)
 	{
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			PauseGame();
-		}
-	}
+		var defaultMenuCam = FindObjectsOfType<GameObject>().Where(o => o.name == "Camera").FirstOrDefault();
 
-	public void PauseGame()
-	{
-		if (Time.timeScale == 0)
-		{
-			Time.timeScale = 1;
-			PauseMenu.enabled = false;
-		}
-		else
-		{
-			Time.timeScale = 0;
-			PauseMenu.enabled = true;
-		}
+		if (defaultMenuCam != null)
+			Destroy(defaultMenuCam);
+
+		var player = playertype == "Melee" ? Instantiate(MeleePlayerPrefab) : Instantiate(RangedPlayerPrefab);
+		DontDestroyOnLoad(player);
+		CameraPrefab.GetComponent<Camera_Controller>().followTarget = player;
+		var camera = Instantiate(CameraPrefab);
+		DontDestroyOnLoad(camera);
+		LoadLevel("tutorial");
 	}
 
 	public void LoadLevel(string levelname)
@@ -78,14 +75,39 @@ public class GameControl : MonoBehaviour {
 		}
 	}
 
+	private void destroyPlayerAndCamera()
+	{
+		var cam = GameObject.FindGameObjectWithTag("MainCamera");
+		if (cam != null)
+			Destroy(cam);
+
+		var player = GameObject.FindGameObjectWithTag("Player");
+		if (player != null)
+			Destroy(player);
+	}
+
 	private void ApplyLoadedPlayer(PlayerBundel playerBundel)
 	{
-		var player = GameObject.FindGameObjectWithTag("Player");
-		/*
-		player.GetComponent<MovemnetPlayerController>().LoadMovementPlayerController(playerBundel.MovementPlayerController);
-		player.GetComponent<PlayerLevel>().LoadPlayerLevel(playerBundel.PlayerLevel);
-		player.GetComponent<Wallet>().LoadWallet(playerBundel.Wallet);
-		*/
+		destroyPlayerAndCamera();
+
+		var player = isPlayerRanged(playerBundel.MovementPlayerController) ? RangedPlayerPrefab : MeleePlayerPrefab;
+		CameraPrefab.GetComponent<Camera_Controller>().followTarget = player;
+		player = Instantiate(player);
+		var camera = Instantiate(CameraPrefab);
+
+		//player.GetComponent<MovemnetPlayerController>().LoadMovementPlayerController(playerBundel.MovementPlayerController);
+		//player.GetComponent<PlayerLevel>().LoadPlayerLevel(playerBundel.PlayerLevel);
+		//player.GetComponent<Wallet>().LoadWallet(playerBundel.Wallet);
+
+		DontDestroyOnLoad(player);
+		DontDestroyOnLoad(camera);
+
+		//LoadLevel(playerBundel.MovementPlayerController.CurrentScene);
+	}
+
+	private bool isPlayerRanged(MovemnetPlayerController playerMovement)
+	{
+		return playerMovement.isPlayerRanged;
 	}
 
 	public List<string> GetSaveNames()

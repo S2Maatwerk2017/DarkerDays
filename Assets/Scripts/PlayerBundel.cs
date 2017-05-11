@@ -6,7 +6,8 @@ public class PlayerBundel
 	public PlayerLevel PlayerLevel;
 	public Wallet Wallet;
 	public string IsInLevel;
-
+	
+	public PlayerBundel(){}
 
 	public PlayerBundel(MovemnetPlayerController movementPlayerController, PlayerLevel playerLevel, Wallet wallet)
 	{
