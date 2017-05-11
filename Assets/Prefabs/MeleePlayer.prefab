@@ -309,6 +309,8 @@ MonoBehaviour:
     type: 2}
   InventoryItem: {fileID: 1582477838919792, guid: eede831d8f12d914a802dcc1360b38c7,
     type: 2}
+  CurrentChosenSlot: {fileID: 0}
+  PickUpItem: {fileID: 1958048722812340, guid: 1ab5f1fe332f1ba47be5cbd550f0b0b7, type: 2}
 --- !u!114 &114514320945213600
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -45,5 +45,11 @@ using Assets.Scripts.Inventory;
             base.LoadNewData(item);
             
         }
+
+    public override int GetHealthGain()
+    {
+        return this.HPGain;
     }
+
+}
 

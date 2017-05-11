@@ -14,13 +14,13 @@ public class ItemCreator : MonoBehaviour {
     void Start () {
 
         //loadList = GetComponent<Load_ItemList>();
-        itemsList = Load_ItemList.Items();
-        PlaceItems();
         Vector3 myPosition = new Vector3();
         myPosition.x = 0;
         myPosition.y = 1;
         myPosition.z = 0;
         this.transform.position = myPosition;
+        itemsList = Load_ItemList.Items();
+        PlaceItems();
     }
 	
 	// Update is called once per frame

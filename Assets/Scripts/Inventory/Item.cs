@@ -46,4 +46,11 @@ public abstract class Item : MonoBehaviour
         this.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(Tag);
         Location = item.Location;
     }
+
+    public virtual int GetHealthGain()
+    {
+        return 0;
+    }
+
+   
 }

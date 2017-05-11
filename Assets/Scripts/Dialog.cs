@@ -7,9 +7,9 @@ namespace Assets.Scripts
 {
     public class Dialog
     {
-        public List<string> Lines { get; private set; }
+        public List<DialogLine> Lines { get; private set; }
 
-        public Dialog(List<string> lines )
+        public Dialog(List<DialogLine> lines )
         {
             Lines = lines;
         }
