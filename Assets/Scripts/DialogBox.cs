@@ -122,7 +122,7 @@ public class DialogBox : MonoBehaviour
                         optionsShown++;
                     }
                 }
-
+                //TODO geef de player een banaan.
                 // als je optie 1 hebt geselecteerd
                 //(dit is de correcte optie!!!! hier code inzetten om daadwerkelijk iets te doen.)
                 else if (EventSystem.current.currentSelectedGameObject == option1ToShow.gameObject)
@@ -130,6 +130,7 @@ public class DialogBox : MonoBehaviour
                     CurrentRandomNPC.SelectOption(0);
                     //laat de speler geld betalen
                     playermovement.PayGold(CurrentRandomNPC.Dialogs[0].Lines[currentLine].GoldToPay);
+                    
                     currentLine += 1;
                     EventSystem.current.SetSelectedGameObject(null);
                 }

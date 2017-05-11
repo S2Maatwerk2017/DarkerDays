@@ -30,8 +30,8 @@ public class RandomNPC : NPC
     {
         Options = new List<Dialog>();
         List<DialogLine> options = new List<DialogLine>();
-        options.Add(new DialogLine("Ja graag, die wasmachine is totaal niet te duur", false, true,5));
-        options.Add(new DialogLine("Nee, wat moet ik met een wasmachine", false, false));
+        options.Add(new DialogLine("Ja graag, die banaan is totaal niet te duur", false, true,5));
+        options.Add(new DialogLine("Nee, wat moet ik met een banaan?", false, false));
         Options.Add(new Dialog(options));
     }
 
