@@ -81,7 +81,7 @@ public class DialogBox : MonoBehaviour
                 }
             }
             //als je bij het einde van de dialogs bent
-            if (currentLine >= endOfLine )
+            if (currentLine >= endOfLine)
             {
                 CurrentRandomNPC.playerCollide = false;
                 SetDialogBox(false);
@@ -141,7 +141,7 @@ public class DialogBox : MonoBehaviour
                 //(dit is de correcte optie!!!! hier code inzetten om daadwerkelijk iets te doen.)
                 else if (EventSystem.current.currentSelectedGameObject == option1ToShow.gameObject)
                 {
-                    
+
                     //laat de speler geld betalen
                     if (playermovement.PayGold(CurrentRandomNPC.Dialogs[0].Lines[currentLine].GoldToPay))
                     {
@@ -189,10 +189,8 @@ public class DialogBox : MonoBehaviour
         {
             npc = (ShopKeeper)npc;
         }
-        if (endOfLine == 0)
-        {
-            endOfLine = npc.Dialogs[currentDialog].Lines.Count;
-        }
+        endOfLine = npc.Dialogs[currentDialog].Lines.Count;
+
     }
 
     //Laat de dialog box zien of niet. zet de canMove van player op true of false.
