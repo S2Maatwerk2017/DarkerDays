@@ -21,6 +21,7 @@ public class MovemnetPlayerController : MonoBehaviour
     public bool isPlayerRanged;
     public bool canMove = true;
     private float attackTimeCounter;
+    private float apRegenCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
 
@@ -223,7 +224,6 @@ public class MovemnetPlayerController : MonoBehaviour
         }
 
     }
-
 
     public void IncreaseGold(int IncreaseGold)
     {

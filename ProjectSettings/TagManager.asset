@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - InventoryPanel
+  - ShopKeeper
+  - Projectile
+  - Banana
+  - Apple
+  - Bed
+  - HealSkill
   layers:
   - Default
   - TransparentFX
