@@ -25,7 +25,6 @@ namespace Assets.Scripts.Skills
         {
             return value % 5 == 0;
         }
-
         public void RegenActionPoints()
         {
             CurrentActionPoints = CurrentActionPoints + RegenAmount;

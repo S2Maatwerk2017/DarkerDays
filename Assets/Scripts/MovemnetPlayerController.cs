@@ -49,7 +49,7 @@ public class MovemnetPlayerController : MonoBehaviour
         inventory = GetComponent<Inventory>();
         alleSkils = new AllSkills();
         ActionPoints = GetComponent<ActionPoints>();
-        apRegenCounter = 3;
+        apRegenCounter = 5;
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
@@ -158,7 +158,7 @@ public class MovemnetPlayerController : MonoBehaviour
         if (apRegenCounter < 0)
         {
             ActionPoints.RegenActionPoints();
-            apRegenCounter = 3;
+            apRegenCounter = 5;
         }
 
         if (attackTimeCounter > 0)
@@ -247,9 +247,9 @@ public class MovemnetPlayerController : MonoBehaviour
         wallet.GainGold(IncreaseGold);
     }
 
-    public void IncreaseXP(int increaseXP)
+    public bool IncreaseXP(int increaseXP)
     {
-        level.gainXP(increaseXP);
+        return level.gainXP(increaseXP);
     }
 
     public void SetFullHealth()
