@@ -115,7 +115,8 @@ public class RandomNPC : NPC
         List<DialogLine> lines = new List<DialogLine>();
         lines.Add(new DialogLine("random text", false, false));
         lines.Add(new DialogLine("Welkom in mijn wereld", false, false));
-        lines.Add(new DialogLine("Wil je voor 5 gold een wasmachine kopen?", true, false, 5));
+        lines.Add(new DialogLine("Wil je voor 5 gold een banaan kopen?", true, false, 5));
+        lines.Add(new DialogLine("Nogmaals bedankt!",false,false));
         Dialogs.Add(new Dialog(lines));
     }
 }

@@ -74,11 +74,15 @@ public class DialogBox : MonoBehaviour
                 currentLine += 1;
             }
             //als je bij het einde van de dialogs bent of als je al de juiste optie hebt geselecteerd.
-            if (currentLine >= endOfLine || CurrentRandomNPC.AlreadySelectedCorrectOption(currentLine))
+            if (currentLine >= endOfLine )
             {
                 CurrentRandomNPC.playerCollide = false;
                 SetDialogBox(false);
                 currentLine = 0;
+            }
+            else if (CurrentRandomNPC.AlreadySelectedCorrectOption(currentLine) && currentLine < endOfLine)
+            {
+                currentLine += 1;
             }
             else
             {   //laat de dialog text zien
