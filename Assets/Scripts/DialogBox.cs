@@ -140,9 +140,7 @@ public class DialogBox : MonoBehaviour
                 // als je optie 1 hebt geselecteerd
                 //(dit is de correcte optie!!!! hier code inzetten om daadwerkelijk iets te doen.)
                 else if (EventSystem.current.currentSelectedGameObject == option1ToShow.gameObject)
-                {
-
-                    //laat de speler geld betalen
+                {   //laat de speler geld betalen
                     if (playermovement.PayGold(CurrentRandomNPC.Dialogs[0].Lines[currentLine].GoldToPay))
                     {
                         CurrentRandomNPC.SelectOption(0);
@@ -190,7 +188,6 @@ public class DialogBox : MonoBehaviour
             npc = (ShopKeeper)npc;
         }
         endOfLine = npc.Dialogs[currentDialog].Lines.Count;
-
     }
 
     //Laat de dialog box zien of niet. zet de canMove van player op true of false.
