@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 54754240858731698}
   - component: {fileID: 65724766292073288}
   - component: {fileID: 195514530637347124}
+  - component: {fileID: 114360953391649826}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Enemy
@@ -52,8 +53,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1170271533663980}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.54, y: 1, z: -1.85}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -11.675001, y: -0.5, z: 19.94525}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4361270014053764}
@@ -116,11 +117,26 @@ MonoBehaviour:
   MoveSpeed: 2
   Damage: 0
   MaxHealth: 10
+  AttackRange: 0
+  IsBossEnemy: 0
   DamageNumber: {fileID: 1639270009125572, guid: 36024c27d0f89b042b825bc1751e0b7b,
+    type: 2}
+  DamageBurst: {fileID: 1741610336478772, guid: e9174e6293dbc974ab7c2bc31eea25a8,
     type: 2}
   Player: {fileID: 0}
   PlayerSpotted: 0
   projectile: {fileID: 1948076958550704, guid: 38694e290ef77384b8b2551a4f1c3848, type: 2}
+--- !u!114 &114360953391649826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1170271533663980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8658312e93262a41901c534c6654da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &195514530637347124
 NavMeshAgent:
   m_ObjectHideFlags: 1

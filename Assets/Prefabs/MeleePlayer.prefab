@@ -76,6 +76,11 @@ GameObject:
   - component: {fileID: 135080833307417242}
   - component: {fileID: 114716780120551820}
   - component: {fileID: 82861378282886124}
+  - component: {fileID: 114382951834869198}
+  - component: {fileID: 114074330498199922}
+  - component: {fileID: 114514320945213600}
+  - component: {fileID: 114553868529026022}
+  - component: {fileID: 114199678626029960}
   m_Layer: 0
   m_Name: MeleePlayer
   m_TagString: Player
@@ -117,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716688806628970}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.04, y: 1, z: -21.07}
+  m_LocalPosition: {x: 18.9, y: 1, z: -7.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364249642846902}
@@ -274,6 +279,75 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114074330498199922
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbecef1f81fb0d46b8649b9a5258dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemsList: []
+--- !u!114 &114199678626029960
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31c88d5ca407f349a3a771b7d90dc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryDispaly: {fileID: 0}
+--- !u!114 &114382951834869198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6945f626daa4b3c46970ff9e9a226bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryItems: []
+  InventorySlots: []
+  ItemsOnMap: []
+  itemsList: []
+  InventorySlot: {fileID: 1111467216151474, guid: 625e1edd0ec5c6e4ea5fec970cbd47a3,
+    type: 2}
+  InventoryItem: {fileID: 1582477838919792, guid: eede831d8f12d914a802dcc1360b38c7,
+    type: 2}
+  RandomItem: {fileID: 0}
+--- !u!114 &114514320945213600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ad2c6c6066d924cbd9b44db6235065, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  XP: 10
+  Lvl: 1
+--- !u!114 &114553868529026022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae0a240fa457fe4494c7809076c402c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gold: 5
 --- !u!114 &114716780120551820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,10 +375,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageToGive: 10
-  DamageBurst: {fileID: 1741610336478772, guid: e9174e6293dbc974ab7c2bc31eea25a8,
-    type: 2}
-  DamageNumber: {fileID: 1639270009125572, guid: 36024c27d0f89b042b825bc1751e0b7b,
-    type: 2}
+  DamageBurst: {fileID: 0}
+  DamageNumber: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!114 &114871774291589118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,6 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 5
   attackTime: 0.2
+  canMove: 1
   lastMove: {x: 0, y: 0, z: 0}
   playerRangedAttacking: 0
   isPlayerRanged: 0
@@ -364,11 +438,16 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -991188319
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 28e3abc70ec482e4ca6d9cf34328de90, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.75, y: 0.8125}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
 --- !u!212 &212631812782537460
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -399,11 +478,16 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -991188319
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7375f4e9b3a62524a83638669cc58c98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
 --- !u!212 &212760960088849110
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -434,8 +518,13 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -991188319
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b87f4155fe0aa084aa128ade3e45239f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.25, y: 0.625}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
