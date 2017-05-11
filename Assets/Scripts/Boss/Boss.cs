@@ -9,6 +9,9 @@ public class Boss : Enemy, IStrategy
 {
     public GameObject BossManager;
     public bool BossMayAggro = false;
+
+    public List<AudioClip> BossBGM;
+
     public override void Setup()
     {
         BossManager = GameObject.Find("BossManager");
@@ -21,11 +24,18 @@ public class Boss : Enemy, IStrategy
         {
             base.RunToPlayer();
             BossManager.GetComponent<BossManager>().SpawnEnemies(false);
-
+            if (SFXManager.Instance.TempBGM.clip != BossBGM[1])
+            {
+                SFXManager.Instance.PlayDifferentBMG(BossBGM[1]);
+            }
         }
         else
         {
             BossManager.GetComponent<BossManager>().SpawnEnemies(true);
+            if (SFXManager.Instance.TempBGM.clip != BossBGM[0])
+            {
+                SFXManager.Instance.PlayDifferentBMG(BossBGM[0]);
+            }
         }
     }
 
@@ -58,6 +68,7 @@ public class Boss : Enemy, IStrategy
             if (base.TakeDamage(value))
             {
                 BossManager.GetComponent<BossManager>().OpenGate();
+                SFXManager.Instance.PlayDefaultBMG();
                 return true;
             }
         }

@@ -123,6 +123,13 @@ MonoBehaviour:
     type: 2}
   DamageBurst: {fileID: 1741610336478772, guid: e9174e6293dbc974ab7c2bc31eea25a8,
     type: 2}
+  AttackAudioClips:
+  - {fileID: 8300000, guid: f7125a96a2d3a684dbbf71fe2ebd5637, type: 3}
+  - {fileID: 8300000, guid: ce8ef1a44c8bb744f99d06bad5bd4569, type: 3}
+  DeathAudioClips:
+  - {fileID: 8300000, guid: 4fff8960fc4c16441b29fa57fa9ef5d6, type: 3}
+  TakeDamageAudioClips:
+  - {fileID: 8300000, guid: 0d18c9496ded9bc4eb6be2e1a8eef350, type: 3}
   Player: {fileID: 0}
   PlayerSpotted: 0
   projectile: {fileID: 1948076958550704, guid: 38694e290ef77384b8b2551a4f1c3848, type: 2}

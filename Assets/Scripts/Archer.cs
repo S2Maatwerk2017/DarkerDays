@@ -19,8 +19,9 @@ public class Archer : Enemy, IStrategy {
              //TO BE FIXED !!!!!!!!!!!!!!!!!!
             this.transform.LookAt(Player.transform);
             var arrow = Instantiate(projectile,this.transform.position, Quaternion.identity);
+            SFXManager.Instance.RandomizeSfx(AttackAudioClips);
             arrow.GetComponent<Rigidbody>().velocity = (Player.transform.position - transform.position).normalized * 2;
-                        
+            
             Timer = 0;
         }
         Timer++;

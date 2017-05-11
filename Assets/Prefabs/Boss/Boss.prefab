@@ -133,6 +133,9 @@ MonoBehaviour:
   PlayerSpotted: 0
   BossManager: {fileID: 0}
   BossMayAggro: 0
+  BossBGM:
+  - {fileID: 8300000, guid: 1ba16afa2807bb94a8edddf86aa4b534, type: 3}
+  - {fileID: 8300000, guid: ae5162c04f1f38b4fa66cb122d5b95b0, type: 3}
 --- !u!114 &114543355838495728
 MonoBehaviour:
   m_ObjectHideFlags: 1
