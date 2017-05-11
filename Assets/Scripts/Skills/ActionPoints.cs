@@ -8,11 +8,9 @@ namespace Assets.Scripts.Skills
 {
     public class ActionPoints : MonoBehaviour
     {
-        private float MaxActionPoints;
-        private float CurrentActionPoints;
-
+        public float MaxActionPoints { get; private set; }
+        public float CurrentActionPoints { get; private set; }
         private float RegenAmount;
-
 
         public ActionPoints()
         {
