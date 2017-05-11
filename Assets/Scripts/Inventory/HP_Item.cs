@@ -6,13 +6,12 @@ using System.Text;
 using UnityEngine;
 using Assets.Scripts.Inventory;
 
-namespace Assets.Scripts
-{
+
     public class HP_Item : Item
     {
         public int HPGain { get; private set; }
 
-        public HP_Item(int itemID,string name, int price, string description, int amount, string tag,  int hpGain) : base(itemID, name, price, description, amount, tag)
+        public HP_Item(int itemID,string name, int price, string description, int amount, string tag,  int hpGain, int LocX, int LocY) : base(itemID, name, price, description, amount, tag,LocX, LocY)
         {
             this.HPGain = hpGain;
         }
@@ -24,32 +23,33 @@ namespace Assets.Scripts
 
         public override void OnCollisionEnter(Collision collision)
         {
-            Load_ItemList playerInventory = new Load_ItemList();
             if (collision.gameObject.tag == "Player")
             {
-                if (this.gameObject.tag == "Banana")
-                {
-                    AddItemFromMapToList(1, collision);
-                }
-
-                else if (this.gameObject.tag == "Apple")
-                {
-                    AddItemFromMapToList(5, collision);
-                }
-
-                else if (this.gameObject.tag == "Cucumber")
-                {
-                    AddItemFromMapToList(3, collision);
-                }
+                AddItemFromMapToList(this.ItemID, collision);
             }
         }
 
         public void AddItemFromMapToList(int itemID, Collision collision)
         {
-            collision.transform.GetComponent<global::Inventory>().AddNewItem(collision.transform.GetComponent<Load_ItemList>().GetItemByID(itemID));
+            collision.transform.GetComponent<global::Inventory>().AddNewItem(itemID);
             this.gameObject.SetActive(false);
             //collision.transform.GetComponent<Inventory>().RefreshInventory();
         }
 
+        public override void LoadNewData(Item item)
+        {
+            if (item is HP_Item) {
+                HP_Item HPItem = (HP_Item)item;
+                this.HPGain = HPItem.HPGain;
+            }
+            base.LoadNewData(item);
+            
+        }
+
+    public override int GetHealthGain()
+    {
+        return this.HPGain;
     }
+
 }
+
