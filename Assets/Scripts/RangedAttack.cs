@@ -49,7 +49,7 @@ public class RangedAttack : MonoBehaviour {
                 Projectiles.Add(arrow);
                 rigidbody = arrow.GetComponent<Rigidbody>();
                 Vector3 arrowDirection = new Vector3(movementPlayer.lastMove.x, 0f, movementPlayer.lastMove.z);
-                rigidbody.AddForce(arrowDirection * projectileVelocity, ForceMode.Impulse);
+                rigidbody.AddForce(arrowDirection * projectileVelocity, ForceMode.Impulse);             
 
                 Destroy(arrow, 3.0f);
             }

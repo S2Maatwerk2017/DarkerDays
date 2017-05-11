@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        playerCtrl = FindObjectOfType<MovemnetPlayerController>();
+        //playerCtrl = FindObjectOfType<MovemnetPlayerController>();
         playerHealth = FindObjectOfType<PlayerHealthManager>();
         playerLevel = FindObjectOfType<PlayerLevel>();
     }
