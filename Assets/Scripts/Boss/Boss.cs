@@ -46,7 +46,7 @@ public class Boss : Enemy, IStrategy
         }
     }
 
-    public override void TakeDamage(int value)
+    public override bool TakeDamage(int value)
     {
         if (!BossMayAggro)
         {
@@ -54,8 +54,13 @@ public class Boss : Enemy, IStrategy
         }
         else
         {
-            base.TakeDamage(value);
+            if (base.TakeDamage(value))
+            {
+                BossManager.GetComponent<BossManager>().OpenGate();
+                return true;
+            }
         }
+        return false;
     }
 }
 
