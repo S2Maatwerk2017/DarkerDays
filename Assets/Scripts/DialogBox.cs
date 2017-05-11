@@ -5,10 +5,12 @@ using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEditor;
 
 public class DialogBox : MonoBehaviour
 {
     public GameObject TextBox;
+    public GameObject ShopItemLayout;
     public ShopKeeper Currentshopkeeper;
     public RandomNPC CurrentRandomNPC;
     public MovemnetPlayerController playermovement;
@@ -17,16 +19,18 @@ public class DialogBox : MonoBehaviour
     public Text TextItemAmount;
     public Text TextItemCost;
     public GameObject ShopDialog;
-    private ShopWindow shopwindow;
 
     public int currentDialog;
     public int currentLine;
     public int endOfLine;
     public bool stopPlayerMovement;
 
+    public List<GameObject> ShopItemLayouts;
+
     // Use this for initialization
     void Start()
     {
+        ShopItemLayouts = new List<GameObject>();
         Debug.Log("dialogbox start");
         TextBox = GameObject.Find("DialogBox");
         //shopwindow = new ShopWindow();
@@ -143,6 +147,14 @@ public class DialogBox : MonoBehaviour
         {
             Debug.Log("Maak Shop aan vanaf Dialog box");
             Shop shop = new Shop();
+            Debug.Log("De shop heeft " + shop.Items.Count + " trades.");
+            GameObject DialogBoxShopGameObject = GameObject.Find("DialogBoxShop");
+            List<GameObject> ShopItemLayouts = new List<GameObject>();
+            foreach (Item item in shop.Items)
+            {
+                ShopItemLayouts.Add(Instantiate(ShopItemLayout));
+                DialogBoxShopGameObject.AddComponent(typeof(GameObject));
+            }
             TextItemCost.text = shop.Items.First().Price + "g";
             TextItemAmount.text = shop.Items.First().Amount + "x";
             TextItemName.text = shop.Items.First().Name;

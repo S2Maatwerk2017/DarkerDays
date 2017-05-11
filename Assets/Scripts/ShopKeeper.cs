@@ -38,23 +38,10 @@ namespace Assets.Scripts
                 case "Player":
                 {
                     Debug.Log("PlayerCollision geslaagd");
-                    ShowDialog();
-                        playerCollide = true;
-                    OpenShop();
-
+                    playerCollide = true;
                     break;
                 }
             }
-        }
-
-        private void OpenShop()
-        {
-            ShopWindow shopWindow = new ShopWindow();
-        }
-
-        private void ShowDialog()
-        {
-            OpenShop();
         }
     }
 }

@@ -14,7 +14,8 @@ public class Shop
     {
         Items = new List<Item>()
         {
-            new HP_Item(1, "Banana", 10, "Regenerates health with 2 hp", 2, "Banana", 2)
+            new HP_Item(1, "Banana", 10, "Regenerates health with 2 hp", 2, "Banana", 2),
+            new HP_Item(1, "Banana", 20, "Regenerates health with 2 hp", 5, "Banana", 2)
         };
         Debug.Log("Shop aangemaakt met " + Convert.ToString(Items.Count) + Items);
     }
