@@ -91,7 +91,7 @@ NavMeshSettings:
     cellSize: 0.033333335
     accuratePlacement: 0
   m_NavMeshData: {fileID: 23800000, guid: a45d8cfffa57e934199ebb38bf6be27a, type: 2}
---- !u!1001 &32189491
+--- !u!1001 &32219671
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -197,11 +197,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224131171113838568, guid: e943f2f46a1eb4b4fb5888e9b214ac25,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e943f2f46a1eb4b4fb5888e9b214ac25, type: 2}
