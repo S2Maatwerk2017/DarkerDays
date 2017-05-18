@@ -30,9 +30,15 @@ public class SFXManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 	}
 
+    public void SingleSfx(AudioClip clip)
+    {
+        SfxSource.clip = clip;
+        SfxSource.Play();
+    }
+
     public void RandomizeSfx(List<AudioClip> clips)
     {
-        int randomindex = Random.Range(0, clips.Count -1);
+        int randomindex = Random.Range(0, clips.Count);
         SfxSource.clip = clips[randomindex];
         SfxSource.pitch = Random.Range(lowPitchRange, highPitchRange);
         SfxSource.Play();

@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 135758595403363692}
   - component: {fileID: 114381216497604482}
   - component: {fileID: 114202983162969870}
-  - component: {fileID: 114067764238897240}
   - component: {fileID: 114375528285478378}
   - component: {fileID: 114823091625910460}
   - component: {fileID: 114581980714629386}
@@ -198,18 +197,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114067764238897240
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1730292961708682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbecef1f81fb0d46b8649b9a5258dcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemsList: []
 --- !u!114 &114202983162969870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,7 +216,8 @@ MonoBehaviour:
     type: 2}
   InventoryItem: {fileID: 1582477838919792, guid: eede831d8f12d914a802dcc1360b38c7,
     type: 2}
-  RandomItem: {fileID: 0}
+  CurrentChosenSlot: {fileID: 0}
+  PickUpItem: {fileID: 1958048722812340, guid: 1ab5f1fe332f1ba47be5cbd550f0b0b7, type: 2}
 --- !u!114 &114375528285478378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -289,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31c88d5ca407f349a3a771b7d90dc8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryDispaly: {fileID: 0}
+  InventoryDisplay: {fileID: 0}
 --- !u!114 &114670235967659380
 MonoBehaviour:
   m_ObjectHideFlags: 1

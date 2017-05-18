@@ -28,7 +28,7 @@ namespace Assets.Scripts
             lines.Add("Hallo");
             lines.Add("Welkom bij mijn shop");
             lines.Add("Kijk rustig rond");
-            Dialogs.Add(new Dialog(lines));
+           // Dialogs.Add(new Dialog(lines));
         }
 
         public void OnCollisionEnter(Collision other)

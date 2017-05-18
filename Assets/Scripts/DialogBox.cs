@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DialogBox : MonoBehaviour
 {
-    public GameObject TextBox;
+   /* public GameObject TextBox;
     public ShopKeeper Currentshopkeeper;
     public RandomNPC CurrentRandomNPC;
     public MovemnetPlayerController playermovement;
     public Text textToShow;
+    public Text option1ToShow;
+    public Text option2ToShow;
+    private int optionsShown = 1;
 
     public int currentDialog;
     public int currentLine;
@@ -30,16 +35,20 @@ public class DialogBox : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   //als de shopkeeper collide met player.
         if (Currentshopkeeper.playerCollide)
-        {
+        {   //set options to show naar false
+            option1ToShow.gameObject.SetActive(false);
+            option2ToShow.gameObject.SetActive(false);
             SetEndOfLine((NPC)Currentshopkeeper);
             SetDialogBox(true);
+            //als je op n drukt, laat de volgende line zien.
             if (Input.GetKeyDown(KeyCode.N))
             {
                 Debug.Log("+1");
                 currentLine += 1;
             }
+            //als je aan het einde bent van de dialogs, laat de dialogbox niet meer zien.
             if (currentLine >= endOfLine)
             {
                 Currentshopkeeper.playerCollide = false;
@@ -52,9 +61,10 @@ public class DialogBox : MonoBehaviour
             }
             else
             {
-                textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
+                textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine].Line;
             }
         }
+        //als de currentrandomnpc met de player collide.
         if (CurrentRandomNPC.playerCollide)
         {
             SetEndOfLine((NPC)CurrentRandomNPC);
@@ -63,26 +73,79 @@ public class DialogBox : MonoBehaviour
             {
                 currentLine += 1;
             }
-            if (currentLine >= endOfLine)
+            //als je bij het einde van de dialogs bent of als je al de juiste optie hebt geselecteerd.
+            if (currentLine >= endOfLine || CurrentRandomNPC.AlreadySelectedCorrectOption(currentLine))
             {
                 CurrentRandomNPC.playerCollide = false;
                 SetDialogBox(false);
                 currentLine = 0;
             }
             else
-            {
-                textToShow.text = CurrentRandomNPC.Dialogs[0].Lines[currentLine];
+            {   //laat de dialog text zien
+                textToShow.text = CurrentRandomNPC.Dialogs[0].Lines[currentLine].Line;
+                //als de dialog geen opties heeft, laat de optie boxen dan niet zien.
+                if (!CurrentRandomNPC.Dialogs[0].Lines[currentLine].HasOptions)
+                {
+                    option1ToShow.text = "";
+                    option2ToShow.text = "";
+                    option1ToShow.gameObject.SetActive(false);
+                    option2ToShow.gameObject.SetActive(false);
+                }//als de dialog wel opties heeft en nog neit de correcte hebt geselecteerd en alle opties laat zien
+                else if (CurrentRandomNPC.Dialogs[0].Lines[currentLine].HasOptions && !CurrentRandomNPC.AlreadySelectedCorrectOption(currentLine) && optionsShown < CurrentRandomNPC.Dialogs[0].Lines.Count)
+                {
+                    option1ToShow.gameObject.SetActive(true);
+                    option2ToShow.gameObject.SetActive(true);
+                    //voor elke optie
+                    for (int i = 1; i <= CurrentRandomNPC.Options[0].Lines.Count; i++)
+                    {
+                        Debug.Log(i + " + " + optionsShown);
+                        //als optie 1 gevuld is
+                        if (option1ToShow.text != "")
+                        {
+                            Debug.Log("Option2 moet gevuld worden");
+                            option2ToShow.text = CurrentRandomNPC.Options[0].Lines[i - 1].Line;
+                            Debug.Log("option1: " + option1ToShow.text);
+                            Debug.Log("option2: " + option2ToShow.text);
+                        }
+                        //als optie 2 niet gevuld is
+                        else if (option2ToShow.text == "")
+                        {
+                            Debug.Log("option1 moet nu gevuld worden");
+                            option1ToShow.text = CurrentRandomNPC.Options[0].Lines[i - 1].Line;
+                            Debug.Log("option1: " + option1ToShow.text);
+                            Debug.Log("option2: " + option2ToShow.text);
+                        }
+                        optionsShown++;
+                    }
+                }
+
+                // als je optie 1 hebt geselecteerd    
+                //(dit is de correcte optie!!!! hier code inzetten om daadwerkelijk iets te doen.)
+                else if (EventSystem.current.currentSelectedGameObject == option1ToShow.gameObject)
+                {
+                    CurrentRandomNPC.SelectOption(0);
+                    playermovement.PayGold(CurrentRandomNPC.Dialogs[0].Lines[currentLine].GoldToPay);
+                    currentLine += 1;
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+                //als je optie 2 hebt geselecteerd
+                else if (EventSystem.current.currentSelectedGameObject == option2ToShow.gameObject)
+                {
+                    CurrentRandomNPC.SelectOption(1);
+                    currentLine += 1;
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
             }
         }
     }
 
     public void SetEndOfLine(NPC npc)
     {
-        if (npc.GetType() == typeof(RandomNPC))
+        if (npc is RandomNPC)
         {
             npc = (RandomNPC)npc;
         }
-        else if (npc.GetType() == typeof(ShopKeeper))
+        else if (npc is ShopKeeper)
         {
             npc = (ShopKeeper)npc;
         }
@@ -92,17 +155,18 @@ public class DialogBox : MonoBehaviour
         }
     }
 
-    //Laat de dialog box zien of niet.
+    //Laat de dialog box zien of niet. zet de canMove van player op true of false.
     public void SetDialogBox(bool value)
     {
         TextBox.SetActive(value);
         if (!value)
         {
             playermovement.canMove = true;
+            optionsShown = 1;
         }
         else
         {
             playermovement.canMove = false;
         }
-    }
+    }*/
 }
