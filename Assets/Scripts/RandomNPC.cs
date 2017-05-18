@@ -41,7 +41,7 @@ public class RandomNPC : NPC
     private void Move()
     {
         Vector3 NextLocation;
-        Debug.Log("stop niet met lopen");
+        //Debug.Log("stop niet met lopen");
         int x = (int)Random.Range(-3, 3);
         int z = (int)Random.Range(-3, 3);
 
@@ -54,7 +54,7 @@ public class RandomNPC : NPC
     private void DontMove()
     {
         Vector3 NextLocation;
-        Debug.Log("stop met lopen");
+        //Debug.Log("stop met lopen");
         NextLocation = this.transform.position;
         this.MyRigidbody.velocity = new Vector3();
         agent.SetDestination(NextLocation);
@@ -62,7 +62,7 @@ public class RandomNPC : NPC
 
     public void OnCollisionEnter(Collision other)
     {
-        Debug.Log("in methode");
+        //Debug.Log("in methode");
         switch (other.collider.tag)
         {
             case "Player":

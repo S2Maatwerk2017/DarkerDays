@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Slider healthBar;
+    public Slider ExpBar;
     public Text healthText;
     public Text LvlText;
     public Text GoldText;
@@ -31,7 +32,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        playerCtrl = FindObjectOfType<MovemnetPlayerController>();
+        //playerCtrl = FindObjectOfType<MovemnetPlayerController>();
         playerHealth = FindObjectOfType<PlayerHealthManager>();
         playerLevel = FindObjectOfType<PlayerLevel>();
         actionPoints = FindObjectOfType<ActionPoints>();
@@ -42,6 +43,8 @@ public class UIManager : MonoBehaviour
     {
         healthBar.maxValue = playerHealth.playerMaxHealth;
         healthBar.value = playerHealth.playerCurrentHealth;
+        ExpBar.maxValue = 100;
+        ExpBar.value = playerLevel.XP;
         healthText.text = "HP: " + playerHealth.playerCurrentHealth + "/" + playerHealth.playerMaxHealth;
         LvlText.text = "LVL: " + playerLevel.Lvl;
         GoldText.text = Convert.ToString(playerCtrl.ToStringGold());

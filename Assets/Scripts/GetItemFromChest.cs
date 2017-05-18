@@ -8,7 +8,7 @@ public class GetItemFromChest : MonoBehaviour {
     private Inventory pi;
     public bool ChestOpened = false;
     int index;
-    
+    public Animator ani { get; private set; }
 
     private Item RandomItem()
     {
@@ -23,7 +23,14 @@ public class GetItemFromChest : MonoBehaviour {
 
     public void addRandomItemsToInventory(Inventory inventory)
     {
+        ani = GetComponent<Animator>();
         ChestOpened = true;
+
+        if (ChestOpened)
+        {
+            ani.SetBool("Opened", ChestOpened);
+        }
+
         this.pi = inventory;
         inventory.InventoryItems.Add(RandomItem());
     }

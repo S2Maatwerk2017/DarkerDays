@@ -99,13 +99,14 @@ GameObject:
   - component: {fileID: 114514320945213600}
   - component: {fileID: 114553868529026022}
   - component: {fileID: 114199678626029960}
+  - component: {fileID: 114871937532698790}
   m_Layer: 0
   m_Name: MeleePlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4057026653721914
 Transform:
   m_ObjectHideFlags: 1
@@ -140,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1716688806628970}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 7.2705016, y: 0.18, z: -9.068586}
+  m_LocalPosition: {x: 20.772, y: 1, z: -36.522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364249642846902}
@@ -395,8 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ad2c6c6066d924cbd9b44db6235065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XP: 10
+  XP: 0
   Lvl: 1
+  HealthManager: {fileID: 0}
 --- !u!114 &114553868529026022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -459,6 +461,18 @@ MonoBehaviour:
   isPlayerRanged: 0
   canMove: 1
   DiagnalMoveSpeedMultiplier: 0.75
+  ActionPoints: {fileID: 0}
+--- !u!114 &114871937532698790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1716688806628970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e44e7767c45174b8f2210b23b83280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135080833307417242
 SphereCollider:
   m_ObjectHideFlags: 1

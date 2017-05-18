@@ -80,7 +80,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.1
+    agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -88,10 +88,15 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.033333335
+    cellSize: 0.16666667
     accuratePlacement: 0
+<<<<<<< HEAD
+  m_NavMeshData: {fileID: 0}
+--- !u!1001 &294678232
+=======
   m_NavMeshData: {fileID: 23800000, guid: 8dd284d3971bbc0439fe5b24924f8956, type: 2}
 --- !u!1001 &5324518
+>>>>>>> 4fbc87018c66d36f0dcfd191b769fe1a0ad220c7
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -941,6 +946,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1d419cb79d657a54cb905cc136cb47d9, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &1214895731
+=======
     - target: {fileID: 114199678626029960, guid: 1d419cb79d657a54cb905cc136cb47d9,
         type: 2}
       propertyPath: InventoryDispaly
@@ -1079,6 +1090,7 @@ Transform:
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1651195129
+>>>>>>> 4fbc87018c66d36f0dcfd191b769fe1a0ad220c7
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1207,6 +1219,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d8eef3d42153ae24985f57b62239276e, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
+=======
 --- !u!4 &1950069058 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4689432194460680, guid: 9c47084d9cc051a4f9faa72e551b98e8,
@@ -1359,3 +1373,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9e44e7767c45174b8f2210b23b83280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+--- !u!114 &2099321853 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114752410906269996, guid: e943f2f46a1eb4b4fb5888e9b214ac25,
+    type: 2}
+  m_PrefabInternal: {fileID: 1986163244}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+>>>>>>> 4fbc87018c66d36f0dcfd191b769fe1a0ad220c7
+>>>>>>> 11e55a7e59762ba76430790de3f8acd12bbd96a6

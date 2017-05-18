@@ -265,6 +265,7 @@ public class MovemnetPlayerController : MonoBehaviour
     public string ToStringGold()
     {
         return "Gold: " + Convert.ToString(wallet.Gold);
+        
     }
 
 }
