@@ -16,7 +16,7 @@ namespace Assets.Scripts.Inventory
 
         void Start()
         {
-            InventoryDispaly = new GameObject();
+
         }
 
         void Update()
