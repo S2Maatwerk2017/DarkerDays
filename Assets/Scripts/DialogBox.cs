@@ -10,6 +10,7 @@ using UnityEditor;
 public class DialogBox : MonoBehaviour
 {
     public GameObject TextBox;
+    public GameObject ShopTradeSlot;
     public GameObject ShopItemLayout;
     public ShopKeeper Currentshopkeeper;
     public RandomNPC CurrentRandomNPC;
@@ -18,6 +19,7 @@ public class DialogBox : MonoBehaviour
     public Text TextItemName;
     public Text TextItemAmount;
     public Text TextItemCost;
+    public Image ImageItemSprite;
     public GameObject ShopDialog;
 
     public int currentDialog;
@@ -146,14 +148,48 @@ public class DialogBox : MonoBehaviour
         else
         {
             Debug.Log("Maak Shop aan vanaf Dialog box");
-            Shop shop = new Shop();
+            Shop shop = new Shop(Load_ItemList.ItemsList);
             Debug.Log("De shop heeft " + shop.Items.Count + " trades.");
-            GameObject DialogBoxShopGameObject = GameObject.Find("DialogBoxShop");
-            List<GameObject> ShopItemLayouts = new List<GameObject>();
+            List<GameObject> ShopItemSlots = new List<GameObject>();
+            int i = 0;
             foreach (Item item in shop.Items)
             {
-                ShopItemLayouts.Add(Instantiate(ShopItemLayout));
-                DialogBoxShopGameObject.AddComponent(typeof(GameObject));
+                GameObject shopSlot = Instantiate(ShopTradeSlot);
+                shopSlot.transform.SetParent(ShopDialog.transform);
+                Vector3 originalPosition = shopSlot.transform.position;
+                originalPosition.x += (100 * i);
+                shopSlot.transform.position = originalPosition;
+                ShopItemSlots.Add(shopSlot);
+                if (item.ItemID == -1)
+                {
+                    continue;
+                }
+                //
+                GameObject shopItem = Instantiate(ShopItemLayout);
+                shopItem.transform.SetParent(shopSlot.transform);
+                Text shopItemName = Instantiate(TextItemName);
+                shopItemName.transform.SetParent(shopItem.transform);
+                shopItemName.text = item.Name;
+                Text shopItemPrice = Instantiate(TextItemCost);
+                shopItemPrice.transform.SetParent(shopItem.transform);
+                shopItemPrice.text = item.Price + "g";
+                Text shopItemAmount = Instantiate(TextItemAmount);
+                shopItemAmount.transform.SetParent(shopItem.transform);
+                shopItemAmount.text = item.Amount + "x";
+                Image shopItemSprite = Instantiate(ImageItemSprite);
+                shopItemSprite.transform.SetParent(shopItem.transform);
+                shopItemSprite.sprite = item.Sprite;
+
+
+                //GameObject shopItem = Instantiate(ShopItemLayout);
+                //Vector3 originalPosition = shopItem.transform.position;
+                //originalPosition.y += (100 * i);
+                //shopItem.transform.position = new Vector3();
+                //ShopItemLayouts.Add(shopItem);
+
+                //DialogBoxShopGameObject.AddComponent(typeof(GameObject));
+
+                i++;
             }
             TextItemCost.text = shop.Items.First().Price + "g";
             TextItemAmount.text = shop.Items.First().Amount + "x";

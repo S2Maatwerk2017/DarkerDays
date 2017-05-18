@@ -31,7 +31,7 @@ public class ShopBuyItem : MonoBehaviour, IPointerClickHandler {
             Debug.Log(hit.collider.name);
             Debug.Log("I have been clicked");
         }
-
+        
     }
 
     public int GetId()
@@ -44,7 +44,7 @@ public class ShopBuyItem : MonoBehaviour, IPointerClickHandler {
         GameObject playerGameObject = GameObject.Find("MeleePlayer");
         Inventory playerInventory = (Inventory)playerGameObject.GetComponent(typeof(Inventory));
         Wallet playerWallet = (Wallet) playerGameObject.GetComponent(typeof(Wallet));
-        Shop shop = new Shop();
+        Shop shop = new Shop(Load_ItemList.ItemsList);
         if (shop.BuyItem(0).Price > playerWallet.Gold)
         {
             Debug.Log("You can't buy this item!");
