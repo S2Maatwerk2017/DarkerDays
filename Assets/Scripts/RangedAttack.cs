@@ -39,7 +39,7 @@ public class RangedAttack : MonoBehaviour {
         //if (crossProduct.z < 0)
         //    aimAngel = 360 - aimAngel;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (movementPlayer.playerRangedAttacking == false)
             {

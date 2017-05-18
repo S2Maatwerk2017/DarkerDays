@@ -24,18 +24,12 @@ public class PlayerLevel : MonoBehaviour {
     {
         if (XP >= 100)
         {
-<<<<<<< HEAD
             LevelUp();
-=======
-            Lvl = Lvl + 1;
-            XP = XP - 100;
             return true;
->>>>>>> 4fbc87018c66d36f0dcfd191b769fe1a0ad220c7
         }
         return false;
     }
 
-<<<<<<< HEAD
     private void LevelUp()
     {
         Lvl = Lvl + 1;
@@ -45,10 +39,7 @@ public class PlayerLevel : MonoBehaviour {
         HealthManager.playerCurrentHealth += 5;
     }
 
-    public void gainXP(int ammount)
-=======
     public bool gainXP(int ammount)
->>>>>>> 4fbc87018c66d36f0dcfd191b769fe1a0ad220c7
     {
         XP = XP + ammount;
         Debug.Log(XP);
