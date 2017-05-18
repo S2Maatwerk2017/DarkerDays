@@ -24,10 +24,12 @@ namespace Assets.Scripts
         //TODO Zet hier de tekst van de npc in.
         private void FillDialogList()
         {
-            List<DialogLine> lines = new List<DialogLine>();
-            lines.Add(new DialogLine("Hallo", false, false));
-            lines.Add(new DialogLine("Welkom bij mijn shop", false, false));
-            lines.Add(new DialogLine("Kijk rustig rond", false, false));
+            List<DialogLine> lines = new List<DialogLine>
+            {
+                new DialogLine("Hallo", false, false),
+                new DialogLine("Welkom bij mijn shop", false, false),
+                new DialogLine("Kijk rustig rond", false, false)
+            };
             Dialogs.Add(new Dialog(lines));
         }
 
