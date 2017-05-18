@@ -36,17 +36,12 @@ namespace Assets.Scripts
             switch (other.collider.tag)
             {
                 case "Player":
-                    {
-                        playerCollide = true;
-                        //OpenShop();
-                        break;
-                    }
+                {
+                    Debug.Log("PlayerCollision geslaagd");
+                    playerCollide = true;
+                    break;
+                }
             }
-        }
-
-        private void OpenShop()
-        {
-            throw new NotImplementedException();
         }
     }
 }
