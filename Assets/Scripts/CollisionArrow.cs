@@ -11,7 +11,7 @@ public class CollisionArrow : MonoBehaviour
     private GameObject Player;
 
     // Use this for initialization
-<<<<<<< HEAD
+
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
@@ -24,17 +24,6 @@ public class CollisionArrow : MonoBehaviour
 
     }
 
-=======
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-    
->>>>>>> 4fbc87018c66d36f0dcfd191b769fe1a0ad220c7
     void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Enemy")
