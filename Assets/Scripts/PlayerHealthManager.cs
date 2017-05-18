@@ -57,6 +57,15 @@ public class PlayerHealthManager : MonoBehaviour
         iFrames = iFramesLength;
     }
 
+    public void HealPlayer(int value)
+    {
+        playerCurrentHealth += value;
+        if (playerCurrentHealth > playerMaxHealth)
+        {
+            playerCurrentHealth = playerMaxHealth;
+        }
+    }
+
     public void SetMaxHealth()
     {
         playerCurrentHealth = playerMaxHealth;
