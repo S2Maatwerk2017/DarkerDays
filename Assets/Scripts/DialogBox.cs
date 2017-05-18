@@ -6,10 +6,13 @@ using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Linq;
+using UnityEditor;
 
 public class DialogBox : MonoBehaviour
 {
     public GameObject TextBox;
+    public GameObject ShopItemLayout;
     public ShopKeeper Currentshopkeeper;
     public RandomNPC CurrentRandomNPC;
     public MovemnetPlayerController playermovement;
@@ -17,18 +20,27 @@ public class DialogBox : MonoBehaviour
     public Text option1ToShow;
     public Text option2ToShow;
     private int optionsShown = 1;
+    public Text TextItemName;
+    public Text TextItemAmount;
+    public Text TextItemCost;
+    public GameObject ShopDialog;
 
     public int currentDialog;
     public int currentLine;
     public int endOfLine;
     public bool stopPlayerMovement;
 
+    public List<GameObject> ShopItemLayouts;
+
     // Use this for initialization
     void Start()
     {
+        ShopItemLayouts = new List<GameObject>();
         Debug.Log("dialogbox start");
         TextBox = GameObject.Find("DialogBox");
+        //shopwindow = new ShopWindow();
         SetDialogBox(false);
+        SetDialogShopBox(false);
         currentDialog = 0;
         endOfLine = 0;
     }
@@ -45,23 +57,35 @@ public class DialogBox : MonoBehaviour
             //als je op n drukt, laat de volgende line zien.
             if (Input.GetKeyDown(KeyCode.N))
             {
+                if (currentLine == -1)
+                {
+                    Debug.Log("Exit Shop");
+                    Currentshopkeeper.playerCollide = false;
+                    SetDialogShopBox(false);
+                    SetDialogBox(false);
+                    currentLine = 0;
+                    return;
+                }
                 Debug.Log("+1");
                 currentLine += 1;
+
             }
             //als je aan het einde bent van de dialogs, laat de dialogbox niet meer zien.
             if (currentLine >= endOfLine)
             {
-                Currentshopkeeper.playerCollide = false;
                 Debug.Log(currentLine);
                 Debug.Log("Aantal lines " + Currentshopkeeper.Dialogs[currentDialog].Lines.Count);
                 Debug.Log("AAntal dialog" + Currentshopkeeper.Dialogs.Count);
                 Debug.Log(endOfLine);
                 SetDialogBox(false);
-                currentLine = 0;
+                SetDialogShopBox(true);
+                currentLine = -1;
             }
-            else
+            else if (currentLine > -1)
             {
-                textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine].Line;
+                Debug.Log("Show new line");
+                Debug.Log(currentLine);
+                textToShow.text = Currentshopkeeper.Dialogs[0].Lines[currentLine];
             }
         }
         //als de currentrandomnpc met de player collide.
@@ -187,7 +211,11 @@ public class DialogBox : MonoBehaviour
         {
             npc = (ShopKeeper)npc;
         }
-        endOfLine = npc.Dialogs[currentDialog].Lines.Count;
+        if (endOfLine == 0)
+        {
+            Debug.Log("Set End Of Line");
+            endOfLine = npc.Dialogs[currentDialog].Lines.Count;
+        }
     }
 
     //Laat de dialog box zien of niet. zet de canMove van player op true of false.
@@ -201,6 +229,33 @@ public class DialogBox : MonoBehaviour
         }
         else
         {
+            playermovement.canMove = false;
+        }
+    }
+
+    public void SetDialogShopBox(bool value)
+    {
+        Debug.Log(ShopDialog.ToString() + "hey hey");
+        ShopDialog.SetActive(value);
+        if (!value)
+        {
+            playermovement.canMove = true;
+        }
+        else
+        {
+            Debug.Log("Maak Shop aan vanaf Dialog box");
+            Shop shop = new Shop();
+            Debug.Log("De shop heeft " + shop.Items.Count + " trades.");
+            GameObject DialogBoxShopGameObject = GameObject.Find("DialogBoxShop");
+            List<GameObject> ShopItemLayouts = new List<GameObject>();
+            foreach (Item item in shop.Items)
+            {
+                ShopItemLayouts.Add(Instantiate(ShopItemLayout));
+                DialogBoxShopGameObject.AddComponent(typeof(GameObject));
+            }
+            TextItemCost.text = shop.Items.First().Price + "g";
+            TextItemAmount.text = shop.Items.First().Amount + "x";
+            TextItemName.text = shop.Items.First().Name;
             playermovement.canMove = false;
         }
     }

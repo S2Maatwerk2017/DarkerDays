@@ -7,18 +7,16 @@ public class MovemnetPlayerController : MonoBehaviour
 {
     public float MoveSpeed;
     public float attackTime;
-
+    public bool canMove = true;
     private float seconds;
     private Rigidbody RB;
     //private Animator ani;
     public Animator ani { get; private set; }
     private bool playerMoving;
-    [HideInInspector]
-    public Vector3 lastMove;
+    [HideInInspector] public Vector3 lastMove;
     private bool playerMeleeAttacking;
     public bool playerRangedAttacking;
     public bool isPlayerRanged;
-    public bool canMove = true;
     private float attackTimeCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
@@ -73,7 +71,6 @@ public class MovemnetPlayerController : MonoBehaviour
             //    lastMove = new Vector3(0f, 0f, Input.GetAxisRaw("Vertical"));
             //}
 
-            // als de speler niet mag bewegen doe niks.
             if (canMove)
             {
                 //lopen werkend!!

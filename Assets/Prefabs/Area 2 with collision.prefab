@@ -4285,7 +4285,7 @@ GameObject:
   - component: {fileID: 4107735703131898}
   - component: {fileID: 114243404397100408}
   m_Layer: 0
-  m_Name: ' Cave walls'
+  m_Name: Cave walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
