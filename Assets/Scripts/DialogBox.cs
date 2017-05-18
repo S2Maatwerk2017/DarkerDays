@@ -156,15 +156,15 @@ public class DialogBox : MonoBehaviour
             {
                 GameObject shopSlot = Instantiate(ShopTradeSlot);
                 shopSlot.transform.SetParent(ShopDialog.transform);
-                Vector3 originalPosition = shopSlot.transform.position;
-                originalPosition.x += (100 * i);
-                shopSlot.transform.position = originalPosition;
+                //Vector3 originalPosition = shopSlot.transform.position;
+                //originalPosition.x += (100 * i);
+                //shopSlot.transform.position = originalPosition;
                 ShopItemSlots.Add(shopSlot);
                 if (item.ItemID == -1)
                 {
                     continue;
                 }
-                //
+                
                 GameObject shopItem = Instantiate(ShopItemLayout);
                 shopItem.transform.SetParent(shopSlot.transform);
                 Text shopItemName = Instantiate(TextItemName);
