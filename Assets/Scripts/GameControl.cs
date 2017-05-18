@@ -102,10 +102,10 @@ public class GameControl : MonoBehaviour {
 		DontDestroyOnLoad(player);
 		DontDestroyOnLoad(camera);
 
-		//LoadLevel(playerBundel.MovementPlayerController.CurrentScene);
+		LoadLevel(playerBundel.IsInLevel);
 	}
 
-	private bool isPlayerRanged(MovemnetPlayerController playerMovement)
+	private bool isPlayerRanged(PlayerMovementSave playerMovement)
 	{
 		return playerMovement.isPlayerRanged;
 	}
@@ -121,3 +121,26 @@ public class GameControl : MonoBehaviour {
 		return savenames;
 	}
 }
+
+/* premade vorm van methodes binnen de individuele classes die opgeslagen moeten worden
+
+	 * PlayerMovementController
+	public void LoadMovementPlayerController(PlayerMovementSave playerMovementSave)
+	{
+		this.isPlayerRanged = playerMovementSave.isPlayerRanged;
+		this.gameObject.transform.position = PlayerMovementSave.playerLocation;
+	}
+
+	 * PlayerLevel
+	public void LoadPlayerLevel(PlayerLevelSave playerLevel)
+	{
+		this.XP = playerLevel.Experience;
+		this.Lvl = playerLevel.Level;
+	}
+
+	 * Wallet
+	public void LoadWallet(WalletSave wallet)
+	{
+		this.Gold = wallet.Gold;
+	}
+*/
