@@ -49,7 +49,12 @@ public class DialogBox : MonoBehaviour
     void Update()
     {   //als de shopkeeper collide met player.
         if (Currentshopkeeper.playerCollide)
-        {   //set options to show naar false
+        {
+            if (CurrentRandomNPC.playerCollide)
+            {
+                CurrentRandomNPC.playerCollide = false;
+            }
+            //set options to show naar false
             option1ToShow.gameObject.SetActive(false);
             option2ToShow.gameObject.SetActive(false);
             SetEndOfLine((NPC)Currentshopkeeper);
@@ -91,6 +96,10 @@ public class DialogBox : MonoBehaviour
         //als de currentrandomnpc met de player collide.
         if (CurrentRandomNPC.playerCollide)
         {
+            if (Currentshopkeeper.playerCollide)
+            {
+                Currentshopkeeper.playerCollide = false;
+            }
             SetEndOfLine((NPC)CurrentRandomNPC);
             SetDialogBox(true);
             if (Input.GetKeyDown(KeyCode.N))
@@ -160,7 +169,6 @@ public class DialogBox : MonoBehaviour
                         optionsShown++;
                     }
                 }
-                //TODO geef de player een banaan.
                 // als je optie 1 hebt geselecteerd
                 //(dit is de correcte optie!!!! hier code inzetten om daadwerkelijk iets te doen.)
                 else if (EventSystem.current.currentSelectedGameObject == option1ToShow.gameObject)
@@ -168,6 +176,9 @@ public class DialogBox : MonoBehaviour
                     if (playermovement.PayGold(CurrentRandomNPC.Dialogs[0].Lines[currentLine].GoldToPay))
                     {
                         CurrentRandomNPC.SelectOption(0);
+                        //haal de inventory op en voeg een banaan toe.
+                        Inventory inventory = (Inventory) playermovement.GetComponent(typeof(Inventory));
+                        inventory.AddNewItem(1);
                         if ((currentLine + 1) == 3)
                         {
                             currentLine += 2;
@@ -211,11 +222,8 @@ public class DialogBox : MonoBehaviour
         {
             npc = (ShopKeeper)npc;
         }
-        if (endOfLine == 0)
-        {
             Debug.Log("Set End Of Line");
             endOfLine = npc.Dialogs[currentDialog].Lines.Count;
-        }
     }
 
     //Laat de dialog box zien of niet. zet de canMove van player op true of false.
