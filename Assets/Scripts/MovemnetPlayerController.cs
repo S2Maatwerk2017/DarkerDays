@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Skills;
 using UnityEngine;
 
 public class MovemnetPlayerController : MonoBehaviour
@@ -20,6 +21,7 @@ public class MovemnetPlayerController : MonoBehaviour
     public bool isPlayerRanged;
     public bool canMove = true;
     private float attackTimeCounter;
+    private float apRegenCounter;
     private float CurrentMoveSpeed;
     public float DiagnalMoveSpeedMultiplier;
 
@@ -28,6 +30,8 @@ public class MovemnetPlayerController : MonoBehaviour
     private Wallet wallet;
     private PlayerLevel level;
     private Inventory inventory;
+    private AllSkills alleSkils;
+    public ActionPoints ActionPoints;
     GetItemFromChest chest = new GetItemFromChest();
     //HideInInspector verbert jouw public variabelen voor unity. 
     //zo kun je ze toch aanroepen in andere classes, mara word deze niet getoont in unity zelf
@@ -43,6 +47,9 @@ public class MovemnetPlayerController : MonoBehaviour
         wallet = GetComponent<Wallet>();
         level = GetComponent<PlayerLevel>();
         inventory = GetComponent<Inventory>();
+        alleSkils = new AllSkills();
+        ActionPoints = GetComponent<ActionPoints>();
+        apRegenCounter = 5;
         if (isPlayerRanged)
         {
             ani.SetBool("IsPlayerRanged", isPlayerRanged);
@@ -123,7 +130,17 @@ public class MovemnetPlayerController : MonoBehaviour
                     playerMeleeAttacking = true;
                     RB.velocity = Vector3.zero;
                     ani.SetBool("PlayerMeleeAttacking", true);
-                // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                    // SFXManager.instance.PlaySingle(GetComponent<AudioSource>().clip);
+                }
+
+                if (Input.GetKeyDown(KeyCode.J))
+                {
+                    ChooseSkill(alleSkils.SearchSkill(2));
+                }
+
+                if (Input.GetKeyDown(KeyCode.K))
+                {
+                    ChooseSkill(alleSkils.SearchSkill(1));
                 }
             }
             else
@@ -131,6 +148,17 @@ public class MovemnetPlayerController : MonoBehaviour
                 RB.velocity = new Vector3();
             }
 
+        }
+
+        if (apRegenCounter > 0)
+        {
+            apRegenCounter -= Time.deltaTime;
+        }
+
+        if (apRegenCounter < 0)
+        {
+            ActionPoints.RegenActionPoints();
+            apRegenCounter = 5;
         }
 
         if (attackTimeCounter > 0)
@@ -142,6 +170,7 @@ public class MovemnetPlayerController : MonoBehaviour
         {
             playerMeleeAttacking = false;
             ani.SetBool("PlayerMeleeAttacking", false);
+            ani.SetInteger("SkillNumber", 0);
         }
 
         //animatie
@@ -193,29 +222,44 @@ public class MovemnetPlayerController : MonoBehaviour
         return MoveSpeed;
     }
 
+    public void ChooseSkill(Skill skill)
+    {
+        if (ActionPoints.UsePoints(skill.Cost))
+        {
+            attackTimeCounter = skill.Delay;
+            playerMeleeAttacking = true;
+            RB.velocity = Vector3.zero;
+            ani.SetInteger("SkillNumber", skill.ID);
+        }
+
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
             other.gameObject.GetComponent<Enemy>().PlayerIsSpotted();
         }
-
     }
-
 
     public void IncreaseGold(int IncreaseGold)
     {
         wallet.GainGold(IncreaseGold);
     }
 
-    public void IncreaseXP(int increaseXP)
+    public bool IncreaseXP(int increaseXP)
     {
-        level.gainXP(increaseXP);
+        return level.gainXP(increaseXP);
     }
 
     public void SetFullHealth()
     {
         PlayerHealth.SetMaxHealth();
+    }
+
+    public void IncreaseAP()
+    {
+        ActionPoints.IncreaseAP(level.Lvl);
     }
 
     public string ToStringGold()

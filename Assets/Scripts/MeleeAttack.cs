@@ -9,17 +9,17 @@ public class MeleeAttack : MonoBehaviour
     public GameObject DamageNumber;
     public GameObject Player;
 
-	// Use this for initialization
-	void Start()
-    {
-       
-	}
-	
-	// Update is called once per frame
-	void Update()
+    // Use this for initialization
+    void Start()
     {
 
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnTriggerEnter(Collider col)
     {
@@ -35,7 +35,15 @@ public class MeleeAttack : MonoBehaviour
             if (enemy.TakeDamage(DamageToGive) == true)
             {
                 Player.GetComponent<MovemnetPlayerController>().IncreaseGold(enemy.GetGold());
-                Player.GetComponent<MovemnetPlayerController>().IncreaseXP(enemy.GetXP());
+
+                if (Player.GetComponent<MovemnetPlayerController>().IncreaseXP(enemy.GetXP()))
+                {
+                    Player.GetComponent<MovemnetPlayerController>().IncreaseAP();
+                }
+            }
+            if (this.gameObject.tag == "HealSkill")
+            {
+                Player.GetComponent<PlayerHealthManager>().HealPlayer(DamageToGive / 2);
             }
         }
     }

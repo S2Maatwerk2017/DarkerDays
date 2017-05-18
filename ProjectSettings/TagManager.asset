@@ -3,15 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Projectile
-  - World
-  - InventoryPanel
-  - Chest
-  - ShopKeeper
-  - DialogBox
-  - Bed
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -48,13 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Ground
-    uniqueID: 1216313239
-    locked: 0
-  - name: Player
-    uniqueID: 3303778977
-    locked: 0
-  - name: WorldObjects
-    uniqueID: 2930177561
     locked: 0
