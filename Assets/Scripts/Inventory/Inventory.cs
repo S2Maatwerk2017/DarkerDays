@@ -77,6 +77,10 @@ public class Inventory : MonoBehaviour
                 break;
             }
         }
+
+        GameObject UI = GameObject.Find("UI");
+        UI.GetComponent<UIManager>().SetCurrentChosenSlot(CurrentChosenSlot.GetComponentInChildren<MyItem>());
+
         GameObject UseItemButton = GameObject.Find("UseItemBTN");
         GameObject DropItemButton = GameObject.Find("DropItemBTN");
         if (RectTransformUtility.RectangleContainsScreenPoint(UseItemButton.GetComponent<RectTransform>(), Input.mousePosition))
@@ -122,6 +126,7 @@ public class Inventory : MonoBehaviour
                 itemobj.transform.position = Vector2.zero;
                 itemobj.GetComponent<MyItem>().Heal = InventoryItems[i].GetHealthGain();
                 itemobj.GetComponent<MyItem>().Name = InventoryItems[i].Name;
+                itemobj.GetComponent<MyItem>().Description = InventoryItems[i].Description;
                 itemobj.GetComponent<MyItem>().InventorySlot = i;
             }
         }

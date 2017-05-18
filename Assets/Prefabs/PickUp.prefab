@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c8cf6cc79cc264cab0d877bcaa382f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 5
+  ItemID: 17
 --- !u!212 &212708898416303844
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3c086b7ac6e271a478b0a1e8b6d1ec63, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 95cf6d0f8f79f1844bfa1efdbd2cb7ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

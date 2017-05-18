@@ -10,10 +10,15 @@ public class UIManager : MonoBehaviour
     public Text healthText;
     public Text LvlText;
     public Text GoldText;
+    public Text NameText;
+    public Text DescriptionText;
+    public Text HealText;
     private PlayerHealthManager playerHealth;
     private PlayerLevel playerLevel;
     public MovemnetPlayerController playerCtrl;
     private static bool UImanagerExists;
+
+    private MyItem CurrentlySelectedItem;
 
     // Use this for initialization
     void Start()
@@ -40,5 +45,23 @@ public class UIManager : MonoBehaviour
         healthText.text = "HP: " + playerHealth.playerCurrentHealth + "/" + playerHealth.playerMaxHealth;
         LvlText.text = "LVL: " + playerLevel.Lvl;
         GoldText.text = Convert.ToString(playerCtrl.ToStringGold());
+        if (CurrentlySelectedItem != null)
+        {
+            string[] Data = CurrentlySelectedItem.GetData();
+            NameText.text = Data[0];
+            DescriptionText.text = Data[1];
+            HealText.text = "Heals for: " + Data[2];
+        }
+        else
+        {
+            NameText.text = "";
+            DescriptionText.text = "";
+            HealText.text = "";
+        }
+    }
+
+    public void SetCurrentChosenSlot(MyItem myItem)
+    {
+        CurrentlySelectedItem = myItem;
     }
 }

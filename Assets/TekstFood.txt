@@ -1,5 +1,21 @@
 HPItem;1;Banaan;2;Het is fruit.;1;Banana;5;29;-53
 HPItem;2;Bigmac;4;Hmmmm;1;BigMac;8;29;-32
-HPItem;3;Komkommer;1;Is het nu een komkommerof een dildo?;1;Cucumber;1;58;-40
+HPItem;3;Komkommer;1;Is het nu een komkommer of een dildo?;1;Cucumber;1;58;-40
 HPItem;4;Dumpling;8;Duur he.;1;Dumpling;4;10;-34
-HPItem;5;Pizza;10;Pizza magarita. Zelfs duurder dan die dumpling.;1;Apple;9;40;-39
+HPItem;5;Pizza;10;A Pizza Hut. A Pizza Hut. Kentucky Fried Chicken. And a Pizza Hut;1;Pizza;9;40;-39
+
+HPItem;6;Appel;1;Appel is rood;1;Apple;3;2;-56
+HPItem;7;Koffie;20;Starbucks, wat verwacht je;1;Koffie;1;6;-62
+HPItem;8;KFC;6;Chicken! GIVE ME TENDIES! REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!;1;KFC;-20;13;-71
+HPItem;9;Kiwi;1;Ninja kiwi;1;Kiwi;3;21;-61
+HPItem;10;Chillipeper;5;Naah, it's not spicy at all.;1;Chilli;-5;73;-14
+
+HPItem;11;Peach;2;Still trapped in a castle;1;Peach;7;4;-40
+HPItem;12;Taco;3;Me tako love;1;Taco;3;9;-23
+HPItem;13;Mushroom;1;Badger badger badger badger badger badger badger mushroom, mushroom.;1;Mushroom;3;56;-49
+HPItem;14;Burrito;2;The word burrito means "little donkey" in Spanish;1;Burrito;5;71;-47
+HPItem;15;Fries;2;Dreedomfries, frenchfries or murderd and sliced up potato corpses, its still delicious.;1;Fries;4;33;-67
+
+HPItem;16;Water;1;A transparent and nearly colorless chemical substance, otherwise known as H2O;1;Water;5;50;-70
+HPItem;17;Milkshake;3;My milk shake brings all the enemies to the yard;1;Milkshake;3;68;-10
+
