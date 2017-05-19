@@ -201,7 +201,7 @@ public class MovemnetPlayerController : MonoBehaviour
     {
         if (seconds > 1)
         {
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 MoveSpeed = MoveSpeed * 2;
                 seconds = 0;
@@ -265,6 +265,7 @@ public class MovemnetPlayerController : MonoBehaviour
     public string ToStringGold()
     {
         return "Gold: " + Convert.ToString(wallet.Gold);
+        
     }
 
 }
