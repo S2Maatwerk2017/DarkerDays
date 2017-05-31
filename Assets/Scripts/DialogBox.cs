@@ -22,6 +22,7 @@ public class DialogBox : MonoBehaviour
     public Image ImageItemSprite;
     public GameObject ShopDialog;
 
+    public bool ShopDialogAangemaakt = false;
     public int currentDialog;
     public int currentLine;
     public int endOfLine;
@@ -145,11 +146,16 @@ public class DialogBox : MonoBehaviour
         {
             playermovement.canMove = true;
         }
+        else if (ShopDialogAangemaakt)
+        {
+            return;
+        }
         else
         {
             Debug.Log("Maak Shop aan vanaf Dialog box");
             Shop shop = new Shop(Load_ItemList.ItemsList);
             Debug.Log("De shop heeft " + shop.Items.Count + " trades.");
+            ShopDialogAangemaakt = true;
             List<GameObject> ShopItemSlots = new List<GameObject>();
             int i = 0;
             foreach (Item item in shop.Items)

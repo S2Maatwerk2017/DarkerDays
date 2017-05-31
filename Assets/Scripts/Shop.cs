@@ -20,13 +20,12 @@ public class Shop
             Debug.Log(item.ItemID);
         }
         Items.Add(items.First(item => item.ItemID == 1));
-        Debug.Log("Banana was added to the shop");
         Items.Add(items.First(item => item.ItemID == 12));
         Items.Add(items.First(item => item.ItemID == 4));
         Items.Add(items.First(item => item.ItemID == 17));
         Items.Add(items.First(item => item.ItemID == 16));
         Items.Add(items.First(item => item.ItemID == 8));
-        Debug.Log("Shop aangemaakt met " + Convert.ToString(Items.Count) + Items);
+        Debug.Log("Shop aangemaakt met " + Convert.ToString(Items.Count) + "Items");
     }
 
     //TODO Player Koopt een item van shop
