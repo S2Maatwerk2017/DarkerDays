@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts;
 using UnityEngine;
 
@@ -8,28 +9,18 @@ public class Shop
 {
     public List<Item> Items { get; private set; }
 
-
-
-    public Shop()
+    public Shop(List<Item> items)
     {
-        Items = new List<Item>()
+        //Maak Items aan in shop
+        Items = new List<Item>
         {
-            new HP_Item(1, "Banana", 10, "Regenerates health with 2 hp", 2, "Banana", 2, 0, 0),
-            new HP_Item(2, "Banana", 20, "Regenerates health with 2 hp", 5, "Banana", 2, 0, 0)
+            items.First(item => item.ItemID == 1),
+            items.First(item => item.ItemID == 12),
+            items.First(item => item.ItemID == 4),
+            items.First(item => item.ItemID == 17),
+            items.First(item => item.ItemID == 16),
+            items.First(item => item.ItemID == 8)
         };
-        Debug.Log("Shop aangemaakt met " + Convert.ToString(Items.Count) + Items);
+        Debug.Log("Shop aangemaakt met " + Convert.ToString(Items.Count) + "Items");
     }
-
-    //TODO Player Koopt een item van shop
-    public Item BuyItem(int indexOfItem)
-    {
-        Item boughtItem = Items[indexOfItem];
-        return boughtItem;
-    }
-
-    ////TODO Verkoop een item
-    //public void SellItem(Item item)
-    //{
-        
-    //}
 }

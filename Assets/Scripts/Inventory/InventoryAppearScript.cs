@@ -9,7 +9,7 @@ namespace Assets.Scripts.Inventory
     public class InventoryAppearScript : MonoBehaviour
     {
 
-        public GameObject InventoryDispaly;
+        public GameObject InventoryDisplay;
         //Assign an inspector
 
         private bool isShowing;
@@ -21,9 +21,7 @@ namespace Assets.Scripts.Inventory
         }
 
         void Update()
-        {
-            //Debug.Log(isShowing);
-
+        {           
             if (Input.GetKeyDown(KeyCode.I))
             {
                 isShowing = !isShowing;

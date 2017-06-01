@@ -12,6 +12,7 @@ using UnityEditor;
 public class DialogBox : MonoBehaviour
 {
     public GameObject TextBox;
+    public GameObject ShopTradeSlot;
     public GameObject ShopItemLayout;
     public ShopKeeper Currentshopkeeper;
     public RandomNPC CurrentRandomNPC;
@@ -23,8 +24,10 @@ public class DialogBox : MonoBehaviour
     public Text TextItemName;
     public Text TextItemAmount;
     public Text TextItemCost;
+    public Image ImageItemSprite;
     public GameObject ShopDialog;
 
+    public bool ShopDialogAangemaakt = false;
     public int currentDialog;
     public int currentLine;
     public int endOfLine;
@@ -249,17 +252,52 @@ public class DialogBox : MonoBehaviour
         {
             playermovement.canMove = true;
         }
+        else if (ShopDialogAangemaakt)
+        {
+            return;
+        }
         else
         {
             Debug.Log("Maak Shop aan vanaf Dialog box");
-            Shop shop = new Shop();
+            GameObject playerGameObject = GameObject.Find("MeleePlayer");
+            List<Item> AllGameItems = Load_ItemList.Items();
+            //Maak shop aan
+            Shop shop = new Shop(AllGameItems);
             Debug.Log("De shop heeft " + shop.Items.Count + " trades.");
-            GameObject DialogBoxShopGameObject = GameObject.Find("DialogBoxShop");
-            List<GameObject> ShopItemLayouts = new List<GameObject>();
+            ShopDialogAangemaakt = true;
+
+            //Maak voor elk item een shopslot aan.
             foreach (Item item in shop.Items)
             {
-                ShopItemLayouts.Add(Instantiate(ShopItemLayout));
-                DialogBoxShopGameObject.AddComponent(typeof(GameObject));
+                //Maak slot aan
+                GameObject shopSlot = Instantiate(ShopTradeSlot);
+                //Bepaal parent van gameobject
+                shopSlot.transform.SetParent(ShopDialog.transform);
+
+                //check of item valide is
+                if (item.ItemID == -1)
+                {
+                    continue;
+                }
+                
+                //Maak Item aan
+                GameObject shopItem = Instantiate(ShopItemLayout);
+                //Bepaal parent van gameobject
+                shopItem.transform.SetParent(shopSlot.transform);
+
+
+                Text shopItemName = Instantiate(TextItemName);
+                shopItemName.transform.SetParent(shopItem.transform);
+                shopItemName.text = item.Name;
+                Text shopItemPrice = Instantiate(TextItemCost);
+                shopItemPrice.transform.SetParent(shopItem.transform);
+                shopItemPrice.text = item.Price + "g";
+                Text shopItemAmount = Instantiate(TextItemAmount);
+                shopItemAmount.transform.SetParent(shopItem.transform);
+                shopItemAmount.text = item.Amount + "x";
+                Image shopItemSprite = Instantiate(ImageItemSprite);
+                shopItemSprite.transform.SetParent(shopItem.transform);
+                shopItemSprite.sprite = item.Sprite;
             }
             TextItemCost.text = shop.Items.First().Price + "g";
             TextItemAmount.text = shop.Items.First().Amount + "x";

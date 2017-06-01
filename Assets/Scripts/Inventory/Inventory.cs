@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
+using Assets.Scripts.Inventory;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -15,7 +16,7 @@ public class Inventory : MonoBehaviour
     public List<GameObject> InventorySlots = new List<GameObject>();
     public List<GameObject> ItemsOnMap = new List<GameObject>();
 
-    private Player_Inventory playerInventory;
+    //private Load_ItemList loadList;
 
     public List<Item> itemsList = new List<Item>();
 
@@ -30,6 +31,8 @@ public class Inventory : MonoBehaviour
     public GameObject CurrentChosenSlot;
     public GameObject PickUpItem;
 
+    public GameObject Player;
+
     // Use this for initialization
     void Start()
     {
@@ -40,22 +43,12 @@ public class Inventory : MonoBehaviour
 
         itemsList = Load_ItemList.Items();
 
-        for (int i = 0; i < slotAmount; i++)
-        {
-            InventoryItems.Add(new HP_Item());
-            InventorySlots.Add(Instantiate(InventorySlot));
-            InventorySlots[i].transform.SetParent(SlotPanel.transform);
+        DoInventorySlots();
 
-        }
-
-        foreach (Item i in itemsList.ToList())
-        {
-            AddItem(i.ItemID);
-        }
-
+        Player = GameObject.FindGameObjectWithTag("Player");
         InventoryPanel.SetActive(false);
 
-	    //Debug.Log(itemsList.Count);
+        //Debug.Log(itemsList.Count);
 
         //AddItem(1);
         //AddItem(2);
@@ -63,19 +56,23 @@ public class Inventory : MonoBehaviour
         //AddItem(4);
         //AddItem(5);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-        //AddItemToList( item, InventoryItems);
+        if (Input.GetMouseButtonDown(0))
+        {
+            CheckSlots();
+        }
+
+        //Debug.Log(EventSystem.current.currentSelectedGameObject.name);
     }
 
-    public void AddItem(int id)
+    private void CheckSlots()
     {
-        Item itemToAdd = playerInventory.GetItemByID(id);
-        for (int i = 0; i < InventoryItems.Count; i++)
+        foreach (GameObject slot in InventorySlots)
         {
-            if (InventoryItems[i].ItemID == -1)
+            if (RectTransformUtility.RectangleContainsScreenPoint(slot.GetComponent<RectTransform>(), Input.mousePosition))
             {
                 CurrentChosenSlot = slot;
                 foreach (GameObject _slot in InventorySlots)
@@ -92,35 +89,27 @@ public class Inventory : MonoBehaviour
 
         GameObject UseItemButton = GameObject.Find("UseItemBTN");
         GameObject DropItemButton = GameObject.Find("DropItemBTN");
-        if (RectTransformUtility.RectangleContainsScreenPoint(UseItemButton.GetComponent<RectTransform>(), Input.mousePosition))
+        if (Player.gameObject.GetComponent<InventoryAppearScript>().isShowing)
         {
-            int Healthgained = CurrentChosenSlot.GetComponentInChildren<MyItem>().UseItem();
-            string Itemnaam = CurrentChosenSlot.GetComponentInChildren<MyItem>().Name;
-            switch (Itemnaam)
+            if (RectTransformUtility.RectangleContainsScreenPoint(UseItemButton.GetComponent<RectTransform>(),
+                    Input.mousePosition))
             {
-                case "Milkshake":
-                    SFXManager.Instance.SingleSfx(ItemUseSounds[1]);
-                    break;
-                case "KFC":
-                    SFXManager.Instance.SingleSfx(ItemUseSounds[2]);
-                    break;
-                default:
-                    SFXManager.Instance.SingleSfx(ItemUseSounds[0]);
-                    break;
+                int Healthgained = CurrentChosenSlot.GetComponentInChildren<MyItem>().UseItem();
+                this.GetComponent<PlayerHealthManager>().HealPlayer(Healthgained);
+                RemoveFromInventory();
             }
-
-            this.GetComponent<PlayerHealthManager>().HealPlayer(Healthgained);
-            RemoveFromInventory();
+            if (RectTransformUtility.RectangleContainsScreenPoint(DropItemButton.GetComponent<RectTransform>(),
+                Input.mousePosition))
+            {
+                Vector3 Location = this.transform.position;
+                Location.x -= 2f;
+                Location.z -= 2f;
+                var _item = Instantiate(PickUpItem, Location, PickUpItem.transform.rotation,
+                    GameObject.Find("Items").transform);
+                Debug.Log(_item.GetComponent<Item>().Name);
+                RemoveFromInventory();
+            }
         }
-        //if (RectTransformUtility.RectangleContainsScreenPoint(DropItemButton.GetComponent<RectTransform>(), Input.mousePosition))
-        //{
-        //    Vector3 Location = this.transform.position;
-        //    Location.x -= 2f;
-        //    Location.z -= 2f;
-        //    var _item = Instantiate(PickUpItem, Location, PickUpItem.transform.rotation, GameObject.Find("Items").transform);
-        //    Debug.Log(_item.GetComponent<Item>().Name);
-        //    RemoveFromInventory();
-        //}
     }
 
     private void RemoveFromInventory()

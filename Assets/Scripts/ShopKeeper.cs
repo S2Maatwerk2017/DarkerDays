@@ -6,7 +6,7 @@ namespace Assets.Scripts
 {
     public class ShopKeeper : NPC
     {
-        public bool playerCollide = false;
+        public bool playerCollide;
         // Use this for initialization
         void Start()
         {
@@ -24,11 +24,11 @@ namespace Assets.Scripts
         //TODO Zet hier de tekst van de npc in.
         private void FillDialogList()
         {
-            List<DialogLine> lines = new List<DialogLine>
+            List<string> lines = new List<string>
             {
-                new DialogLine("Hallo", false, false),
-                new DialogLine("Welkom bij mijn shop", false, false),
-                new DialogLine("Kijk rustig rond", false, false)
+                "Hallo",
+                "Welkom bij mijn shop",
+                "Kijk rustig rond"
             };
             Dialogs.Add(new Dialog(lines));
         }
@@ -41,15 +41,9 @@ namespace Assets.Scripts
                 {
                     Debug.Log("PlayerCollision geslaagd");
                     playerCollide = true;
-                    //OpenShop();
                     break;
                 }
             }
-        }
-
-        private void OpenShop()
-        {
-            throw new NotImplementedException();
         }
     }
 }
