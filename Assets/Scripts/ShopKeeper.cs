@@ -8,7 +8,7 @@ namespace Assets.Scripts
     {
         public bool playerCollide = false;
         // Use this for initialization
-        void Start () 
+        void Start()
         {
             Dialogs = new List<Dialog>();
             FillDialogList();
@@ -16,19 +16,21 @@ namespace Assets.Scripts
         }
 
         // Update is called once per frame
-        void Update ()
+        void Update()
         {
-		    
+
         }
 
         //TODO Zet hier de tekst van de npc in.
         private void FillDialogList()
         {
-            List<string> lines = new List<string>();
-            lines.Add("Hallo");
-            lines.Add("Welkom bij mijn shop");
-            lines.Add("Kijk rustig rond");
-           // Dialogs.Add(new Dialog(lines));
+            List<DialogLine> lines = new List<DialogLine>
+            {
+                new DialogLine("Hallo", false, false),
+                new DialogLine("Welkom bij mijn shop", false, false),
+                new DialogLine("Kijk rustig rond", false, false)
+            };
+            Dialogs.Add(new Dialog(lines));
         }
 
         public void OnCollisionEnter(Collision other)
@@ -37,6 +39,7 @@ namespace Assets.Scripts
             {
                 case "Player":
                 {
+                    Debug.Log("PlayerCollision geslaagd");
                     playerCollide = true;
                     //OpenShop();
                     break;

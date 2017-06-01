@@ -30,8 +30,8 @@ public class RandomNPC : NPC
     {
         Options = new List<Dialog>();
         List<DialogLine> options = new List<DialogLine>();
-        options.Add(new DialogLine("Ja graag, die wasmachine is totaal niet te duur", false, true,5));
-        options.Add(new DialogLine("Nee, wat moet ik met een wasmachine", false, false));
+        options.Add(new DialogLine("Ja graag, die banaan is totaal niet te duur", false, true,5));
+        options.Add(new DialogLine("Nee, wat moet ik met een banaan?", false, false));
         Options.Add(new Dialog(options));
     }
 
@@ -112,10 +112,14 @@ public class RandomNPC : NPC
     //TODO Zet hier de tekst van de npc in.
     private void FillDialogList()
     {
-        List<DialogLine> lines = new List<DialogLine>();
-        lines.Add(new DialogLine("random text", false, false));
-        lines.Add(new DialogLine("Welkom in mijn wereld", false, false));
-        lines.Add(new DialogLine("Wil je voor 5 gold een wasmachine kopen?", true, false, 5));
+        List<DialogLine> lines = new List<DialogLine>
+        {
+            new DialogLine("Heeeeeeeeey", false, false),
+            new DialogLine("Welkom in mijn wereld", false, false),
+            new DialogLine("Wil je voor 5 gold een banaan kopen?", true, false, 5),
+            new DialogLine("Niet genoeg geld pik", false, false),
+            new DialogLine("Nogmaals bedankt!", false, false)
+        };
         Dialogs.Add(new Dialog(lines));
     }
 }

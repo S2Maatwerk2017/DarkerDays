@@ -15,12 +15,13 @@ public class Inventory : MonoBehaviour
     public List<GameObject> InventorySlots = new List<GameObject>();
     public List<GameObject> ItemsOnMap = new List<GameObject>();
 
-    //private Load_ItemList loadList;
+    private Player_Inventory playerInventory;
 
     public List<Item> itemsList = new List<Item>();
 
     public List<AudioClip> ItemUseSounds;
 
+    private int slotAmount;
     private GameObject InventoryPanel;
     private GameObject SlotPanel;
     public GameObject InventorySlot;
@@ -39,12 +40,22 @@ public class Inventory : MonoBehaviour
 
         itemsList = Load_ItemList.Items();
 
-        DoInventorySlots();
+        for (int i = 0; i < slotAmount; i++)
+        {
+            InventoryItems.Add(new HP_Item());
+            InventorySlots.Add(Instantiate(InventorySlot));
+            InventorySlots[i].transform.SetParent(SlotPanel.transform);
 
+        }
+
+        foreach (Item i in itemsList.ToList())
+        {
+            AddItem(i.ItemID);
+        }
 
         InventoryPanel.SetActive(false);
 
-        //Debug.Log(itemsList.Count);
+	    //Debug.Log(itemsList.Count);
 
         //AddItem(1);
         //AddItem(2);
@@ -52,23 +63,19 @@ public class Inventory : MonoBehaviour
         //AddItem(4);
         //AddItem(5);
     }
-
-    // Update is called once per frame
-    void Update()
+	
+	// Update is called once per frame
+	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            CheckSlots();
-        }
-
-        //Debug.Log(EventSystem.current.currentSelectedGameObject.name);
+        //AddItemToList( item, InventoryItems);
     }
 
-    private void CheckSlots()
+    public void AddItem(int id)
     {
-        foreach (GameObject slot in InventorySlots)
+        Item itemToAdd = playerInventory.GetItemByID(id);
+        for (int i = 0; i < InventoryItems.Count; i++)
         {
-            if (RectTransformUtility.RectangleContainsScreenPoint(slot.GetComponent<RectTransform>(), Input.mousePosition))
+            if (InventoryItems[i].ItemID == -1)
             {
                 CurrentChosenSlot = slot;
                 foreach (GameObject _slot in InventorySlots)

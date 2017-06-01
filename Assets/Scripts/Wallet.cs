@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,5 +21,25 @@ public class Wallet : MonoBehaviour {
     {
         Gold = Gold + GainGold;
         Debug.Log(Gold);
+    }
+
+    public bool PayGold(int gold)
+    {
+        if (EnoughMoney(gold))
+        {
+            Gold -= gold;
+            return true;
+        }
+        return false;
+    }
+
+    private bool EnoughMoney(int gold)
+    {
+        int geld = Gold;
+        if (geld - gold < 0)
+        {
+            return false;
+        }
+        return true;
     }
 }
