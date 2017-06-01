@@ -9,6 +9,14 @@ public class MenuControl : MonoBehaviour
 
 	private Canvas previousMenu;
 
+	private bool isMenuOpen
+	{
+		get
+		{
+			return MainMenu.enabled || ChooseCharacterMenu.enabled || SaveMenu.enabled || LoadMenu.enabled || YouDiedScreen.enabled;
+		}
+	}
+
 	public Canvas MainMenu;
 	public Canvas ChooseCharacterMenu;
 	public Canvas PauseMenu;
@@ -17,6 +25,7 @@ public class MenuControl : MonoBehaviour
 	public Canvas LoadMenu;
 	public Dropdown LoadGamesList;
 	public Button LoadGameButton;
+	public Canvas YouDiedScreen;
 
 	// Use this for initialization
 	void Start()
@@ -26,12 +35,35 @@ public class MenuControl : MonoBehaviour
 		PauseMenu = PauseMenu.GetComponent<Canvas>();
 		SaveMenu = SaveMenu.GetComponent<Canvas>();
 		LoadMenu = LoadMenu.GetComponent<Canvas>();
+		YouDiedScreen = YouDiedScreen.GetComponent<Canvas>();
 	}
 
-	public void NewGame(string levelname)
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			PauseGame();
+		}
+	}
+
+	public void PauseGame()
+	{
+		if (Time.timeScale != 0)
+		{
+			Time.timeScale = 0;
+			PauseMenu.enabled = !isMenuOpen;
+		}
+		else
+		{
+			Time.timeScale = 1;
+			PauseMenu.enabled = false;
+		}
+	}
+
+	public void NewGame(string playertype)
 	{
 		ChooseCharacterMenu.enabled = false;
-		control.NewGame(levelname);
+		control.NewGame(playertype);
 	}
 
 	public void ShowLoadMenu(Canvas CurrentMenu)
@@ -84,7 +116,7 @@ public class MenuControl : MonoBehaviour
 
 	public void HidePauseMenu()
 	{
-		control.PauseGame();
+		PauseGame();
 	}
 
 	public void ShowCharacterCreation()
@@ -98,6 +130,7 @@ public class MenuControl : MonoBehaviour
 		MainMenu.enabled = true;
 		PauseMenu.enabled = false;
 		ChooseCharacterMenu.enabled = false;
+		YouDiedScreen.enabled = false;
 	}
 
 	public void ExitGame()

@@ -7,7 +7,7 @@ public class MovemnetPlayerController : MonoBehaviour
 {
     public float MoveSpeed;
     public float attackTime;
-
+    public string StartPoint = "Start";
     private float seconds;
     private Rigidbody RB;
     //private Animator ani;
