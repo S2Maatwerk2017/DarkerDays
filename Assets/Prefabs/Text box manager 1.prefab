@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1073791151867434}
+  m_RootGameObject: {fileID: 1315497923678406}
   m_IsPrefabParent: 1
---- !u!1 &1073791151867434
+--- !u!1 &1315497923678406
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4342130075116678}
-  - component: {fileID: 114194475219319260}
+  - component: {fileID: 4635636358209026}
+  - component: {fileID: 114784979329215568}
   m_Layer: 0
-  m_Name: Text box manager
+  m_Name: Text box manager 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4342130075116678
+--- !u!4 &4635636358209026
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1073791151867434}
+  m_GameObject: {fileID: 1315497923678406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 361.45956, y: 173.28827, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,23 +40,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114194475219319260
+--- !u!114 &114784979329215568
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1073791151867434}
+  m_GameObject: {fileID: 1315497923678406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a157a5fa91c46f4fb6bc1478ea5d5b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cd0934d01dcfd44aa437ebb5377da21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TextBox: {fileID: 0}
+  ShopTradeSlot: {fileID: 1344179065839878, guid: 3c725dbaf8ef1244fa3850d2b41bc17d,
+    type: 2}
+  ShopItemLayout: {fileID: 1504274162826310, guid: 1037b5394e60ae9499aa6463cc7d234e,
+    type: 2}
   Currentshopkeeper: {fileID: 0}
   CurrentRandomNPC: {fileID: 0}
   playermovement: {fileID: 0}
   textToShow: {fileID: 0}
+  TextItemName: {fileID: 114732169503524686, guid: 803d2f62a31413b459e7b4dc8b85c9f1,
+    type: 2}
+  TextItemAmount: {fileID: 114644634306859868, guid: 6446b7b6c0438434d9bd7d1504d60743,
+    type: 2}
+  TextItemCost: {fileID: 114404141083845664, guid: 1d08887338888be4c8176d40c2b23350,
+    type: 2}
+  ImageItemSprite: {fileID: 114050277914229216, guid: 216ccb1554953474e93d0ad7d2bebde3,
+    type: 2}
+  ShopDialog: {fileID: 0}
+  ShopDialogAangemaakt: 0
   currentDialog: 0
   currentLine: 0
-  endOfLine: 0
+  endOfLine: 5
   stopPlayerMovement: 0
+  ShopItemLayouts: []
