@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224314477680246882}
   - component: {fileID: 222923112856943136}
   - component: {fileID: 114042883307076892}
-  - component: {fileID: 114474870597134276}
+  - component: {fileID: 114153449217807494}
   m_Layer: 5
   m_Name: ShopItem 1
   m_TagString: Untagged
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114474870597134276
+--- !u!114 &114153449217807494
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -69,6 +69,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 20393275608985220, guid: 583e4a33cbf9a704791af83fe11868a3,
     type: 2}
+  id: 0
+  Item: {fileID: 0}
+  Player: {fileID: 0}
+  NotEnoughMoneyTextboxGameObject: {fileID: 1188404210472872, guid: 6418373731a2a9848aaa14da77520ac5,
+    type: 2}
+  ShopWindow: {fileID: 1177806457049388, guid: 135044eaf2e3ec746b6310038c2d5ef3, type: 2}
 --- !u!222 &222923112856943136
 CanvasRenderer:
   m_ObjectHideFlags: 1

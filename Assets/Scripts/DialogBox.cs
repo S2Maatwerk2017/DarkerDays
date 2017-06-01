@@ -63,6 +63,7 @@ public class DialogBox : MonoBehaviour
                     SetDialogShopBox(false);
                     SetDialogBox(false);
                     currentLine = 0;
+
                     return;
                 }
                 Debug.Log("+1");

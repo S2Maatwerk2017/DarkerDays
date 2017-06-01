@@ -13,6 +13,15 @@ public class ShopBuyItem : MonoBehaviour, IPointerClickHandler {
     public Item Item;
     public GameObject Player;
 
+    public GameObject NotEnoughMoneyTextboxGameObject;
+    public GameObject ShopWindow;
+
+    GameObject messageboxNotEnoughMoney;
+
+    public GameObject canvas;
+    private int notEnoughMoneytimer;
+
+    //hello?
 
     // Use this for initialization
     void Start ()
@@ -24,10 +33,13 @@ public class ShopBuyItem : MonoBehaviour, IPointerClickHandler {
         Debug.Log("Tradenummer " + shopItemNumber + " is aangemaakt met een " + Item.Name + " met id " + id + "in de shop.");
         shopItemNumber++;
         Player = GameObject.FindGameObjectWithTag("Player");
+        canvas = GameObject.Find("Canvas");
     }
 	
 	// Update is called once per frame
 	void Update () {
+
+
         RaycastHit2D hit;
 
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -37,6 +49,7 @@ public class ShopBuyItem : MonoBehaviour, IPointerClickHandler {
             if (id != 0)
             {
                 Debug.Log("I have been clicked correct");
+                //DestroyNotEnoughMoneyMessageBox();
             }
             else
             {
@@ -44,7 +57,23 @@ public class ShopBuyItem : MonoBehaviour, IPointerClickHandler {
             }
             
         }
+	        DestroyNotEnoughMoneyMessageBox();
         
+
+
+
+
+	}
+
+    public void DestroyNotEnoughMoneyMessageBox()
+    {
+        Debug.Log("Destroy MessageBox");
+        notEnoughMoneytimer++;
+        if (messageboxNotEnoughMoney != null && notEnoughMoneytimer >= 300)
+        {
+            Destroy(messageboxNotEnoughMoney);
+            notEnoughMoneytimer = 0;
+        }
     }
 
     public int GetId()
@@ -63,15 +92,19 @@ public class ShopBuyItem : MonoBehaviour, IPointerClickHandler {
         //Controleer of speler genoeg gold heeft
         if (Item.Price > playerWallet.Gold)
         {
-
             Debug.Log("You can't buy this item!");
+            
+            messageboxNotEnoughMoney = Instantiate(NotEnoughMoneyTextboxGameObject,canvas.transform);
+            messageboxNotEnoughMoney.transform.position = new Vector3(Screen.width/2,Screen.height/2,0);
             return;
         }
+        
         Debug.Log("You lost " + Item.Price + " gold");
+        //DestroyNotEnoughMoneyMessageBox();
         //Betaal item
         playerWallet.Gold -= Item.Price;
         //Verkrijg item in inventory
         Player.GetComponent<Inventory>().AddNewItem(id);
-
+        
     }
 }
