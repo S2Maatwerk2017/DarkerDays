@@ -4,8 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - CameraPlayer
   - Enemy
+  - Projectile
+  - World
+  - InventoryPanel
+  - Chest
+  - ShopKeeper
+  - DialogBox
+  - Bed
   layers:
   - Default
   - TransparentFX
@@ -44,11 +50,11 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Ground
-    uniqueID: 353932193
-    locked: 0
-  - name: Enemy
-    uniqueID: 2878706929
+    uniqueID: 1216313239
     locked: 0
   - name: Player
-    uniqueID: 1159829815
+    uniqueID: 3303778977
+    locked: 0
+  - name: WorldObjects
+    uniqueID: 2930177561
     locked: 0
