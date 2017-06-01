@@ -6,7 +6,6 @@ using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Linq;
 using UnityEditor;
 
 public class DialogBox : MonoBehaviour
