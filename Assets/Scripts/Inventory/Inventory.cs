@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts;
+using Assets.Scripts.Inventory;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -27,6 +28,8 @@ public class Inventory : MonoBehaviour
     public GameObject CurrentChosenSlot;
     public GameObject PickUpItem;
 
+    public GameObject Player;
+
     // Use this for initialization
     void Start()
     {
@@ -39,7 +42,7 @@ public class Inventory : MonoBehaviour
 
         DoInventorySlots();
 
-
+        Player = GameObject.FindGameObjectWithTag("Player");
         InventoryPanel.SetActive(false);
 
         //Debug.Log(itemsList.Count);
@@ -79,20 +82,26 @@ public class Inventory : MonoBehaviour
         }
         GameObject UseItemButton = GameObject.Find("UseItemBTN");
         GameObject DropItemButton = GameObject.Find("DropItemBTN");
-        if (RectTransformUtility.RectangleContainsScreenPoint(UseItemButton.GetComponent<RectTransform>(), Input.mousePosition))
+        if (Player.gameObject.GetComponent<InventoryAppearScript>().isShowing)
         {
-            int Healthgained = CurrentChosenSlot.GetComponentInChildren<MyItem>().UseItem();
-            this.GetComponent<PlayerHealthManager>().HealPlayer(Healthgained);
-            RemoveFromInventory();
-        }
-        if (RectTransformUtility.RectangleContainsScreenPoint(DropItemButton.GetComponent<RectTransform>(), Input.mousePosition))
-        {
-            Vector3 Location = this.transform.position;
-            Location.x -= 2f;
-            Location.z -= 2f;
-            var _item = Instantiate(PickUpItem, Location, PickUpItem.transform.rotation, GameObject.Find("Items").transform);
-            Debug.Log(_item.GetComponent<Item>().Name);
-            RemoveFromInventory();
+            if (RectTransformUtility.RectangleContainsScreenPoint(UseItemButton.GetComponent<RectTransform>(),
+                    Input.mousePosition))
+            {
+                int Healthgained = CurrentChosenSlot.GetComponentInChildren<MyItem>().UseItem();
+                this.GetComponent<PlayerHealthManager>().HealPlayer(Healthgained);
+                RemoveFromInventory();
+            }
+            if (RectTransformUtility.RectangleContainsScreenPoint(DropItemButton.GetComponent<RectTransform>(),
+                Input.mousePosition))
+            {
+                Vector3 Location = this.transform.position;
+                Location.x -= 2f;
+                Location.z -= 2f;
+                var _item = Instantiate(PickUpItem, Location, PickUpItem.transform.rotation,
+                    GameObject.Find("Items").transform);
+                Debug.Log(_item.GetComponent<Item>().Name);
+                RemoveFromInventory();
+            }
         }
     }
 

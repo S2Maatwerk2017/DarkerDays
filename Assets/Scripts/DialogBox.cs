@@ -153,26 +153,33 @@ public class DialogBox : MonoBehaviour
         else
         {
             Debug.Log("Maak Shop aan vanaf Dialog box");
-            Shop shop = new Shop(Load_ItemList.ItemsList);
+            GameObject playerGameObject = GameObject.Find("MeleePlayer");
+            List<Item> AllGameItems = Load_ItemList.Items();
+            //Maak shop aan
+            Shop shop = new Shop(AllGameItems);
             Debug.Log("De shop heeft " + shop.Items.Count + " trades.");
             ShopDialogAangemaakt = true;
-            List<GameObject> ShopItemSlots = new List<GameObject>();
-            int i = 0;
+
+            //Maak voor elk item een shopslot aan.
             foreach (Item item in shop.Items)
             {
+                //Maak slot aan
                 GameObject shopSlot = Instantiate(ShopTradeSlot);
+                //Bepaal parent van gameobject
                 shopSlot.transform.SetParent(ShopDialog.transform);
-                //Vector3 originalPosition = shopSlot.transform.position;
-                //originalPosition.x += (100 * i);
-                //shopSlot.transform.position = originalPosition;
-                ShopItemSlots.Add(shopSlot);
+
+                //check of item valide is
                 if (item.ItemID == -1)
                 {
                     continue;
                 }
                 
+                //Maak Item aan
                 GameObject shopItem = Instantiate(ShopItemLayout);
+                //Bepaal parent van gameobject
                 shopItem.transform.SetParent(shopSlot.transform);
+
+
                 Text shopItemName = Instantiate(TextItemName);
                 shopItemName.transform.SetParent(shopItem.transform);
                 shopItemName.text = item.Name;
@@ -185,17 +192,6 @@ public class DialogBox : MonoBehaviour
                 Image shopItemSprite = Instantiate(ImageItemSprite);
                 shopItemSprite.transform.SetParent(shopItem.transform);
                 shopItemSprite.sprite = item.Sprite;
-
-
-                //GameObject shopItem = Instantiate(ShopItemLayout);
-                //Vector3 originalPosition = shopItem.transform.position;
-                //originalPosition.y += (100 * i);
-                //shopItem.transform.position = new Vector3();
-                //ShopItemLayouts.Add(shopItem);
-
-                //DialogBoxShopGameObject.AddComponent(typeof(GameObject));
-
-                i++;
             }
             TextItemCost.text = shop.Items.First().Price + "g";
             TextItemAmount.text = shop.Items.First().Amount + "x";

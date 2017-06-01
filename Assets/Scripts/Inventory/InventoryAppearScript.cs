@@ -12,7 +12,7 @@ namespace Assets.Scripts.Inventory
         public GameObject InventoryDisplay;
         //Assign an inspector
 
-        private bool isShowing;
+        public bool isShowing;
 
         void Start()
         {
